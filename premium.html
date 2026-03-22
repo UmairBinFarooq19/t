@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>GulmargOnTheGo — Curated Kashmir Himalayan Experiences</title>
+<meta name="description" content="Expert-led skiing, snowboarding, heli-skiing, trekking and Kashmir adventures. Born in Gulmarg — local guides, national champions, unrivalled winter escapes."/>
+
+<!-- Fonts: Cormorant Garamond display + DM Sans body -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Alpine.js -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+<!-- Swiper -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- flatpickr -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        slate: { 950: '#0a0f1a' },
+        teal: {
+          glacier: '#0ea5e9',
+          deep: '#0d7490',
+        },
+        cream: '#fdfcf8',
+        gold: '#c9a84c',
+      },
+      fontFamily: {
+        display: ['Cormorant Garamond', 'Georgia', 'serif'],
+        body: ['DM Sans', 'system-ui', 'sans-serif'],
+      },
+    },
+  },
+}
+</script>
+
+<style>
+  /* ─── Base ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-family: 'DM Sans', system-ui, sans-serif; background: #0f172a; color: #f8fafc; }
+  body { overflow-x: hidden; }
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: #0f172a; }
+  ::-webkit-scrollbar-thumb { background: #0ea5e9; border-radius: 2px; }
+
+  /* ─── Typography ─── */
+  .display { font-family: 'Cormorant Garamond', Georgia, serif; }
+  .display-italic { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; }
+
+  /* ─── Hero film grain ─── */
+  .grain::after {
+    content: '';
+    position: absolute; inset: 0; z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  /* ─── Nav glassmorphism ─── */
+  .nav-glass {
+    background: rgba(15, 23, 42, 0.72);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(248, 250, 252, 0.06);
+  }
+  .nav-scrolled {
+    background: rgba(10, 15, 26, 0.92);
+    box-shadow: 0 4px 32px rgba(0,0,0,0.4);
+  }
+
+  /* ─── Section divider ─── */
+  .section-rule {
+    width: 40px; height: 1px;
+    background: linear-gradient(to right, #0ea5e9, transparent);
+    margin-bottom: 1rem;
+  }
+
+  /* ─── Card hover lift ─── */
+  .card-lift {
+    transition: transform 0.4s cubic-bezier(.4,0,.2,1), box-shadow 0.4s cubic-bezier(.4,0,.2,1);
+  }
+  .card-lift:hover {
+    transform: translateY(-6px) scale(1.008);
+    box-shadow: 0 24px 64px -12px rgba(0,0,0,0.5);
+  }
+
+  /* ─── Image overlay reveal ─── */
+  .img-reveal { overflow: hidden; }
+  .img-reveal img { transition: transform 0.7s cubic-bezier(.4,0,.2,1); }
+  .img-reveal:hover img { transform: scale(1.06); }
+
+  /* ─── Gold gradient button ─── */
+  .btn-gold {
+    background: linear-gradient(135deg, #c9a84c 0%, #e6c96d 50%, #c9a84c 100%);
+    color: #0f172a;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-gold::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #e6c96d, #c9a84c);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .btn-gold:hover::before { opacity: 1; }
+  .btn-gold span { position: relative; z-index: 1; }
+
+  /* ─── Teal outline button ─── */
+  .btn-teal-outline {
+    border: 1px solid rgba(14, 165, 233, 0.5);
+    color: #e0f2fe;
+    transition: all 0.3s ease;
+  }
+  .btn-teal-outline:hover {
+    border-color: #0ea5e9;
+    background: rgba(14, 165, 233, 0.1);
+  }
+
+  /* ─── Zone map interactive ─── */
+  .zone-btn {
+    position: absolute;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border: 2px solid rgba(255,255,255,0.3);
+    box-shadow: 0 0 0 4px rgba(0,0,0,0.3);
+    z-index: 10;
+  }
+  .zone-btn:hover { transform: scale(1.3); }
+  .zone-btn.active { transform: scale(1.3); box-shadow: 0 0 0 6px rgba(14,165,233,0.3); }
+  .zone-1 { background: #22c55e; top: 72%; left: 18%; }
+  .zone-2 { background: #3b82f6; top: 52%; left: 42%; }
+  .zone-3 { background: #ef4444; top: 28%; left: 55%; }
+  .zone-4 { background: #6b21a8; top: 18%; left: 35%; }
+
+  /* ─── Scroll reveal ─── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-left { opacity: 0; transform: translateX(-28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal-left.visible { opacity: 1; transform: none; }
+  .reveal-right { opacity: 0; transform: translateX(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal-right.visible { opacity: 1; transform: none; }
+
+  /* ─── Stat counter ─── */
+  .stat-val { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; line-height: 1; }
+
+  /* ─── Package card ─── */
+  .pkg-card {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(248, 250, 252, 0.06);
+    backdrop-filter: blur(8px);
+    transition: all 0.4s ease;
+  }
+  .pkg-card:hover {
+    border-color: rgba(14, 165, 233, 0.25);
+    background: rgba(30, 41, 59, 0.8);
+    transform: translateY(-4px);
+    box-shadow: 0 24px 60px -12px rgba(0,0,0,0.5);
+  }
+
+  /* ─── Testimonial swiper ─── */
+  .swiper-pagination-bullet { background: rgba(14,165,233,0.4) !important; }
+  .swiper-pagination-bullet-active { background: #0ea5e9 !important; }
+
+  /* ─── Form inputs dark ─── */
+  .form-input {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(248, 250, 252, 0.1);
+    color: #f8fafc;
+    transition: border-color 0.25s ease;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    width: 100%;
+    outline: none;
+  }
+  .form-input:focus { border-color: rgba(14, 165, 233, 0.6); box-shadow: 0 0 0 3px rgba(14,165,233,0.1); }
+  .form-input::placeholder { color: rgba(148, 163, 184, 0.6); }
+  .form-input option { background: #1e293b; }
+  .flatpickr-calendar { background: #1e293b !important; border: 1px solid rgba(14,165,233,0.2) !important; border-radius: 12px !important; box-shadow: 0 20px 60px rgba(0,0,0,0.5) !important; font-family: 'DM Sans', sans-serif !important; }
+  .flatpickr-day { color: #e2e8f0 !important; border-radius: 8px !important; }
+  .flatpickr-day:hover, .flatpickr-day.selected { background: #0ea5e9 !important; border-color: #0ea5e9 !important; color: #fff !important; }
+  .flatpickr-day.inRange { background: rgba(14,165,233,0.2) !important; border-color: transparent !important; }
+  .flatpickr-months { background: rgba(15,23,42,0.8) !important; border-radius: 12px 12px 0 0 !important; }
+  .flatpickr-month, .flatpickr-current-month, .flatpickr-prev-month, .flatpickr-next-month { color: #e2e8f0 !important; fill: #e2e8f0 !important; }
+  .flatpickr-weekday { color: rgba(148,163,184,0.7) !important; }
+
+  /* ─── Mobile menu slide ─── */
+  .mobile-menu-enter { transform: translateX(100%); }
+  .mobile-menu-enter-active { transform: translateX(0); transition: transform 0.35s cubic-bezier(.4,0,.2,1); }
+
+  /* ─── Guest counter ─── */
+  .counter-btn { width: 32px; height: 32px; border-radius: 8px; border: 1px solid rgba(14,165,233,0.3); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; font-size: 1.1rem; color: #7dd3fc; }
+  .counter-btn:hover { border-color: #0ea5e9; background: rgba(14,165,233,0.15); }
+
+  /* ─── Diagonal section break ─── */
+  .clip-diagonal { clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%); }
+  .clip-diagonal-rev { clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 100%); }
+
+  /* WhatsApp FAB */
+  .wa-fab {
+    position: fixed; bottom: 24px; right: 24px; z-index: 999;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #25d366;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 28px rgba(37,211,102,0.45);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .wa-fab:hover { transform: scale(1.1); box-shadow: 0 12px 36px rgba(37,211,102,0.55); }
+</style>
+</head>
+
+<!-- ══════════════════════════════════════════
+     Alpine.js app wrapper
+══════════════════════════════════════════ -->
+<body class="font-body text-slate-100 bg-slate-900"
+  x-data="{
+    mobileOpen: false,
+    activeZone: 1,
+    guests: 2,
+    pkgFilter: 'all',
+    actTab: 'winter',
+    navScrolled: false,
+    zones: {
+      1: { name: 'Zone 1 — Beginner', color: '#22c55e', desc: 'Seven poma lifts across Gulmarg\'s gentle meadow slopes. Gradients of 8–15°, runs between 200–400m. The ideal place to find your feet on skis.', details: ['7 poma lifts · open daily 9 AM–5 PM','Gradient 8–15° · run length 200–400m','Certified instructor mandatory for beginners','Ski rental available at gondola base','Best months: December–March'] },
+      2: { name: 'Zone 2 — Intermediate', color: '#3b82f6', desc: 'Gondola Phase 1 reaches Kongdori at 3,050m. A broad, naturally shaped bowl with a satisfying 4km descent back to the meadow base.', details: ['Gondola Phase 1 · elevation 3,050m','4km descent · gradient 10–18°','Kongdori Bowl + Mary\'s Shoulder','Season: December–April','Gondola pass: ₹800 single / ₹3,500 day'] },
+      3: { name: 'Zone 3 — Advanced', color: '#ef4444', desc: 'Phase 2 reaches the Apharwat ridge at 3,980m — the highest gondola in Asia. Sustained steep terrain, 7km runs, 20–45° pitches. Guide strongly advised.', details: ['Gondola Phase 2 · summit 3,980m','7km descent · gradient 20–45°','Apharwat Face + upper couloirs','Gondola pass: ₹1,500 single / ₹5,500 combo','Helmet mandatory above Phase 1'] },
+      4: { name: 'Zone 4 — Backcountry / Expert', color: '#a855f7', desc: 'Off-piste lines including Locker\'s Left, Locker\'s Right, The Back, Far Far Side, Monkey Hill, Babarishi and the full run to Tangmarg. Unpatrolled, avalanche terrain — guides and full safety kit mandatory.', details: ['Named lines: Locker\'s L/R, The Back, Far Far Side','Monkey Hill, Babarishi, Tangmarg descent','AIARE/NZ guide mandatory · full avalanche kit','Check gulmargac.in daily advisory','Vertical: 900–1,500m · vehicle return required'] }
+    }
+  }"
+  @scroll.window="navScrolled = window.scrollY > 60"
+>
+
+<!-- ══════════════════════════════════════════
+     NAV
+══════════════════════════════════════════ -->
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  :class="navScrolled ? 'nav-glass nav-scrolled' : 'nav-glass'">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-3 flex-shrink-0">
+      <img src="images/logo.png" alt="GulmargOnTheGo" class="h-9 w-auto" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+      <span class="display text-xl font-medium text-slate-100" style="display:none">Gulmarg<em class="text-sky-400">OnTheGo</em></span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden lg:flex items-center gap-1 text-sm">
+      <a href="#about" class="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200">About</a>
+      <a href="#activities" class="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200">Activities</a>
+      <a href="#packages" class="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200">Packages</a>
+      <a href="#terrain" class="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200">Terrain</a>
+      <a href="#destinations" class="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200">Destinations</a>
+      <a href="#team" class="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200">Team</a>
+    </nav>
+
+    <!-- CTA + hamburger -->
+    <div class="flex items-center gap-3">
+      <a href="#enquiry" class="hidden sm:inline-flex btn-gold px-5 py-2.5 rounded-full text-sm font-semibold">
+        <span>Check Availability</span>
+      </a>
+      <button @click="mobileOpen = !mobileOpen" class="lg:hidden w-9 h-9 flex flex-col items-center justify-center gap-1.5" aria-label="Menu">
+        <span class="w-5 h-0.5 bg-slate-200 transition-all duration-300 block" :class="mobileOpen && 'rotate-45 translate-y-2'"></span>
+        <span class="w-5 h-0.5 bg-slate-200 transition-all duration-300 block" :class="mobileOpen && 'opacity-0'"></span>
+        <span class="w-5 h-0.5 bg-slate-200 transition-all duration-300 block" :class="mobileOpen && '-rotate-45 -translate-y-2'"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div x-show="mobileOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-4"
+    class="lg:hidden border-t border-white/5 bg-slate-950/95 backdrop-blur-xl py-6 px-5 flex flex-col gap-2">
+    <a href="#about" @click="mobileOpen=false" class="py-3 text-slate-200 border-b border-white/5 display text-xl">About</a>
+    <a href="#activities" @click="mobileOpen=false" class="py-3 text-slate-200 border-b border-white/5 display text-xl">Activities</a>
+    <a href="#packages" @click="mobileOpen=false" class="py-3 text-slate-200 border-b border-white/5 display text-xl">Packages</a>
+    <a href="#terrain" @click="mobileOpen=false" class="py-3 text-slate-200 border-b border-white/5 display text-xl">Terrain</a>
+    <a href="#destinations" @click="mobileOpen=false" class="py-3 text-slate-200 border-b border-white/5 display text-xl">Destinations</a>
+    <a href="#enquiry" @click="mobileOpen=false" class="mt-4 btn-gold px-6 py-3 rounded-full text-center text-sm font-semibold"><span>Check Availability</span></a>
+  </div>
+</header>
+
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section class="relative min-h-screen flex items-end overflow-hidden grain" style="background:#0a0f1a">
+
+  <!-- Background: cinematic mountain image -->
+  <img
+    src="https://images.unsplash.com/photo-1612459284270-2ca07e5e3b8a?q=85&w=2400&auto=format&fit=crop"
+    alt="Gulmarg Kashmir powder skiing — deep snow valley, pine forest, Himalayan peaks at golden hour"
+    class="absolute inset-0 w-full h-full object-cover object-center"
+    loading="eager"
+    style="filter: brightness(0.55) saturate(0.9);"
+  />
+
+  <!-- Gradient overlay — heavier at bottom for text legibility -->
+  <div class="absolute inset-0 z-[2]" style="background: linear-gradient(to top, rgba(10,15,26,0.98) 0%, rgba(10,15,26,0.55) 45%, rgba(10,15,26,0.15) 100%)"></div>
+  <!-- Subtle horizontal vignette -->
+  <div class="absolute inset-0 z-[2]" style="background: radial-gradient(ellipse 80% 80% at 50% 100%, transparent 40%, rgba(10,15,26,0.3) 100%)"></div>
+
+  <!-- Content -->
+  <div class="relative z-[3] w-full max-w-7xl mx-auto px-5 sm:px-8 pb-20 lg:pb-28">
+
+    <!-- Season pill -->
+    <div class="mb-8 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 backdrop-blur px-4 py-1.5 text-xs font-medium tracking-[0.12em] text-slate-300 uppercase">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+      Season Open · December 2025 — April 2026
+    </div>
+
+    <!-- Headline -->
+    <h1 class="display font-light leading-[0.92] mb-6" style="font-size: clamp(3.5rem, 9vw, 8rem); letter-spacing: -0.03em; max-width: 860px;">
+      Kashmir<br/>
+      <em class="display-italic" style="color: #7dd3fc;">Starts Here.</em>
+    </h1>
+
+    <!-- Subheadline -->
+    <p class="text-slate-300 font-light leading-relaxed mb-10 max-w-xl" style="font-size: clamp(0.95rem, 1.5vw, 1.1rem);">
+      Two decades guiding guests through the Himalayas' most breathtaking terrain — powder slopes, mountain trails and moments that stay with you for life.
+    </p>
+
+    <!-- CTAs -->
+    <div class="flex flex-col sm:flex-row gap-3 mb-16">
+      <a href="#packages" class="btn-gold inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold tracking-wide">
+        <span>Explore Packages</span>
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#enquiry" class="btn-teal-outline inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold tracking-wide backdrop-blur">
+        <span>Check Availability</span>
+      </a>
+    </div>
+
+    <!-- Stats row -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-0 border border-white/8 rounded-2xl overflow-hidden backdrop-blur" style="background: rgba(10,15,26,0.5); max-width: 680px;">
+      <div class="px-6 py-5 border-r border-b sm:border-b-0 border-white/8 text-center">
+        <div class="stat-val text-white" data-target="400">0</div>
+        <div class="text-xs text-slate-400 font-medium tracking-wider uppercase mt-1">Happy Guests</div>
+      </div>
+      <div class="px-6 py-5 border-b sm:border-b-0 sm:border-r border-white/8 text-center">
+        <div class="stat-val text-white" data-target="20">0</div>
+        <div class="text-xs text-slate-400 font-medium tracking-wider uppercase mt-1">Years Guiding</div>
+      </div>
+      <div class="px-6 py-5 border-r border-white/8 text-center">
+        <div class="stat-val text-white" data-target="25">0</div>
+        <div class="text-xs text-slate-400 font-medium tracking-wider uppercase mt-1">Hotel Partners</div>
+      </div>
+      <div class="px-6 py-5 text-center">
+        <div class="stat-val text-white">24/7</div>
+        <div class="text-xs text-slate-400 font-medium tracking-wider uppercase mt-1">Support</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 right-8 z-[3] hidden lg:flex items-center gap-3 text-xs tracking-[0.15em] uppercase text-slate-400" style="writing-mode: vertical-rl;">
+    <div class="w-px h-10 bg-gradient-to-b from-transparent via-slate-400 to-transparent animate-pulse"></div>
+    Scroll
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     TRUST BAR
+══════════════════════════════════════════ -->
+<div style="background: rgba(15,23,42,0.95); border-top: 1px solid rgba(248,250,252,0.05); border-bottom: 1px solid rgba(248,250,252,0.05);">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-3 flex flex-wrap items-center justify-between gap-4">
+    <div class="flex flex-wrap gap-6 text-xs text-slate-400 font-medium tracking-wide">
+      <span class="flex items-center gap-2">
+        <svg width="14" height="14" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        AIARE Level 1 Certified Guides
+      </span>
+      <span class="flex items-center gap-2">
+        <svg width="14" height="14" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        National Ski Team Instructors
+      </span>
+      <span class="flex items-center gap-2">
+        <svg width="14" height="14" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        J&K Tourism Licensed
+      </span>
+      <span class="flex items-center gap-2">
+        <svg width="14" height="14" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        No Middlemen · Local Rates
+      </span>
+    </div>
+    <div class="flex items-center gap-4 text-xs text-slate-400">
+      <a href="tel:+917006303822" class="hover:text-sky-400 transition-colors">+91 7006303822</a>
+      <span class="text-slate-700">|</span>
+      <a href="https://wa.me/917006303822" target="_blank" class="hover:text-emerald-400 transition-colors">WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     ABOUT
+══════════════════════════════════════════ -->
+<section id="about" class="py-24 lg:py-32 bg-slate-900 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+      <!-- Left: images -->
+      <div class="relative reveal-left">
+        <!-- Main image -->
+        <div class="img-reveal rounded-2xl overflow-hidden aspect-[4/5]" style="background:#1e293b">
+          <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=1400&auto=format&fit=crop" alt="Kashmir local ski guide on Gulmarg's Apharwat slopes with deep powder snow" class="w-full h-full object-cover" loading="lazy"/>
+        </div>
+        <!-- Small overlay image -->
+        <div class="absolute -right-4 lg:-right-8 bottom-12 w-2/5 img-reveal rounded-xl overflow-hidden shadow-2xl" style="background:#1e293b; border: 2px solid rgba(248,250,252,0.06);">
+          <img src="https://images.unsplash.com/photo-1624138784614-87fd1b6528f8?q=80&w=800&auto=format&fit=crop" alt="Gulmarg gondola cable car above Kashmir valley winter landscape" class="w-full h-full object-cover aspect-[4/3]" loading="lazy"/>
+        </div>
+        <!-- Experience badge -->
+        <div class="absolute -left-4 top-16 bg-sky-500 text-slate-950 rounded-2xl px-5 py-4 shadow-2xl">
+          <div class="display font-light" style="font-size: 2.5rem; line-height: 1;">20<sup style="font-size:0.5em">+</sup></div>
+          <div class="text-xs font-semibold tracking-widest uppercase mt-1">Yrs in Gulmarg</div>
+        </div>
+      </div>
+
+      <!-- Right: content -->
+      <div class="reveal-right">
+        <div class="section-rule"></div>
+        <p class="text-xs font-semibold tracking-[0.2em] uppercase text-sky-400 mb-4">Who We Are</p>
+
+        <h2 class="display font-light mb-8" style="font-size: clamp(2.5rem, 5vw, 3.8rem); line-height: 1.05; letter-spacing: -0.025em;">
+          Not visitors.<br/>
+          <em class="display-italic" style="color: #7dd3fc;">We live here.</em>
+        </h2>
+
+        <p class="text-slate-300 leading-relaxed mb-10 font-light text-base lg:text-lg" style="max-width: 480px;">
+          GulmargOnTheGo was founded by mountain professionals born and raised in Kashmir. Our team has spent their entire lives on these slopes, trails and meadows — giving you knowledge no travel brochure can offer.
+        </p>
+
+        <ul class="space-y-3 mb-10">
+          <li class="flex items-start gap-3 text-slate-300 text-sm">
+            <svg class="w-4 h-4 mt-0.5 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            Local Kashmir experts — born on these mountains
+          </li>
+          <li class="flex items-start gap-3 text-slate-300 text-sm">
+            <svg class="w-4 h-4 mt-0.5 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            National ski team guides &amp; certified instructors
+          </li>
+          <li class="flex items-start gap-3 text-slate-300 text-sm">
+            <svg class="w-4 h-4 mt-0.5 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            Avalanche certified — AIARE Level 1 &amp; NZ trained
+          </li>
+          <li class="flex items-start gap-3 text-slate-300 text-sm">
+            <svg class="w-4 h-4 mt-0.5 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            Custom tours tailored to every budget &amp; ability
+          </li>
+          <li class="flex items-start gap-3 text-slate-300 text-sm">
+            <svg class="w-4 h-4 mt-0.5 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            Best local rates — no middlemen, no markup
+          </li>
+          <li class="flex items-start gap-3 text-slate-300 text-sm">
+            <svg class="w-4 h-4 mt-0.5 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            24/7 support from airport arrival to departure
+          </li>
+        </ul>
+
+        <a href="#enquiry" class="btn-gold inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold tracking-wide">
+          <span>Plan Your Trip</span>
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     ACTIVITIES
+══════════════════════════════════════════ -->
+<section id="activities" class="py-24 lg:py-32 overflow-hidden" style="background: #080e1a;">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 reveal">
+      <div>
+        <div class="section-rule"></div>
+        <p class="text-xs font-semibold tracking-[0.2em] uppercase text-sky-400 mb-4">Year-Round</p>
+        <h2 class="display font-light" style="font-size: clamp(2.2rem, 4.5vw, 3.5rem); letter-spacing: -0.025em;">Choose Your <em class="display-italic text-sky-300">Adventure</em></h2>
+      </div>
+      <!-- Tab switcher -->
+      <div class="flex bg-slate-800/60 rounded-full p-1 gap-1 w-fit">
+        <button @click="actTab='winter'" :class="actTab==='winter' ? 'bg-sky-500 text-slate-950 font-semibold' : 'text-slate-400 hover:text-white'" class="px-5 py-2 rounded-full text-xs transition-all tracking-wide">Winter</button>
+        <button @click="actTab='summer'" :class="actTab==='summer' ? 'bg-sky-500 text-slate-950 font-semibold' : 'text-slate-400 hover:text-white'" class="px-5 py-2 rounded-full text-xs transition-all tracking-wide">Summer</button>
+        <button @click="actTab='allsea'" :class="actTab==='allsea' ? 'bg-sky-500 text-slate-950 font-semibold' : 'text-slate-400 hover:text-white'" class="px-5 py-2 rounded-full text-xs transition-all tracking-wide">All Season</button>
+      </div>
+    </div>
+
+    <!-- Activity cards grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <!-- SKIING -->
+      <div x-show="actTab==='winter'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="card-lift rounded-2xl overflow-hidden group reveal" style="background: #111827; border: 1px solid rgba(248,250,252,0.05);">
+        <div class="img-reveal h-52 overflow-hidden" style="background:#1e293b">
+          <img src="https://images.unsplash.com/photo-1547136119-8e4b3f14e7a2?q=80&w=900&auto=format&fit=crop" alt="Advanced skiing on Gulmarg's deep powder slopes" class="w-full h-full object-cover" loading="lazy"/>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold tracking-wider uppercase px-3 py-1 rounded-full" style="background:rgba(14,165,233,0.12);color:#7dd3fc;">❄ Winter</span>
+            <span class="text-xs text-slate-400">All Levels</span>
+          </div>
+          <h3 class="display font-medium text-xl text-white mb-2">Skiing</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5 font-light">World-class skiing across 4 zones — from gentle beginner poma slopes to expert Apharwat backcountry at 4,000m. Certified instructors for all levels.</p>
+          <div class="flex items-end justify-between">
+            <div><div class="text-xs text-slate-500 mb-0.5">Starting from</div><div class="display text-2xl font-light text-white">₹4,500</div><div class="text-xs text-slate-500">/day</div></div>
+            <a href="#enquiry" class="btn-teal-outline px-4 py-2 rounded-full text-xs font-semibold">Book →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SNOWBOARDING -->
+      <div x-show="actTab==='winter'" x-transition:enter="transition ease-out duration-400 delay-100" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="card-lift rounded-2xl overflow-hidden group reveal" style="background: #111827; border: 1px solid rgba(248,250,252,0.05);">
+        <div class="img-reveal h-52 overflow-hidden" style="background:#1e293b">
+          <img src="https://images.unsplash.com/photo-1610895764208-7a4db7d8f82c?q=80&w=900&auto=format&fit=crop" alt="Snowboarder carving through deep Kashmir powder" class="w-full h-full object-cover" loading="lazy"/>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold tracking-wider uppercase px-3 py-1 rounded-full" style="background:rgba(14,165,233,0.12);color:#7dd3fc;">❄ Winter</span>
+            <span class="text-xs text-slate-400">All Levels</span>
+          </div>
+          <h3 class="display font-medium text-xl text-white mb-2">Snowboarding</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5 font-light">Gulmarg's legendary powder on a board. Courses for beginners and guided freeride sessions for advanced riders across all terrain zones.</p>
+          <div class="flex items-end justify-between">
+            <div><div class="text-xs text-slate-500 mb-0.5">Starting from</div><div class="display text-2xl font-light text-white">₹5,500</div><div class="text-xs text-slate-500">/day</div></div>
+            <a href="#enquiry" class="btn-teal-outline px-4 py-2 rounded-full text-xs font-semibold">Book →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- HELI SKIING -->
+      <div x-show="actTab==='winter'" x-transition:enter="transition ease-out duration-500 delay-200" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="card-lift rounded-2xl overflow-hidden group reveal" style="background: #111827; border: 1px solid rgba(201,168,76,0.15);">
+        <div class="img-reveal h-52 overflow-hidden relative" style="background:#1e293b">
+          <img src="https://images.unsplash.com/photo-1545243424-0ce743321e11?q=80&w=900&auto=format&fit=crop" alt="Helicopter at Gulmarg high altitude base for heliski drop" class="w-full h-full object-cover" loading="lazy"/>
+          <div class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-semibold tracking-wide" style="background:rgba(201,168,76,0.85);color:#0a0f1a;">⭐ Premium</div>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold tracking-wider uppercase px-3 py-1 rounded-full" style="background:rgba(201,168,76,0.1);color:#e6c96d;">Exclusive Experience</span>
+            <span class="text-xs text-slate-400">Expert Level</span>
+          </div>
+          <h3 class="display font-medium text-xl text-white mb-2">Heli Skiing</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5 font-light">Access untouched Himalayan peaks by helicopter. Virgin powder lines at 4,200m+ reached by no other means — the ultimate Gulmarg experience.</p>
+          <div class="flex items-end justify-between">
+            <div><div class="text-xs text-slate-500 mb-0.5">Starting from</div><div class="display text-2xl font-light" style="color:#e6c96d">₹75,000</div></div>
+            <a href="#enquiry" class="btn-gold px-4 py-2 rounded-full text-xs font-semibold"><span>Enquire →</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- TREKKING -->
+      <div x-show="actTab==='summer'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="card-lift rounded-2xl overflow-hidden group reveal" style="background: #111827; border: 1px solid rgba(248,250,252,0.05);">
+        <div class="img-reveal h-52 overflow-hidden" style="background:#1e293b">
+          <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=900&auto=format&fit=crop" alt="Trekking through Gulmarg alpine meadows with wildflowers in summer" class="w-full h-full object-cover" loading="lazy"/>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold tracking-wider uppercase px-3 py-1 rounded-full" style="background:rgba(234,179,8,0.1);color:#fbbf24;">☀ Summer</span>
+            <span class="text-xs text-slate-400">All Fitness</span>
+          </div>
+          <h3 class="display font-medium text-xl text-white mb-2">Mountain Trekking</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5 font-light">Guided treks through wildflower meadows, alpine lakes and cedar forests. From easy day hikes to challenging multi-day expeditions.</p>
+          <div class="flex items-end justify-between">
+            <div><div class="text-xs text-slate-500 mb-0.5">Starting from</div><div class="display text-2xl font-light text-white">₹2,500</div><div class="text-xs text-slate-500">/day</div></div>
+            <a href="#enquiry" class="btn-teal-outline px-4 py-2 rounded-full text-xs font-semibold">Book →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAMPING -->
+      <div x-show="actTab==='summer'" x-transition:enter="transition ease-out duration-400 delay-100" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="card-lift rounded-2xl overflow-hidden group reveal" style="background: #111827; border: 1px solid rgba(248,250,252,0.05);">
+        <div class="img-reveal h-52 overflow-hidden" style="background:#1e293b">
+          <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=900&auto=format&fit=crop" alt="Camping under stars in Kashmir alpine meadow with Himalayan backdrop" class="w-full h-full object-cover" loading="lazy"/>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold tracking-wider uppercase px-3 py-1 rounded-full" style="background:rgba(234,179,8,0.1);color:#fbbf24;">☀ Summer</span>
+            <span class="text-xs text-slate-400">Families Welcome</span>
+          </div>
+          <h3 class="display font-medium text-xl text-white mb-2">Meadow Camping</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5 font-light">Wake up to Himalayan panoramas in Gulmarg's pristine alpine meadows. Full setup, stargazing, campfires and mountain sunrises included.</p>
+          <div class="flex items-end justify-between">
+            <div><div class="text-xs text-slate-500 mb-0.5">Starting from</div><div class="display text-2xl font-light text-white">₹3,500</div><div class="text-xs text-slate-500">/night</div></div>
+            <a href="#enquiry" class="btn-teal-outline px-4 py-2 rounded-full text-xs font-semibold">Book →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- GONDOLA -->
+      <div x-show="actTab==='summer'" x-transition:enter="transition ease-out duration-500 delay-200" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="card-lift rounded-2xl overflow-hidden group reveal" style="background: #111827; border: 1px solid rgba(248,250,252,0.05);">
+        <div class="img-reveal h-52 overflow-hidden" style="background:#1e293b">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=900&auto=format&fit=crop" alt="Gulmarg gondola ascending to 3980m above Kashmir valley" class="w-full h-full object-cover" loading="lazy"/>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold tracking-wider uppercase px-3 py-1 rounded-full" style="background:rgba(234,179,8,0.1);color:#fbbf24;">☀ Summer</span>
+            <span class="text-xs text-slate-400">All Ages</span>
+          </div>
+          <h3 class="display font-medium text-xl text-white mb-2">Gondola Sightseeing</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5 font-light">Ride Asia's highest gondola to 3,980m for breathtaking panoramas across the Himalayas — stunning in any season.</p>
+          <div class="flex items-end justify-between">
+            <div><div class="text-xs text-slate-500 mb-0.5">Starting from</div><div class="display text-2xl font-light text-white">₹1,500</div></div>
+            <a href="#enquiry" class="btn-teal-outline px-4 py-2 rounded-full text-xs font-semibold">Book →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHOTOGRAPHY -->
+      <div x-show="actTab==='allsea'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="card-lift rounded-2xl overflow-hidden group reveal" style="background: #111827; border: 1px solid rgba(248,250,252,0.05);">
+        <div class="img-reveal h-52 overflow-hidden" style="background:#1e293b">
+          <img src="https://images.unsplash.com/photo-1617375407361-8ed5b9a40b65?q=80&w=900&auto=format&fit=crop" alt="Photography from Gulmarg viewpoint capturing Himalayan peaks" class="w-full h-full object-cover" loading="lazy"/>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold tracking-wider uppercase px-3 py-1 rounded-full" style="background:rgba(168,85,247,0.12);color:#d8b4fe;">All Season</span>
+            <span class="text-xs text-slate-400">Custom</span>
+          </div>
+          <h3 class="display font-medium text-xl text-white mb-2">Photography Tours</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5 font-light">Guided expeditions to the most spectacular vantage points in every season — powder slopes in winter, wildflower carpets in summer.</p>
+          <div class="flex items-end justify-between">
+            <div><div class="text-xs text-slate-500 mb-0.5">Fully</div><div class="display text-2xl font-light text-white">Custom</div></div>
+            <a href="#enquiry" class="btn-teal-outline px-4 py-2 rounded-full text-xs font-semibold">Enquire →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- HERITAGE -->
+      <div x-show="actTab==='allsea'" x-transition:enter="transition ease-out duration-400 delay-100" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="card-lift rounded-2xl overflow-hidden group reveal" style="background: #111827; border: 1px solid rgba(248,250,252,0.05);">
+        <div class="img-reveal h-52 overflow-hidden" style="background:#1e293b">
+          <img src="https://images.unsplash.com/photo-1603789563935-ce87a9a5a8ea?q=80&w=900&auto=format&fit=crop" alt="Baba Reshi shrine Kashmir heritage site with mountain backdrop" class="w-full h-full object-cover" loading="lazy"/>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold tracking-wider uppercase px-3 py-1 rounded-full" style="background:rgba(168,85,247,0.12);color:#d8b4fe;">All Season</span>
+            <span class="text-xs text-slate-400">Families</span>
+          </div>
+          <h3 class="display font-medium text-xl text-white mb-2">Heritage &amp; Culture</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5 font-light">Explore Baba Reshi shrine, Drung waterfall and Kashmiri village life with guides who grew up in these communities.</p>
+          <div class="flex items-end justify-between">
+            <div><div class="text-xs text-slate-500 mb-0.5">Starting from</div><div class="display text-2xl font-light text-white">₹1,800</div></div>
+            <a href="#enquiry" class="btn-teal-outline px-4 py-2 rounded-full text-xs font-semibold">Book →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CUSTOM TRIPS -->
+      <div x-show="actTab==='allsea'" x-transition:enter="transition ease-out duration-500 delay-200" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="card-lift rounded-2xl overflow-hidden group reveal" style="background:linear-gradient(135deg,#0d4a6e,#0a3655); border: 1px solid rgba(14,165,233,0.2);">
+        <div class="img-reveal h-52 overflow-hidden" style="background:#0d4a6e">
+          <img src="https://images.unsplash.com/photo-1548690596-f1722c190938?q=80&w=900&auto=format&fit=crop" alt="Custom Kashmir trip map across Gulmarg Srinagar Pahalgam" class="w-full h-full object-cover opacity-60" loading="lazy"/>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold tracking-wider uppercase px-3 py-1 rounded-full" style="background:rgba(14,165,233,0.15);color:#7dd3fc;">Bespoke</span>
+            <span class="text-xs text-slate-300">Any Budget</span>
+          </div>
+          <h3 class="display font-medium text-xl text-white mb-2">Custom Kashmir Trips</h3>
+          <p class="text-slate-300 text-sm leading-relaxed mb-5 font-light">Tell us your dream — we'll build the perfect itinerary across Gulmarg, Srinagar, Pahalgam and beyond.</p>
+          <div class="flex items-end justify-between">
+            <div><div class="text-xs text-slate-400 mb-0.5">Starting from</div><div class="display text-2xl font-light text-white">₹6,500</div></div>
+            <a href="#enquiry" class="btn-gold px-4 py-2 rounded-full text-xs font-semibold"><span>Plan Now →</span></a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /grid -->
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     PACKAGES
+══════════════════════════════════════════ -->
+<section id="packages" class="py-24 lg:py-32 bg-slate-900">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="reveal mb-14">
+      <div class="section-rule"></div>
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-sky-400 mb-4">Curated Himalayan Adventures</p>
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <h2 class="display font-light" style="font-size: clamp(2.2rem, 4.5vw, 3.5rem); letter-spacing: -0.025em;">Tour <em class="display-italic text-sky-300">Packages</em></h2>
+        <p class="text-slate-400 text-sm max-w-sm font-light leading-relaxed">Every package is fully customisable — group size, duration, hotel category and budget.</p>
+      </div>
+      <!-- Filter tabs -->
+      <div class="flex gap-2 mt-8 flex-wrap">
+        <button @click="pkgFilter='all'" :class="pkgFilter==='all' ? 'bg-sky-500/20 text-sky-300 border-sky-500/40' : 'text-slate-400 border-white/8 hover:border-white/20'" class="px-5 py-2 rounded-full text-xs border transition-all tracking-wide">All</button>
+        <button @click="pkgFilter='winter'" :class="pkgFilter==='winter' ? 'bg-sky-500/20 text-sky-300 border-sky-500/40' : 'text-slate-400 border-white/8 hover:border-white/20'" class="px-5 py-2 rounded-full text-xs border transition-all tracking-wide">Winter / Ski</button>
+        <button @click="pkgFilter='summer'" :class="pkgFilter==='summer' ? 'bg-sky-500/20 text-sky-300 border-sky-500/40' : 'text-slate-400 border-white/8 hover:border-white/20'" class="px-5 py-2 rounded-full text-xs border transition-all tracking-wide">Summer / Trek</button>
+        <button @click="pkgFilter='premium'" :class="pkgFilter==='premium' ? 'bg-sky-500/20 text-sky-300 border-sky-500/40' : 'text-slate-400 border-white/8 hover:border-white/20'" class="px-5 py-2 rounded-full text-xs border transition-all tracking-wide">Premium</button>
+      </div>
+    </div>
+
+    <!-- Package cards -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <!-- Beginner Ski -->
+      <div x-show="pkgFilter==='all'||pkgFilter==='winter'" x-transition class="pkg-card rounded-2xl overflow-hidden reveal">
+        <div class="img-reveal h-48 overflow-hidden" style="background:#1e293b; position:relative;">
+          <img src="https://images.unsplash.com/photo-1565992441121-4367b2462764?q=80&w=900&auto=format&fit=crop" alt="Beginner ski lesson on Gulmarg gentle slopes" class="w-full h-full object-cover" loading="lazy"/>
+          <div class="absolute top-3 left-3 bg-sky-500/90 text-slate-950 px-3 py-1 rounded-full text-xs font-bold tracking-wide">5N / 6D</div>
+          <div class="absolute top-3 right-3 border border-white/20 bg-slate-950/60 backdrop-blur px-3 py-1 rounded-full text-xs text-slate-200 font-medium">❄ Winter</div>
+        </div>
+        <div class="p-6">
+          <h3 class="display font-medium text-xl text-white mb-2">Beginner Ski Package</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4 font-light">The perfect first ski experience in the Himalayas. Certified instructors, gentle slopes, full equipment hire and hotel included.</p>
+          <ul class="space-y-1.5 mb-5">
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Certified instructor (6 days)</li>
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>3-star hotel (5 nights) + breakfast</li>
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Full ski equipment hire</li>
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Airport transfers included</li>
+          </ul>
+          <div class="flex items-end justify-between border-t border-white/5 pt-4">
+            <div><div class="text-xs text-slate-500">From</div><div class="display text-2xl font-light text-white">₹25,000 <span class="text-xs text-slate-400 font-normal">/person</span></div></div>
+            <a href="#enquiry" class="btn-teal-outline px-4 py-2 rounded-full text-xs font-semibold">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Powder Week -->
+      <div x-show="pkgFilter==='all'||pkgFilter==='winter'" x-transition class="pkg-card rounded-2xl overflow-hidden reveal">
+        <div class="img-reveal h-48 overflow-hidden relative" style="background:#1e293b;">
+          <img src="https://images.unsplash.com/photo-1587159983998-f3f8c28f7c60?q=80&w=900&auto=format&fit=crop" alt="Expert skier in deep powder in Gulmarg backcountry zone" class="w-full h-full object-cover" loading="lazy"/>
+          <div class="absolute top-3 left-3 bg-sky-500/90 text-slate-950 px-3 py-1 rounded-full text-xs font-bold tracking-wide">7N / 8D</div>
+          <div class="absolute top-3 right-3 border border-white/20 bg-slate-950/60 backdrop-blur px-3 py-1 rounded-full text-xs text-slate-200 font-medium">❄ Winter</div>
+        </div>
+        <div class="p-6">
+          <h3 class="display font-medium text-xl text-white mb-2">Powder Immersion Week</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4 font-light">A full week on Gulmarg's legendary deep powder with expert off-piste guides, luxury accommodation and all meals.</p>
+          <ul class="space-y-1.5 mb-5">
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>7 days guided all zones incl. off-piste</li>
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>4-star hotel full board</li>
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Avalanche safety briefing + equipment</li>
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>All transfers and logistics</li>
+          </ul>
+          <div class="flex items-end justify-between border-t border-white/5 pt-4">
+            <div><div class="text-xs text-slate-500">From</div><div class="display text-2xl font-light text-white">₹35,000 <span class="text-xs text-slate-400 font-normal">/person</span></div></div>
+            <a href="#enquiry" class="btn-teal-outline px-4 py-2 rounded-full text-xs font-semibold">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- HELISKI PREMIUM -->
+      <div x-show="pkgFilter==='all'||pkgFilter==='winter'||pkgFilter==='premium'" x-transition class="pkg-card rounded-2xl overflow-hidden reveal" style="border-color: rgba(201,168,76,0.2) !important;">
+        <div class="img-reveal h-48 overflow-hidden relative" style="background:#1e293b;">
+          <img src="https://images.unsplash.com/photo-1545243424-0ce743321e11?q=80&w=900&auto=format&fit=crop" alt="Heliski experience Kashmir luxury helicopter skiing" class="w-full h-full object-cover" loading="lazy"/>
+          <div class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold tracking-wide" style="background:rgba(201,168,76,0.9);color:#0a0f1a;">3N / 4D</div>
+          <div class="absolute top-3 right-3 border border-yellow-500/30 px-3 py-1 rounded-full text-xs font-semibold" style="background:rgba(201,168,76,0.15);color:#e6c96d;">⭐ Premium</div>
+        </div>
+        <div class="p-6">
+          <h3 class="display font-medium text-xl text-white mb-2">Kashmir Heliski Experience</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4 font-light">Access virgin Himalayan peaks by helicopter. 5-star hotel, all meals, equipment and 3 heli drops — an unrivalled winter escape.</p>
+          <ul class="space-y-1.5 mb-5">
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-yellow-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>3 helicopter drops across 2 ski days</li>
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-yellow-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>5-star luxury hotel (3 nights) full board</li>
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-yellow-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>AIARE certified guide + full safety kit</li>
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-yellow-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Premium airport transfer + concierge</li>
+          </ul>
+          <div class="flex items-end justify-between border-t border-white/5 pt-4">
+            <div><div class="text-xs text-slate-500">From</div><div class="display text-2xl font-light" style="color:#e6c96d">₹75,000 <span class="text-xs text-slate-400 font-normal" style="color:rgba(230,201,109,0.6)">/person</span></div></div>
+            <a href="#enquiry" class="btn-gold px-4 py-2 rounded-full text-xs font-semibold"><span>Book Now</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Backcountry -->
+      <div x-show="pkgFilter==='all'||pkgFilter==='winter'||pkgFilter==='premium'" x-transition class="pkg-card rounded-2xl overflow-hidden reveal">
+        <div class="img-reveal h-48 overflow-hidden relative" style="background:#1e293b;">
+          <img src="https://images.unsplash.com/photo-1613896640137-bb5b31496315?q=80&w=900&auto=format&fit=crop" alt="Off-piste backcountry skiing Mt Apharwat Gulmarg Kashmir" class="w-full h-full object-cover" loading="lazy"/>
+          <div class="absolute top-3 left-3 bg-sky-500/90 text-slate-950 px-3 py-1 rounded-full text-xs font-bold tracking-wide">4N / 5D</div>
+          <div class="absolute top-3 right-3 border border-red-500/30 bg-red-950/40 backdrop-blur px-3 py-1 rounded-full text-xs text-red-300 font-medium">Expert</div>
+        </div>
+        <div class="p-6">
+          <h3 class="display font-medium text-xl text-white mb-2">Off-Piste Backcountry</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4 font-light">Explore the untouched bowls and ridgelines of Mt. Apharwat. Expert guides, avalanche equipment and access to the most remote lines.</p>
+          <ul class="space-y-1.5 mb-5">
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>4 days guided backcountry skiing</li>
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Hotel + breakfast included</li>
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Transceiver, probe, shovel provided</li>
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Daily avalanche forecast briefing</li>
+          </ul>
+          <div class="flex items-end justify-between border-t border-white/5 pt-4">
+            <div><div class="text-xs text-slate-500">From</div><div class="display text-2xl font-light text-white">₹40,000 <span class="text-xs text-slate-400 font-normal">/person</span></div></div>
+            <a href="#enquiry" class="btn-teal-outline px-4 py-2 rounded-full text-xs font-semibold">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- TREKKING PKG -->
+      <div x-show="pkgFilter==='all'||pkgFilter==='summer'" x-transition class="pkg-card rounded-2xl overflow-hidden reveal">
+        <div class="img-reveal h-48 overflow-hidden relative" style="background:#1e293b;">
+          <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=900&auto=format&fit=crop" alt="Himalayan trekking Kashmir wildflower alpine lakes" class="w-full h-full object-cover" loading="lazy"/>
+          <div class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold tracking-wide" style="background:rgba(234,179,8,0.9);color:#0a0f1a;">3N / 4D</div>
+          <div class="absolute top-3 right-3 border border-yellow-500/30 bg-yellow-950/40 backdrop-blur px-3 py-1 rounded-full text-xs text-yellow-200 font-medium">☀ Summer</div>
+        </div>
+        <div class="p-6">
+          <h3 class="display font-medium text-xl text-white mb-2">Himalayan Trekking</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4 font-light">Guided treks through wildflower meadows, alpine lakes and cedar forests. Easy day hikes to challenging multi-day expeditions.</p>
+          <ul class="space-y-1.5 mb-5">
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Licensed guide (15+ years experience)</li>
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Guesthouse + all trek meals</li>
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Permits and insurance included</li>
+          </ul>
+          <div class="flex items-end justify-between border-t border-white/5 pt-4">
+            <div><div class="text-xs text-slate-500">From</div><div class="display text-2xl font-light text-white">₹8,000 <span class="text-xs text-slate-400 font-normal">/person</span></div></div>
+            <a href="#enquiry" class="btn-teal-outline px-4 py-2 rounded-full text-xs font-semibold">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAMPING PKG -->
+      <div x-show="pkgFilter==='all'||pkgFilter==='summer'" x-transition class="pkg-card rounded-2xl overflow-hidden reveal">
+        <div class="img-reveal h-48 overflow-hidden relative" style="background:#1e293b;">
+          <img src="https://images.unsplash.com/photo-1510672981848-a1c4f1cb5ccf?q=80&w=900&auto=format&fit=crop" alt="Camping stargazing Kashmir alpine meadow Himalayan night sky" class="w-full h-full object-cover" loading="lazy"/>
+          <div class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold tracking-wide" style="background:rgba(234,179,8,0.9);color:#0a0f1a;">2N / 3D</div>
+          <div class="absolute top-3 right-3 border border-yellow-500/30 bg-yellow-950/40 backdrop-blur px-3 py-1 rounded-full text-xs text-yellow-200 font-medium">☀ Summer</div>
+        </div>
+        <div class="p-6">
+          <h3 class="display font-medium text-xl text-white mb-2">Meadow Camping Package</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4 font-light">Sleep under the stars in Gulmarg's pristine alpine meadows. Full camp setup, campfire, all meals and guided morning hikes.</p>
+          <ul class="space-y-1.5 mb-5">
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Premium alpine camp setup</li>
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>All meals + campfire evenings</li>
+            <li class="text-xs text-slate-300 flex items-center gap-2"><svg class="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Guided morning hike each day</li>
+          </ul>
+          <div class="flex items-end justify-between border-t border-white/5 pt-4">
+            <div><div class="text-xs text-slate-500">From</div><div class="display text-2xl font-light text-white">₹6,500 <span class="text-xs text-slate-400 font-normal">/person</span></div></div>
+            <a href="#enquiry" class="btn-teal-outline px-4 py-2 rounded-full text-xs font-semibold">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /packages grid -->
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     TERRAIN / INTERACTIVE MAP
+══════════════════════════════════════════ -->
+<section id="terrain" class="py-24 lg:py-32 overflow-hidden" style="background:#080e1a;">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="reveal mb-12">
+      <div class="section-rule"></div>
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-sky-400 mb-4">Terrain Guide</p>
+      <h2 class="display font-light" style="font-size: clamp(2.2rem, 4.5vw, 3.5rem); letter-spacing: -0.025em;">Gulmarg <em class="display-italic text-sky-300">Ski Zones</em></h2>
+      <p class="text-slate-400 text-sm mt-3 font-light max-w-lg">Click any zone marker on the map to explore terrain details, difficulty, lift access and conditions. All off-piste zones require a certified guide.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-[1fr_360px] gap-8 items-start">
+
+      <!-- Map with clickable zones -->
+      <div class="reveal-left relative rounded-2xl overflow-hidden" style="background:#1a2942; border: 1px solid rgba(248,250,252,0.06); min-height: 420px;">
+
+        <!-- Map image (panoramic overview) -->
+        <img src="https://skigulmarg.com/user/themes/skigulmarg/images/gulmarg-ski-trail-maps/ski-gulmarg-pano-l.jpg"
+          alt="Gulmarg ski resort panoramic trail map showing all four terrain zones"
+          class="w-full h-full object-cover opacity-90"
+          style="min-height: 360px;"
+          loading="lazy"
+          onerror="this.style.opacity='0.3'"/>
+
+        <!-- Dark overlay for readability -->
+        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(8,14,26,0.15),rgba(8,14,26,0.35))"></div>
+
+        <!-- Zone buttons -->
+        <button class="zone-btn" :class="activeZone===1 && 'active'" @click="activeZone=1" style="top:72%;left:18%;" title="Zone 1 — Beginner">1</button>
+        <button class="zone-btn" :class="activeZone===2 && 'active'" @click="activeZone=2" style="top:52%;left:42%;" title="Zone 2 — Intermediate">2</button>
+        <button class="zone-btn" :class="activeZone===3 && 'active'" @click="activeZone=3" style="top:28%;left:55%;" title="Zone 3 — Advanced">3</button>
+        <button class="zone-btn" :class="activeZone===4 && 'active'" @click="activeZone=4" style="top:18%;left:35%;" title="Zone 4 — Expert Backcountry">4</button>
+
+        <!-- Zone legend overlay -->
+        <div class="absolute bottom-4 left-4 flex gap-2 flex-wrap">
+          <span class="flex items-center gap-1.5 text-xs text-white bg-slate-950/70 backdrop-blur px-2.5 py-1 rounded-full"><span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>Beginner</span>
+          <span class="flex items-center gap-1.5 text-xs text-white bg-slate-950/70 backdrop-blur px-2.5 py-1 rounded-full"><span class="w-2 h-2 rounded-full bg-blue-500 flex-shrink-0"></span>Intermediate</span>
+          <span class="flex items-center gap-1.5 text-xs text-white bg-slate-950/70 backdrop-blur px-2.5 py-1 rounded-full"><span class="w-2 h-2 rounded-full bg-red-500 flex-shrink-0"></span>Advanced</span>
+          <span class="flex items-center gap-1.5 text-xs text-white bg-slate-950/70 backdrop-blur px-2.5 py-1 rounded-full"><span class="w-2 h-2 rounded-full bg-purple-500 flex-shrink-0"></span>Expert</span>
+        </div>
+
+        <!-- Zoom hint -->
+        <div class="absolute top-4 right-4 bg-slate-950/60 backdrop-blur text-xs text-slate-400 px-3 py-1.5 rounded-full border border-white/8 flex items-center gap-1.5">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          Click zones to explore
+        </div>
+      </div>
+
+      <!-- Zone detail panel -->
+      <div class="reveal-right space-y-3">
+        <template x-for="zid in [1,2,3,4]" :key="zid">
+          <div @click="activeZone=zid"
+            :style="`border-color: ${activeZone===zid ? zones[zid].color+'40' : 'rgba(248,250,252,0.06)'};`"
+            :class="activeZone===zid ? 'bg-slate-800/80' : 'bg-slate-800/30 hover:bg-slate-800/50'"
+            class="rounded-2xl border transition-all duration-300 overflow-hidden cursor-pointer">
+
+            <!-- Zone header -->
+            <div class="flex items-center gap-3 p-4">
+              <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold text-white flex-shrink-0" :style="`background:${zones[zid].color}`" x-text="zid"></div>
+              <div>
+                <div class="text-sm font-semibold text-white" x-text="zones[zid].name"></div>
+              </div>
+              <div class="ml-auto transition-transform duration-300" :class="activeZone===zid ? 'rotate-180' : ''">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-400" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+              </div>
+            </div>
+
+            <!-- Expanded content -->
+            <div x-show="activeZone===zid" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" class="px-4 pb-4">
+              <p class="text-slate-300 text-xs leading-relaxed mb-3 font-light" x-text="zones[zid].desc"></p>
+              <ul class="space-y-1.5">
+                <template x-for="detail in zones[zid].details" :key="detail">
+                  <li class="text-xs text-slate-400 flex items-start gap-2">
+                    <svg class="w-3 h-3 mt-0.5 flex-shrink-0" :style="`color:${zones[zid].color}`" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                    <span x-text="detail"></span>
+                  </li>
+                </template>
+              </ul>
+              <template x-if="zid===4">
+                <a href="https://gulmargac.in/advisory" target="_blank" class="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-red-400 hover:text-red-300 transition-colors">
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+                  Check Today's Avalanche Advisory →
+                </a>
+              </template>
+            </div>
+          </div>
+        </template>
+
+        <a href="#enquiry" class="mt-2 btn-gold w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold">
+          <span>Book a Guided Session</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     DESTINATIONS
+══════════════════════════════════════════ -->
+<section id="destinations" class="py-24 lg:py-32 bg-slate-900">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="reveal mb-12">
+      <div class="section-rule"></div>
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-sky-400 mb-4">Beyond Gulmarg</p>
+      <h2 class="display font-light" style="font-size: clamp(2.2rem, 4.5vw, 3.5rem); letter-spacing: -0.025em;">Kashmir <em class="display-italic text-sky-300">Destinations</em></h2>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 reveal">
+      <!-- Gulmarg — featured large -->
+      <div class="col-span-2 lg:col-span-2 row-span-2 relative rounded-2xl overflow-hidden img-reveal group" style="min-height: 340px; background:#1e293b;">
+        <img src="https://images.unsplash.com/photo-1612459284270-2ca07e5e3b8a?q=80&w=1200&auto=format&fit=crop" alt="Gulmarg ski valley Kashmir winter panorama gondola and powder snow" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy"/>
+        <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(8,14,26,0.9) 0%, rgba(8,14,26,0.2) 60%)"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-7">
+          <div class="text-xs font-semibold tracking-widest uppercase text-sky-400 mb-2">Our Home Base</div>
+          <h3 class="display text-3xl font-light text-white mb-1">Gulmarg</h3>
+          <p class="text-slate-300 text-sm font-light mb-4">Asia's 5th best ski destination · Gondola at 3,980m · Year-round adventures</p>
+          <a href="#enquiry" class="inline-flex items-center gap-2 text-xs font-semibold text-sky-300 hover:text-sky-100 transition-colors group-hover:gap-3 duration-300">
+            Explore →
+          </a>
+        </div>
+      </div>
+
+      <!-- Srinagar -->
+      <div class="relative rounded-2xl overflow-hidden img-reveal group" style="min-height: 160px; background:#1e293b;">
+        <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=700&auto=format&fit=crop" alt="Dal Lake Srinagar Kashmir houseboat shikara sunrise" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy"/>
+        <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(8,14,26,0.85) 0%, transparent 55%)"></div>
+        <div class="absolute bottom-0 left-0 p-5">
+          <h3 class="display text-xl font-light text-white mb-0.5">Srinagar</h3>
+          <p class="text-slate-400 text-xs font-light">Dal Lake · Mughal Gardens</p>
+          <div class="text-sky-400 text-xs mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Explore →</div>
+        </div>
+      </div>
+
+      <!-- Pahalgam -->
+      <div class="relative rounded-2xl overflow-hidden img-reveal group" style="min-height: 160px; background:#1e293b;">
+        <img src="https://images.unsplash.com/photo-1533419174914-25cc74f3b4ab?q=80&w=700&auto=format&fit=crop" alt="Pahalgam valley river forest Kashmir summer landscape" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy"/>
+        <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(8,14,26,0.85) 0%, transparent 55%)"></div>
+        <div class="absolute bottom-0 left-0 p-5">
+          <h3 class="display text-xl font-light text-white mb-0.5">Pahalgam</h3>
+          <p class="text-slate-400 text-xs font-light">Valley of Shepherds · Trekking</p>
+          <div class="text-sky-400 text-xs mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Explore →</div>
+        </div>
+      </div>
+
+      <!-- Sonamarg -->
+      <div class="relative rounded-2xl overflow-hidden img-reveal group" style="min-height: 140px; background:#1e293b;">
+        <img src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?q=80&w=700&auto=format&fit=crop" alt="Sonamarg glacier Thajiwas Kashmir meadow of gold" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy"/>
+        <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(8,14,26,0.85) 0%, transparent 55%)"></div>
+        <div class="absolute bottom-0 left-0 p-5">
+          <h3 class="display text-xl font-light text-white mb-0.5">Sonamarg</h3>
+          <p class="text-slate-400 text-xs font-light">Meadow of Gold · Glaciers</p>
+          <div class="text-sky-400 text-xs mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Explore →</div>
+        </div>
+      </div>
+
+      <!-- Yusmarg -->
+      <div class="relative rounded-2xl overflow-hidden img-reveal group" style="min-height: 140px; background:#1e293b;">
+        <img src="https://images.unsplash.com/photo-1468276311594-df7cb65d8df6?q=80&w=700&auto=format&fit=crop" alt="Yusmarg Kashmir hidden alpine meadow wildflowers" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy"/>
+        <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(8,14,26,0.85) 0%, transparent 55%)"></div>
+        <div class="absolute bottom-0 left-0 p-5">
+          <h3 class="display text-xl font-light text-white mb-0.5">Yusmarg</h3>
+          <p class="text-slate-400 text-xs font-light">Kashmir's Hidden Gem</p>
+          <div class="text-sky-400 text-xs mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Explore →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     TEAM STRIP
+══════════════════════════════════════════ -->
+<section id="team" class="py-24 lg:py-28 overflow-hidden" style="background:#080e1a">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="reveal text-center mb-14">
+      <div class="section-rule mx-auto"></div>
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-sky-400 mb-4">Expert Local Immersion</p>
+      <h2 class="display font-light" style="font-size: clamp(2.2rem, 4.5vw, 3.5rem); letter-spacing: -0.025em;">Our <em class="display-italic text-sky-300">Guides</em></h2>
+      <p class="text-slate-400 text-sm mt-3 font-light max-w-xl mx-auto">Every guide holds a J&K Himalayan Tourism Department licence. Several carry AIARE Level 1 and New Zealand avalanche certifications.</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4 reveal">
+      <template x-for="(guide,i) in [
+        {name:'Waseem Bhat',role:'Head Coach · 4× National',init:'WB',c:'#0ea5e9'},
+        {name:'Ishfaq Bhat',role:'Ski & Snowboard',init:'IB',c:'#0d9488'},
+        {name:'Maqsood Bhat',role:'Mountain Guide',init:'MB',c:'#6366f1'},
+        {name:'Naseer A. Bhat',role:'AIARE + NZ Certified',init:'NB',c:'#8b5cf6'},
+        {name:'Showket Chopan',role:'Avalanche Specialist',init:'SC',c:'#0284c7'},
+        {name:'Abid Chopan',role:'Ski Instructor',init:'AC',c:'#0d7490'},
+        {name:'Shahid Khan',role:'Snowboard Specialist',init:'SK',c:'#0891b2'}
+      ]" :key="i">
+        <div class="flex flex-col items-center text-center group">
+          <div class="w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-sm mb-3 transition-transform duration-300 group-hover:scale-110" :style="`background:linear-gradient(135deg,${guide.c},${guide.c}88)`" x-text="guide.init"></div>
+          <div class="text-white text-xs font-semibold" x-text="guide.name"></div>
+          <div class="text-slate-500 text-xs mt-0.5" x-text="guide.role"></div>
+        </div>
+      </template>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════════ -->
+<section class="py-24 lg:py-32 overflow-hidden bg-slate-900">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="reveal text-center mb-14">
+      <div class="section-rule mx-auto"></div>
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-sky-400 mb-4">Guest Stories</p>
+      <h2 class="display font-light" style="font-size: clamp(2.2rem, 4.5vw, 3.5rem); letter-spacing: -0.025em;">Real Reviews from <em class="display-italic text-sky-300">Real Guests</em></h2>
+    </div>
+    <!-- Swiper -->
+    <div class="swiper testimonialSwiper reveal" style="padding-bottom: 48px;">
+      <div class="swiper-wrapper">
+        <template x-for="(t,i) in [
+          {q:'Waseem and the team made our first ski trip to Gulmarg absolutely unforgettable. Patient, professional and extraordinarily knowledgeable about the mountain. We will be back.',name:'Arjun Kapoor',loc:'Mumbai, India',date:'January 2025',init:'AK',rating:5},
+          {q:'We did the 7-day powder package and it exceeded every expectation. The heli drop on day 5 was a once-in-a-lifetime experience. Already planning next winter.',name:'Sarah Robinson',loc:'London, UK',date:'February 2025',init:'SR',rating:5},
+          {q:'From airport pickup to the final day, everything was handled with quiet competence. Our children learned to ski in three days. GulmargOnTheGo is the only way to experience Kashmir properly.',name:'Mohammed Al-Bassam',loc:'Dubai, UAE',date:'January 2025',init:'MA',rating:5},
+          {q:'The backcountry session with Naseer was extraordinary — expert terrain reading, total safety awareness and pure joy in the powder. This team is the real deal.',name:'Thomas Laurent',loc:'Paris, France',date:'February 2025',init:'TL',rating:5},
+          {q:'Second trip with GulmargOnTheGo. You don't use another operator once you've been with them. The local knowledge is incomparable.',name:'Priya Sharma',loc:'Delhi, India',date:'January 2025',init:'PS',rating:5}
+        ]" :key="i">
+          <div class="swiper-slide" style="height: auto;">
+            <div class="h-full rounded-2xl p-8 flex flex-col" style="background:rgba(30,41,59,0.5);border:1px solid rgba(248,250,252,0.06);backdrop-filter:blur(8px);">
+              <!-- Stars -->
+              <div class="flex gap-0.5 mb-5">
+                <template x-for="s in t.rating">
+                  <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </template>
+              </div>
+              <!-- Quote -->
+              <p class="display-italic text-slate-200 leading-relaxed flex-1 mb-8" style="font-size:1.05rem;" x-text="'&quot;' + t.q + '&quot;'"></p>
+              <!-- Author -->
+              <div class="flex items-center gap-3 border-t border-white/5 pt-5">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0" style="background:linear-gradient(135deg,#0ea5e9,#0d9488)" x-text="t.init"></div>
+                <div>
+                  <div class="text-white text-sm font-semibold" x-text="t.name"></div>
+                  <div class="text-slate-500 text-xs" x-text="t.loc + ' · ' + t.date"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     BOOKING / ENQUIRY
+══════════════════════════════════════════ -->
+<section id="enquiry" class="relative py-24 lg:py-32 overflow-hidden" style="background:#060b14;">
+  <!-- BG image -->
+  <img src="https://images.unsplash.com/photo-1612459284270-2ca07e5e3b8a?q=60&w=1800&auto=format&fit=crop" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover" style="opacity:0.08;filter:blur(4px);"/>
+  <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+      <!-- Left: intro -->
+      <div class="reveal-left">
+        <div class="section-rule"></div>
+        <p class="text-xs font-semibold tracking-[0.2em] uppercase text-sky-400 mb-4">Start Your Journey</p>
+        <h2 class="display font-light mb-6" style="font-size: clamp(2.2rem, 5vw, 3.8rem); letter-spacing: -0.025em;">Book Your<br/><em class="display-italic text-sky-300">Perfect Trip</em></h2>
+        <p class="text-slate-400 font-light leading-relaxed mb-10 text-base" style="max-width:420px;">Tell us your dates, activity and group size. We reply within 2 hours with a personalised itinerary and quote — no obligation.</p>
+
+        <!-- Contact info -->
+        <div class="space-y-5">
+          <a href="tel:+917006303822" class="flex items-center gap-4 group">
+            <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-sky-500/20 transition-all">
+              <svg width="16" height="16" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.25 11.22a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="text-xs text-slate-500 tracking-wide uppercase">Call / WhatsApp</div>
+              <div class="text-slate-200 font-medium text-sm group-hover:text-sky-300 transition-colors">+91 7006303822</div>
+            </div>
+          </a>
+          <a href="mailto:enquiry.gulmargonthego@gmail.com" class="flex items-center gap-4 group">
+            <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-sky-500/20 transition-all">
+              <svg width="16" height="16" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="text-xs text-slate-500 tracking-wide uppercase">Email Us</div>
+              <div class="text-slate-200 font-medium text-sm group-hover:text-sky-300 transition-colors">enquiry.gulmargonthego@gmail.com</div>
+            </div>
+          </a>
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center flex-shrink-0">
+              <svg width="16" height="16" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="text-xs text-slate-500 tracking-wide uppercase">Address</div>
+              <div class="text-slate-200 font-medium text-sm">Chandilora, Tangmarg, J&K — 193402</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <div class="reveal-right rounded-2xl p-7 sm:p-9" style="background:rgba(30,41,59,0.6);border:1px solid rgba(248,250,252,0.07);backdrop-filter:blur(16px);">
+        <h3 class="display text-2xl font-light text-white mb-1">Send Your Enquiry</h3>
+        <p class="text-slate-400 text-xs font-light mb-7">We build your itinerary within 24 hours.</p>
+
+        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block text-xs font-semibold tracking-[0.1em] uppercase text-slate-400 mb-2">Full Name</label>
+            <input type="text" placeholder="Your name" class="form-input"/>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold tracking-[0.1em] uppercase text-slate-400 mb-2">Email</label>
+            <input type="email" placeholder="your@email.com" class="form-input"/>
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block text-xs font-semibold tracking-[0.1em] uppercase text-slate-400 mb-2">Phone / WhatsApp</label>
+            <input type="tel" placeholder="+91 XXXXXXXXXX" class="form-input"/>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold tracking-[0.1em] uppercase text-slate-400 mb-2">Travel Dates</label>
+            <input type="text" id="datePicker" placeholder="Select date range" class="form-input" readonly/>
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block text-xs font-semibold tracking-[0.1em] uppercase text-slate-400 mb-2">Activity</label>
+            <select class="form-input">
+              <option value="">Select Activity</option>
+              <option>Skiing</option><option>Snowboarding</option><option>Heli Skiing</option>
+              <option>Ski Touring</option><option>Mountain Trekking</option>
+              <option>Meadow Camping</option><option>Gondola Sightseeing</option>
+              <option>Custom Kashmir Trip</option><option>Heritage & Culture</option>
+            </select>
+          </div>
+          <!-- Guest counter -->
+          <div>
+            <label class="block text-xs font-semibold tracking-[0.1em] uppercase text-slate-400 mb-2">Group Size</label>
+            <div class="flex items-center gap-3 py-2">
+              <button @click="if(guests>1)guests--" class="counter-btn">−</button>
+              <span class="text-white font-semibold text-base w-8 text-center" x-text="guests"></span>
+              <button @click="if(guests<20)guests++" class="counter-btn">+</button>
+              <span class="text-slate-400 text-xs ml-1" x-text="guests===1 ? 'Guest' : 'Guests'"></span>
+            </div>
+          </div>
+        </div>
+        <div class="mb-6">
+          <label class="block text-xs font-semibold tracking-[0.1em] uppercase text-slate-400 mb-2">Message</label>
+          <textarea placeholder="Tell us your skill level, accommodation preferences, special requirements..." class="form-input" style="min-height:80px;resize:vertical;"></textarea>
+        </div>
+        <button onclick="location.href='https://wa.me/917006303822'" class="btn-gold w-full flex items-center justify-center gap-2 py-4 rounded-full font-semibold tracking-wide text-sm">
+          <span>Send Enquiry — We Reply Within 2 Hours</span>
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <p class="text-center text-xs text-slate-500 mt-3">No obligation · Free custom itinerary</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer style="background:linear-gradient(160deg,#060b14,#0a1628);border-top:1px solid rgba(248,250,252,0.04);" class="py-16 px-5 sm:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/5">
+
+      <!-- Brand -->
+      <div>
+        <img src="images/logo.png" alt="GulmargOnTheGo" class="h-10 w-auto mb-4 opacity-90" onerror="this.style.display='none'"/>
+        <p class="text-slate-500 text-sm font-light leading-relaxed max-w-xs mb-6">Born and raised in Gulmarg. Two decades of curated Himalayan adventures shared with guests from around the world.</p>
+        <div class="flex gap-2">
+          <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-xl bg-white/4 border border-white/6 flex items-center justify-center text-slate-400 hover:text-sky-400 hover:border-sky-500/30 hover:bg-sky-500/5 transition-all text-xs font-semibold">f</a>
+          <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-xl bg-white/4 border border-white/6 flex items-center justify-center text-slate-400 hover:text-pink-400 hover:border-pink-500/30 hover:bg-pink-500/5 transition-all text-xs font-semibold">ig</a>
+          <a href="https://wa.me/917006303822" target="_blank" aria-label="WhatsApp" class="w-9 h-9 rounded-xl bg-white/4 border border-white/6 flex items-center justify-center text-slate-400 hover:text-emerald-400 hover:border-emerald-500/30 hover:bg-emerald-500/5 transition-all text-xs font-semibold">W</a>
+          <a href="#" aria-label="YouTube" class="w-9 h-9 rounded-xl bg-white/4 border border-white/6 flex items-center justify-center text-slate-400 hover:text-red-400 hover:border-red-500/30 hover:bg-red-500/5 transition-all text-xs font-semibold">▶</a>
+        </div>
+      </div>
+
+      <!-- Explore -->
+      <div>
+        <div class="text-xs font-semibold tracking-[0.18em] uppercase text-sky-400 mb-5">Explore</div>
+        <ul class="space-y-3">
+          <li><a href="#activities" class="text-slate-400 hover:text-slate-100 text-sm transition-colors">Activities</a></li>
+          <li><a href="#packages" class="text-slate-400 hover:text-slate-100 text-sm transition-colors">Packages</a></li>
+          <li><a href="#destinations" class="text-slate-400 hover:text-slate-100 text-sm transition-colors">Destinations</a></li>
+          <li><a href="#terrain" class="text-slate-400 hover:text-slate-100 text-sm transition-colors">Ski Terrain Map</a></li>
+          <li><a href="#team" class="text-slate-400 hover:text-slate-100 text-sm transition-colors">Our Team</a></li>
+          <li><a href="gallery/" class="text-slate-400 hover:text-slate-100 text-sm transition-colors">Gallery</a></li>
+        </ul>
+      </div>
+
+      <!-- Info -->
+      <div>
+        <div class="text-xs font-semibold tracking-[0.18em] uppercase text-sky-400 mb-5">Information</div>
+        <ul class="space-y-3">
+          <li><a href="mountain/" class="text-slate-400 hover:text-slate-100 text-sm transition-colors">The Mountain</a></li>
+          <li><a href="https://gulmargac.in/advisory" target="_blank" class="text-red-400 hover:text-red-300 text-sm transition-colors">Avalanche Forecast</a></li>
+          <li><a href="getting-here/" class="text-slate-400 hover:text-slate-100 text-sm transition-colors">Getting to Gulmarg</a></li>
+          <li><a href="weather/" class="text-slate-400 hover:text-slate-100 text-sm transition-colors">Weather Guide</a></li>
+          <li><a href="faq/" class="text-slate-400 hover:text-slate-100 text-sm transition-colors">FAQs</a></li>
+          <li><a href="accommodation/" class="text-slate-400 hover:text-slate-100 text-sm transition-colors">Where to Stay</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <div class="text-xs font-semibold tracking-[0.18em] uppercase text-sky-400 mb-5">Contact</div>
+        <div class="space-y-4">
+          <div class="text-slate-400 text-sm leading-relaxed">Chandilora, Tangmarg<br/>Jammu &amp; Kashmir — 193402</div>
+          <a href="tel:+917006303822" class="block text-slate-300 hover:text-sky-300 text-sm transition-colors">+91 7006303822</a>
+          <a href="mailto:enquiry.gulmargonthego@gmail.com" class="block text-slate-300 hover:text-sky-300 text-sm transition-colors">enquiry.gulmargonthego@gmail.com</a>
+          <a href="https://wa.me/917006303822" target="_blank" class="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm transition-colors">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp — always available
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+      <span>© 2025 GulmargOnTheGo. All rights reserved.</span>
+      <span>Crafted with care in Gulmarg, Kashmir</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp FAB -->
+<a href="https://wa.me/917006303822" class="wa-fab" target="_blank" aria-label="WhatsApp">
+  <svg width="26" height="26" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ══════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════ -->
+<script>
+// ── Scroll reveal
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
+
+// ── Stat counter animation
+const statObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = parseInt(el.dataset.target);
+    if (!target) return;
+    const suffix = el.dataset.target > 50 ? '+' : '+';
+    let current = 0;
+    const duration = 1800;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = Math.floor(current) + (target >= 100 ? '+' : '+');
+      if (current >= target) clearInterval(timer);
+    }, 16);
+    statObserver.unobserve(el);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-target]').forEach(el => statObserver.observe(el));
+
+// ── Swiper testimonials
+new Swiper('.testimonialSwiper', {
+  slidesPerView: 1,
+  spaceBetween: 20,
+  loop: true,
+  autoplay: { delay: 5000, disableOnInteraction: false },
+  pagination: { el: '.swiper-pagination', clickable: true },
+  breakpoints: {
+    640: { slidesPerView: 2 },
+    1024: { slidesPerView: 3 }
+  }
+});
+
+// ── flatpickr date range picker
+flatpickr('#datePicker', {
+  mode: 'range',
+  dateFormat: 'M j, Y',
+  minDate: 'today',
+  showMonths: 2,
+  disableMobile: false,
+});
+
+// ── Nav shadow on scroll (Alpine handles class but we also need immediate)
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('header');
+  if (nav) nav.classList.toggle('nav-scrolled', window.scrollY > 60);
+}, { passive: true });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<title>Kashmir Tour Packages — Ski, Trek, Heliski · GulmargOnTheGo</title>
+<meta name="description" content="Premium Kashmir tour packages — ski holidays, heliski, backcountry tours, mountain treks and meadow camping. Fully customisable. Book with local experts."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../css/shared.css"/>
+<style>
+/* ── HERO ── */
+.pkg-hero{position:relative;height:68vh;min-height:480px;display:flex;align-items:center;overflow:hidden}
+.pkg-hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0d1f3c,#0b4a42)}
+.pkg-hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pkg-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(13,31,60,.9) 0%,rgba(13,31,60,.6) 50%,rgba(13,31,60,.2) 100%)}
+.ph-inner{position:relative;z-index:2;padding:0 5vw;max-width:1280px;margin:0 auto;width:100%}
+.ph-sup{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18);border-radius:100px;padding:6px 16px;margin-bottom:20px;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#fff}
+.ph-inner h1{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,6vw,4.4rem);font-weight:800;color:#fff;line-height:1.03;letter-spacing:-.03em;margin-bottom:14px}
+.ph-inner h1 em{color:var(--gold2);font-style:italic}
+.ph-inner p{font-size:.96rem;color:rgba(255,255,255,.7);line-height:1.76;margin-bottom:28px;max-width:520px}
+.pkg-strip{display:flex;gap:0;margin-top:20px;background:rgba(255,255,255,.08);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.13);border-radius:14px;overflow:hidden;width:fit-content}
+.ps-item{padding:13px 22px;border-right:1px solid rgba(255,255,255,.1);text-align:center}
+.ps-item:last-child{border-right:none}
+.ps-item strong{display:block;font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:#fff;line-height:1}
+.ps-item span{font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.42);margin-top:3px;display:block}
+
+/* ── FILTER ── */
+.fbar{background:var(--white);border-bottom:1px solid var(--border);padding:14px 5vw;position:sticky;top:68px;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.fbar-in{display:flex;gap:8px;max-width:1280px;margin:0 auto;overflow-x:auto;scrollbar-width:none;align-items:center;flex-wrap:wrap}
+.fb{padding:9px 20px;border-radius:100px;font-size:.77rem;font-weight:600;border:1.5px solid var(--border);color:var(--muted);cursor:none;transition:all .22s;background:var(--white);white-space:nowrap}
+.fb.on{background:var(--teal);border-color:var(--teal);color:#fff;box-shadow:0 4px 12px rgba(11,123,110,.2)}
+.fb:hover:not(.on){background:var(--teal-light);border-color:var(--teal);color:var(--teal)}
+
+/* ── PACKAGES GRID ── */
+.pkg-sec{padding:72px 5vw;background:var(--off)}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.pcard{background:var(--white);border-radius:22px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--sh);transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+.pcard:hover{transform:translateY(-8px);box-shadow:var(--sh3);border-color:transparent}
+.pcard.hidden{display:none!important}
+.pc-img{height:230px;overflow:hidden;position:relative;background:linear-gradient(135deg,var(--teal),var(--navy))}
+.pc-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.pcard:hover .pc-img img{transform:scale(1.07)}
+.pc-badge{position:absolute;top:14px;left:14px;border-radius:100px;padding:5px 13px;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.badge-premium{background:linear-gradient(135deg,var(--gold),#f97316);color:#fff}
+.badge-popular{background:var(--teal);color:#fff}
+.badge-new{background:var(--navy);color:#fff}
+.pc-dur{position:absolute;bottom:14px;right:14px;background:rgba(255,255,255,.95);border-radius:8px;padding:4px 11px;font-size:.64rem;font-weight:700;color:var(--navy)}
+.pc-body{padding:24px;flex:1;display:flex;flex-direction:column}
+.pc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.ptag{font-size:.6rem;background:var(--teal-light);color:var(--teal);font-weight:600;padding:3px 10px;border-radius:100px;display:flex;align-items:center;gap:3px}
+.pc-body h3{font-family:'Syne',sans-serif;font-size:1.12rem;font-weight:800;color:var(--navy);margin-bottom:8px;letter-spacing:-.01em}
+.pc-body>p{font-size:.82rem;color:var(--muted);line-height:1.72;flex:1;margin-bottom:14px}
+.pc-inc{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.pc-inc li{font-size:.76rem;color:var(--body);display:flex;align-items:center;gap:7px}
+.pc-inc li::before{content:'✓';width:15px;height:15px;min-width:15px;background:var(--teal-light);color:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.5rem;font-weight:800;line-height:15px;text-align:center}
+.pc-foot{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--border);margin-top:auto;gap:10px;flex-wrap:wrap}
+.pc-price small{font-size:.6rem;color:var(--muted);display:block;margin-bottom:2px;font-weight:500}
+.pc-price strong{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--navy);line-height:1}
+.pc-price span{font-size:.68rem;color:var(--muted)}
+
+/* FEATURED PACKAGE */
+.pkg-feat{display:grid;grid-template-columns:1.2fr 1fr;border-radius:24px;overflow:hidden;box-shadow:var(--sh3);border:1px solid var(--border);margin-bottom:52px}
+.pf-img{position:relative;min-height:420px;background:linear-gradient(135deg,var(--navy),var(--teal))}
+.pf-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.78)}
+.pf-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(13,31,60,.6),transparent 50%)}
+.pf-over{position:absolute;bottom:24px;left:24px;z-index:2}
+.pf-over .badge-premium{display:inline-block;margin-bottom:8px}
+.pf-over h2{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#fff}
+.pf-body{padding:44px;background:var(--white);display:flex;flex-direction:column;justify-content:center}
+.pf-body .stag{margin-bottom:8px}
+.pf-body>p{font-size:.88rem;color:var(--muted);line-height:1.82;margin-bottom:18px}
+.pf-hl{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.pf-hl li{display:flex;align-items:flex-start;gap:9px;font-size:.84rem;color:var(--body)}
+.pf-hl li::before{content:'✓';width:18px;height:18px;min-width:18px;background:var(--teal-light);color:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:800;line-height:18px;text-align:center;margin-top:1px}
+.pf-price{display:flex;align-items:baseline;gap:8px;margin-bottom:22px}
+.pf-price strong{font-family:'Syne',sans-serif;font-size:2.4rem;font-weight:800;color:var(--navy);line-height:1}
+.pf-price span{font-size:.78rem;color:var(--muted)}
+
+/* WHY BOX */
+.why-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:52px}
+.wbox{background:var(--white);border-radius:16px;padding:24px;border:1px solid var(--border);box-shadow:var(--sh);text-align:center;transition:all .3s}
+.wbox:hover{border-color:var(--teal);box-shadow:var(--sh2);transform:translateY(-3px)}
+.wbox-ic{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--teal-light),#dbeafe);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:1.4rem}
+.wbox h4{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:700;color:var(--navy);margin-bottom:6px}
+.wbox p{font-size:.78rem;color:var(--muted);line-height:1.72}
+
+/* CTA */
+.pkg-cta{background:linear-gradient(135deg,var(--navy),var(--teal));padding:96px 5vw;text-align:center;position:relative;overflow:hidden}
+.pkg-cta::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:rgba(255,255,255,.04)}
+.pkg-cta h2{font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:800;color:#fff;margin-bottom:14px;letter-spacing:-.025em}
+.pkg-cta p{color:rgba(255,255,255,.62);font-size:.93rem;margin-bottom:30px;line-height:1.76;max-width:500px;margin-left:auto;margin-right:auto}
+
+@media(max-width:960px){.pkg-grid{grid-template-columns:1fr 1fr}.pkg-feat{grid-template-columns:1fr}.why-row{grid-template-columns:1fr 1fr}}
+@media(max-width:580px){.pkg-grid{grid-template-columns:1fr}.pkg-feat .pf-body{padding:28px}.why-row{grid-template-columns:1fr 1fr}.ps-item{padding:10px 14px}}
+</style>
+</head>
+<body>
+<div id="cursor-outer"></div><div id="cursor-dot"></div>
+<div id="site-nav"></div>
+
+<!-- HERO -->
+<section class="pkg-hero">
+  <div class="pkg-hero-bg"><img src="../images/heliski.jpg" alt="Kashmir Packages" onerror="this.style.display='none'"/></div>
+  <div class="ph-inner rv">
+    <div class="ph-sup">⭐ Fully Customisable Packages</div>
+    <h1>Kashmir <em>Tour Packages</em><br>Built Around You</h1>
+    <p>Every package is fully customisable — group size, duration, hotel category and budget. We design trips that fit exactly what you're looking for, not a template.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="../contact/" class="btn btn-gold"><span>Get Custom Quote</span><span class="arr">→</span></a>
+      <a href="https://wa.me/917006303822" target="_blank" class="btn btn-ghost">💬 WhatsApp Us</a>
+    </div>
+    <div class="pkg-strip">
+      <div class="ps-item"><strong><span class="count-up" data-target="6">0</span></strong><span>Packages</span></div>
+      <div class="ps-item"><strong><span class="count-up" data-target="400" data-suffix="+">0+</span></strong><span>Guests</span></div>
+      <div class="ps-item"><strong>24h</strong><span>Custom Quote</span></div>
+      <div class="ps-item"><strong>100%</strong><span>Customisable</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER -->
+<div class="fbar">
+  <div class="fbar-in">
+    <button class="fb on" onclick="fp('all',this)">All Packages</button>
+    <button class="fb" onclick="fp('winter',this)">❄️ Winter / Ski</button>
+    <button class="fb" onclick="fp('summer',this)">☀️ Summer / Trek</button>
+    <button class="fb" onclick="fp('premium',this)">⭐ Premium</button>
+  </div>
+</div>
+
+<section class="pkg-sec">
+  <div class="mxw">
+    <!-- FEATURED -->
+    <div class="rv" style="margin-bottom:28px"><span class="stag">Most Popular</span><h2 class="sh2">Our <em>Signature Package</em></h2></div>
+    <div class="pkg-feat rv">
+      <div class="pf-img">
+        <img src="../images/heliski.jpg" alt="Heliski Kashmir" onerror="this.style.display='none'"/>
+        <div class="pf-over"><span class="pc-badge badge-premium">⭐ Premium</span><h2>Helicopter Ski Experience</h2></div>
+      </div>
+      <div class="pf-body">
+        <span class="stag">3 Nights · 4 Days · Expert Guides</span>
+        <p>The pinnacle of Himalayan skiing — access untouched Apharwat summits by helicopter and ski down virgin powder lines that no gondola can reach. Led by our most experienced certified guides.</p>
+        <ul class="pf-hl">
+          <li>Helicopter access to summits above 4,500m</li>
+          <li>Certified avalanche-trained guide included</li>
+          <li>5-star accommodation in Gulmarg</li>
+          <li>All equipment, transfers and meals</li>
+          <li>4–6 heliski runs per day (weather dependent)</li>
+        </ul>
+        <div class="pf-price"><strong>₹75,000</strong><span>/ person · 3N/4D</span></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="../contact/" class="btn btn-primary"><span>Book This Package</span><span class="arr">→</span></a>
+          <a href="https://wa.me/917006303822" target="_blank" class="btn btn-outline">💬 Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRID -->
+    <div class="rv" style="margin-bottom:28px"><span class="stag">All Packages</span><h2 class="sh2">Choose Your <em>Adventure</em></h2></div>
+    <div class="pkg-grid" id="pkgGrid">
+
+      <div class="pcard rv" data-cats="all winter">
+        <div class="pc-img" style="background:linear-gradient(135deg,#0d2040,#0b7b6e)"><img src="../images/skiing.jpg" alt="Beginner Ski" onerror="this.style.display='none'"/><div class="pc-badge badge-popular">⭐ Most Booked</div><div class="pc-dur">5N · 6D</div></div>
+        <div class="pc-body">
+          <div class="pc-tags"><span class="ptag">❄️ Winter</span><span class="ptag">⛷ Skiing</span><span class="ptag">👨‍👩‍👦 Family</span></div>
+          <h3>First-Timer Ski Package</h3>
+          <p>The perfect introduction to skiing in the Himalayas. Certified instruction, gentle slopes, comfortable hotel and all logistics handled.</p>
+          <ul class="pc-inc"><li>Certified ski instructor (6 sessions)</li><li>3-star hotel accommodation</li><li>Airport transfers & gondola passes</li><li>Equipment hire included</li></ul>
+          <div class="pc-foot">
+            <div class="pc-price"><small>From</small><strong>₹25,000</strong><span> /person</span></div>
+            <a href="../contact/" class="btn btn-primary" style="padding:10px 20px;font-size:.76rem"><span>Book Now →</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard rv" data-cats="all winter">
+        <div class="pc-img" style="background:linear-gradient(135deg,#0a2030,#0b5a52)"><img src="../images/backcountry.jpg" alt="Powder Week" onerror="this.style.display='none'"/><div class="pc-badge badge-popular">🏔 Bestseller</div><div class="pc-dur">7N · 8D</div></div>
+        <div class="pc-body">
+          <div class="pc-tags"><span class="ptag">❄️ Winter</span><span class="ptag">🏔 Advanced</span><span class="ptag">⛷ Off-Piste</span></div>
+          <h3>Powder Immersion Week</h3>
+          <p>Seven days of deep powder skiing with expert guides. Off-piste terrain, daily Phase 2 gondola access, and a full week inside Gulmarg's best conditions.</p>
+          <ul class="pc-inc"><li>Expert off-piste guide (7 days)</li><li>4-star hotel & full board</li><li>Daily gondola passes (Phase 1+2)</li><li>Avalanche safety equipment</li></ul>
+          <div class="pc-foot">
+            <div class="pc-price"><small>From</small><strong>₹35,000</strong><span> /person</span></div>
+            <a href="../contact/" class="btn btn-primary" style="padding:10px 20px;font-size:.76rem"><span>Book Now →</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard rv" data-cats="all winter premium">
+        <div class="pc-img" style="background:linear-gradient(135deg,#1a0d30,#0b6b5e)"><img src="../images/heliski.jpg" alt="Heliski" onerror="this.style.display='none'"/><div class="pc-badge badge-premium">⭐ Premium</div><div class="pc-dur">3N · 4D</div></div>
+        <div class="pc-body">
+          <div class="pc-tags"><span class="ptag">🚁 Heliski</span><span class="ptag">⭐ Luxury</span><span class="ptag">❄️ Exclusive</span></div>
+          <h3>Helicopter Ski Experience</h3>
+          <p>Himalayan summits by air, virgin powder lines on the way down. 5-star accommodation and the most exclusive skiing experience in India.</p>
+          <ul class="pc-inc"><li>Helicopter access to 4,500m+ summits</li><li>5-star hotel & all meals</li><li>AIARE-certified guide</li><li>All safety gear included</li></ul>
+          <div class="pc-foot">
+            <div class="pc-price"><small>From</small><strong>₹75,000</strong><span> /person</span></div>
+            <a href="../contact/" class="btn btn-primary" style="padding:10px 20px;font-size:.76rem"><span>Book Now →</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard rv" data-cats="all winter premium">
+        <div class="pc-img" style="background:linear-gradient(135deg,#0a1530,#143d30)"><img src="../images/backcountry.jpg" alt="Off Piste" onerror="this.style.display='none'"/><div class="pc-badge badge-new">🏔 Expert</div><div class="pc-dur">4N · 5D</div></div>
+        <div class="pc-body">
+          <div class="pc-tags"><span class="ptag">🏔 Backcountry</span><span class="ptag">⛷ Expert</span><span class="ptag">❄️ Winter</span></div>
+          <h3>Off-Piste Backcountry Tour</h3>
+          <p>For experienced skiers — North Bowl, Drung Valley lines, Sharkfin touring route and full Apharwat backcountry with avalanche-certified guides.</p>
+          <ul class="pc-inc"><li>AIARE + NZ avalanche certified guide</li><li>Full avalanche safety equipment</li><li>Touring skins & backcountry gear</li><li>3-star accommodation</li></ul>
+          <div class="pc-foot">
+            <div class="pc-price"><small>From</small><strong>₹40,000</strong><span> /person</span></div>
+            <a href="../contact/" class="btn btn-primary" style="padding:10px 20px;font-size:.76rem"><span>Book Now →</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard rv" data-cats="all summer">
+        <div class="pc-img" style="background:linear-gradient(135deg,#1a3520,#2d5a38)"><img src="../images/trekking.jpg" alt="Trekking" onerror="this.style.display='none'"/><div class="pc-badge badge-popular">🌿 Summer</div><div class="pc-dur">3N · 4D</div></div>
+        <div class="pc-body">
+          <div class="pc-tags"><span class="ptag">☀️ Summer</span><span class="ptag">🥾 Trekking</span><span class="ptag">👨‍👩‍👦 Family</span></div>
+          <h3>Himalayan Mountain Trek</h3>
+          <p>Alpine lakes, cedar forests and meadows bursting with wildflowers. Guided treks through Gulmarg's stunning summer landscape with certified mountain guides.</p>
+          <ul class="pc-inc"><li>Certified trek guide (3 days)</li><li>Guesthouse accommodation</li><li>All meals on trek</li><li>Equipment & permits included</li></ul>
+          <div class="pc-foot">
+            <div class="pc-price"><small>From</small><strong>₹8,000</strong><span> /person</span></div>
+            <a href="../contact/" class="btn btn-primary" style="padding:10px 20px;font-size:.76rem"><span>Book Now →</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard rv" data-cats="all summer">
+        <div class="pc-img" style="background:linear-gradient(135deg,#1a2d10,#3d5a28)"><img src="../images/camping.jpg" alt="Camping" onerror="this.style.display='none'"/><div class="pc-badge badge-popular">⛺ Summer</div><div class="pc-dur">2N · 3D</div></div>
+        <div class="pc-body">
+          <div class="pc-tags"><span class="ptag">☀️ Summer</span><span class="ptag">⛺ Camping</span><span class="ptag">💑 Romantic</span></div>
+          <h3>Meadow Camping Experience</h3>
+          <p>Sleep under Himalayan stars in Gulmarg's wildflower meadows. Comfortable tented camps, bonfires, local cuisine and unforgettable mountain sunsets.</p>
+          <ul class="pc-inc"><li>Luxury tented camp accommodation</li><li>All meals & campfire evenings</li><li>Horse riding & meadow walks</li><li>Photography guide</li></ul>
+          <div class="pc-foot">
+            <div class="pc-price"><small>From</small><strong>₹6,500</strong><span> /person</span></div>
+            <a href="../contact/" class="btn btn-primary" style="padding:10px 20px;font-size:.76rem"><span>Book Now →</span></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- WHY US -->
+    <div class="rv" style="text-align:center;margin-top:64px;margin-bottom:28px"><span class="stag">Why GulmargOnTheGo</span><h2 class="sh2">We're Not a <em>Travel Portal</em></h2><p class="sec-desc" style="margin:10px auto 0;text-align:center">We're a local company run by people who were born here. Every booking is handled by someone who has personally skied, trekked and guided on these mountains.</p></div>
+    <div class="why-row rv">
+      <div class="wbox"><div class="wbox-ic">🏔</div><h4>Born in Gulmarg</h4><p>Our team grew up here. Our knowledge of this mountain is not from a guidebook — it's from two decades of daily experience.</p></div>
+      <div class="wbox"><div class="wbox-ic">📜</div><h4>Certified Guides</h4><p>Every guide holds a J&K Himalayan Tourism Department licence. Several carry AIARE Level 1 and New Zealand avalanche certifications.</p></div>
+      <div class="wbox"><div class="wbox-ic">🎯</div><h4>Fully Customised</h4><p>No fixed templates. Tell us your dates, group size and goals — we design your trip from scratch and quote within 24 hours.</p></div>
+      <div class="wbox"><div class="wbox-ic">💬</div><h4>Always Reachable</h4><p>WhatsApp, phone or email. We reply within 2 hours and are available throughout your trip for anything you need.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="pkg-cta rv">
+  <h2>Not Sure Which Package<br>Is Right For You?</h2>
+  <p>Tell us about your group, experience level and what you'd like to do. We'll design something perfect and send a full quote within 24 hours.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <a href="../contact/" class="btn btn-gold"><span>Get a Custom Quote</span><span class="arr">→</span></a>
+    <a href="https://wa.me/917006303822" target="_blank" class="btn btn-ghost">💬 WhatsApp</a>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script>
+function fp(cat,btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
+  document.querySelectorAll('.pcard').forEach(c=>{c.classList.toggle('hidden',cat!=='all'&&!c.dataset.cats.includes(cat));});
+}
+</script>
+<script src="../js/shared.js"></script>
+<script>injectNav('../');injectFooter('../');</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<title>Shahid Ahmad Khan — Snowboard Instructor · Gulmargonthego</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../../css/shared.css"/>
+<style>
+.guide-hero{background:var(--navy);padding:88px 5vw 0;position:relative;overflow:hidden}
+.guide-hero::before{content:'';position:absolute;top:-120px;right:-120px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(14,124,110,.12),transparent 70%)}
+.gh-grid{display:grid;grid-template-columns:360px 1fr;gap:60px;align-items:flex-end;max-width:1280px;margin:0 auto}
+.gh-img{border-radius:20px 20px 0 0;overflow:hidden;height:480px;background:linear-gradient(135deg,#0e1f35,#0e5c8a)}
+.gh-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.88)}
+.gh-content{padding-bottom:56px}
+.gh-name{font-family:'Syne',sans-serif;font-size:clamp(2rem,4.5vw,3.4rem);font-weight:800;color:#fff;line-height:1.05;letter-spacing:-.025em;margin-bottom:5px}
+.gh-role{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal2);display:block;margin-bottom:18px}
+/* BIG COUNTERS like ThirdPole */
+.counter-box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:28px 32px;display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:22px}
+.counter-item{padding:16px 20px;text-align:center;position:relative}
+.counter-item:first-child{border-right:1px solid rgba(255,255,255,.1)}
+.counter-item .label-sm{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:6px;display:block}
+.counter-item .label-big{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:5px;display:block}
+.counter-num{font-family:'Syne',sans-serif;font-size:4rem;font-weight:800;color:#fff;line-height:1;display:block}
+.counter-desc{font-size:.78rem;color:rgba(255,255,255,.45);margin-top:8px;display:block}
+.gh-content p{font-size:.87rem;color:rgba(255,255,255,.57);line-height:1.88;margin-bottom:10px}
+.gh-chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 20px}
+.chip{padding:4px 12px;border-radius:100px;font-size:.64rem;font-weight:600;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.6)}
+.guide-body{background:var(--white);padding:60px 5vw}
+.gb-grid{display:grid;grid-template-columns:1fr 300px;gap:48px;max-width:1280px;margin:0 auto}
+.gb-main h2{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--navy);margin-bottom:9px;margin-top:24px}
+.gb-main h2:first-child{margin-top:0}
+.gb-main p{font-size:.87rem;color:var(--muted);line-height:1.88;margin-bottom:9px}
+.certs-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.certs-list li{display:flex;align-items:flex-start;gap:8px;font-size:.83rem;color:var(--muted);line-height:1.6}
+.certs-list li::before{content:'✓';width:17px;height:17px;background:rgba(14,124,110,.1);color:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;flex-shrink:0;line-height:17px;text-align:center;margin-top:2px}
+.gb-side{display:flex;flex-direction:column;gap:14px}
+.side-card{background:var(--off);border-radius:14px;padding:20px;border:1px solid rgba(11,29,53,.07)}
+.side-card h4{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;color:var(--navy);margin-bottom:11px}
+.skill-bar-wrap{display:flex;flex-direction:column;gap:9px}
+.skill-bar{display:flex;flex-direction:column;gap:3px}
+.skill-bar label{font-size:.7rem;font-weight:600;color:var(--navy);display:flex;justify-content:space-between}
+.bar-track{height:5px;background:rgba(11,29,53,.08);border-radius:100px;overflow:hidden}
+.bar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--teal),var(--teal2))}
+.back-link{display:inline-flex;align-items:center;gap:5px;font-size:.74rem;font-weight:600;color:var(--teal);margin-bottom:20px}
+.book-box{background:var(--navy);border-radius:14px;padding:20px}
+.book-box h4{font-family:'Syne',sans-serif;font-size:.96rem;font-weight:700;color:#fff;margin-bottom:5px}
+.book-box p{font-size:.76rem;color:rgba(255,255,255,.45);margin-bottom:14px;line-height:1.6}
+@media(max-width:860px){.gh-grid{grid-template-columns:1fr}.gh-img{height:280px;border-radius:14px}.gb-grid{grid-template-columns:1fr}.counter-box{padding:20px}.counter-num{font-size:3rem}}
+</style>
+</head>
+<body>
+<div id="cursor-outer"></div><div id="cursor-dot"></div>
+<div id="site-nav"></div>
+
+<section class="guide-hero dark-bg">
+  <div class="gh-grid">
+    <div class="gh-img rvl">
+      <img src="../../images/shahid.jpg" alt="Shahid Ahmad Khan" onerror="this.style.background='linear-gradient(135deg,#0e1f35,#0e5c8a)';this.removeAttribute('onerror')"/>
+    </div>
+    <div class="gh-content rvr">
+      <a href="../" class="back-link" style="color:rgba(255,255,255,.5)">← Back to Team</a>
+      <span class="stag" style="color:rgba(255,255,255,.42)">Snowboard Specialist · Guide</span>
+      <h1 class="gh-name">Shahid Ahmad Khan</h1>
+      <span class="gh-role">Snowboard Instructor · Ski Instructor · Gulmarg</span>
+
+      <!-- BIG COUNTERS like ThirdPole -->
+      <div class="counter-box">
+        <div class="counter-item">
+          <span class="label-sm">Years</span>
+          <span class="counter-num count-up" data-target="10" data-suffix="">0</span>
+          <span class="label-big">OF EXPERIENCE</span>
+        </div>
+        <div class="counter-item">
+          <span class="label-sm">More Than</span>
+          <span class="counter-num count-up" data-target="500" data-suffix="">0</span>
+          <span class="label-big">STUDENTS TRAINED</span>
+        </div>
+      </div>
+
+      <p>Shahid Ahmad Khan is Gulmargonthego's dedicated snowboard specialist — a certified instructor with over a decade of experience teaching the sport on Gulmarg's varied terrain. Growing up at the base of these mountains, he developed a deep understanding of snow conditions, terrain reading and the particular challenges that snowboarders face in the Himalayan resort environment.</p>
+      <div class="gh-chips">
+        <span class="chip">🏂 Snowboard Certified</span>
+        <span class="chip">⛷ Ski Instructor</span>
+        <span class="chip">📜 J&K Tourism Licence</span>
+        <span class="chip">🏔 All Terrain</span>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a href="../../contact/" class="btn bt"><span>Book a Session</span><span class="arr">→</span></a>
+        <a href="../../slopes/#book-online" class="btn bw"><span>Book Online</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-body">
+  <div class="gb-grid">
+    <div class="gb-main rv">
+      <a href="../" class="back-link">← All Instructors</a>
+      <h2>About Shahid</h2>
+      <p>Shahid Ahmad Khan found his calling on a snowboard at a young age, developing the kind of technical fluency that only comes from years of daily riding across varied mountain conditions. He has spent his entire professional career in Gulmarg, building his teaching practice season by season on the slopes he knows intimately.</p>
+      <p>His value as a snowboard instructor lies in his ability to break the sport's technique into understandable progressions. Snowboarding has a notoriously steep initial learning curve, and Shahid's approach — patient, structured and adapted to each individual rider — significantly shortens the time between first-day struggles and genuine enjoyment on snow.</p>
+      <h2>Teaching Approach</h2>
+      <p>Shahid works with riders of all ages and experience levels, from those stepping onto a board for the very first time to more experienced snowboarders wanting to improve their carving, powder technique or introduction to off-piste terrain. He is particularly effective with younger students, whose confidence he builds gradually through positive reinforcement and carefully selected terrain progressions.</p>
+      <p>He also teaches skiing and holds the same guide licence as all members of our team, allowing him to accompany guests across the full range of Gulmarg's terrain when conditions call for it.</p>
+      <h2>Qualifications</h2>
+      <ul class="certs-list">
+        <li>Certified snowboard instructor — all ability levels</li>
+        <li>Certified ski instructor</li>
+        <li>Official Guide Licence — J&K Himalayan Tourism Department</li>
+        <li>Off-piste and freeride terrain experience across Gulmarg</li>
+        <li>Youth and junior snowboard coaching experience</li>
+        <li>Equipment selection and fitting specialist</li>
+      </ul>
+    </div>
+    <div class="gb-side rv">
+      <div class="side-card">
+        <h4>Skills</h4>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar"><label><span>Snowboarding</span><span>96%</span></label><div class="bar-track"><div class="bar-fill" style="width:96%"></div></div></div>
+          <div class="skill-bar"><label><span>Beginner Coaching</span><span>95%</span></label><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div></div>
+          <div class="skill-bar"><label><span>Skiing</span><span>82%</span></label><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div></div>
+          <div class="skill-bar"><label><span>Youth Teaching</span><span>94%</span></label><div class="bar-track"><div class="bar-fill" style="width:94%"></div></div></div>
+          <div class="skill-bar"><label><span>Off-Piste</span><span>80%</span></label><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div>
+        </div>
+      </div>
+      <div class="side-card">
+        <span class="stag">Best For</span>
+        <div style="display:flex;flex-wrap:wrap;gap:5px">
+          <span style="font-size:.64rem;background:var(--sky);color:var(--teal);padding:3px 9px;border-radius:100px;font-weight:600">Snowboarding</span>
+          <span style="font-size:.64rem;background:var(--sky);color:var(--teal);padding:3px 9px;border-radius:100px;font-weight:600">Beginners</span>
+          <span style="font-size:.64rem;background:var(--sky);color:var(--teal);padding:3px 9px;border-radius:100px;font-weight:600">Youth & Teens</span>
+          <span style="font-size:.64rem;background:var(--sky);color:var(--teal);padding:3px 9px;border-radius:100px;font-weight:600">Freeride</span>
+        </div>
+      </div>
+      <div class="book-box">
+        <h4>Book a Session</h4>
+        <p>Reserve a snowboard lesson with Shahid directly.</p>
+        <a href="../../slopes/#book-online" class="btn bt" style="width:100%;justify-content:center;margin-bottom:8px;font-size:.74rem"><span>Book Online</span></a>
+        <a href="https://wa.me/917006303822?text=Hi! I'd like to book a snowboard session with Shahid Ahmad Khan." target="_blank" class="btn" style="width:100%;justify-content:center;background:rgba(37,211,102,.12);color:#22c55e;border:1px solid rgba(37,211,102,.25);font-size:.74rem">💬 WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="../../js/shared.js"></script>
+<script>injectNav('../../');injectFooter('../../');</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<title>Accommodation — Gulmargonthego</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../css/shared.css"/>
+<style>
+.cat-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px}
+.ctab{padding:9px 22px;border-radius:100px;font-size:.74rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:1.5px solid var(--mist);color:var(--fog);background:#fff}
+.ctab.on{background:var(--gold);border-color:var(--gold);color:#fff}
+.hotels-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.hotel-card{background:#fff;border-radius:calc(var(--r)*2);overflow:hidden;box-shadow:0 2px 12px rgba(12,20,32,.07);transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+.hotel-card:hover{transform:translateY(-4px);box-shadow:0 12px 38px rgba(12,20,32,.12)}
+.hotel-card.hidden{display:none}
+.hotel-img{position:relative;height:200px;overflow:hidden}
+.hotel-img img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
+.hotel-card:hover .hotel-img img{transform:scale(1.05)}
+.hotel-stars{position:absolute;top:12px;left:12px;background:rgba(12,20,32,.7);color:var(--gold2);font-size:.7rem;padding:4px 10px;border-radius:100px;backdrop-filter:blur(4px)}
+.hotel-cat{position:absolute;top:12px;right:12px;background:var(--gold);color:#fff;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:4px 10px;border-radius:100px}
+.hotel-body{padding:20px;flex:1;display:flex;flex-direction:column}
+.hotel-body h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ink);margin-bottom:5px}
+.hotel-loc{font-size:.72rem;color:var(--fog);margin-bottom:10px;display:flex;align-items:center;gap:4px}
+.hotel-body p{font-size:.8rem;color:var(--fog);line-height:1.7;flex:1;margin-bottom:14px}
+.hotel-feats{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+.hf{font-size:.62rem;background:var(--snow);border:1px solid var(--mist);color:var(--ink);padding:3px 9px;border-radius:100px}
+.hotel-footer{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid var(--mist)}
+.hotel-price small{font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fog);display:block}
+.hotel-price strong{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--ink);font-weight:600}
+.gallery-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:56px}
+.gallery-strip img{border-radius:var(--r);aspect-ratio:4/3;object-fit:cover;width:100%;transition:transform .3s,opacity .3s;cursor:pointer}
+.gallery-strip img:hover{transform:scale(1.03);opacity:.9}
+.gallery-strip img:first-child,.gallery-strip img:nth-child(6){grid-column:span 2}
+@media(max-width:700px){.hotels-grid{grid-template-columns:1fr}.gallery-strip{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div id="cursor-outer"></div>
+<div id="cursor-dot"></div>
+<div id="site-nav"></div>
+<div class="page-hero">
+  <div class="page-hero-content">
+    <div class="label">Where to Stay</div>
+    <h1>Accommodation</h1>
+    <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><span>Accommodation</span></div>
+  </div>
+</div>
+<section class="section" style="background:var(--snow)">
+  <div class="maxw">
+    <div class="reveal" style="margin-bottom:14px">
+      <div class="label">50+ Hand-Picked Options</div>
+      <h2 class="title">Find Your Perfect Stay</h2>
+      <p class="desc" style="margin-top:8px">From luxury 5-star hotels to comfortable budget stays — all hand-curated based on guest feedback for location, meals, and comfort.</p>
+    </div>
+    <div class="cat-tabs reveal" style="margin-top:28px">
+      <button class="ctab on" onclick="filterHotel('all',this)">All</button>
+      <button class="ctab" onclick="filterHotel('luxury',this)">⭐ Luxury (5-Star)</button>
+      <button class="ctab" onclick="filterHotel('premium',this)">4-Star Premium</button>
+      <button class="ctab" onclick="filterHotel('midrange',this)">3-Star Mid-Range</button>
+      <button class="ctab" onclick="filterHotel('budget',this)">Budget Friendly</button>
+    </div>
+    <div class="hotels-grid">
+      <div class="hotel-card reveal" data-cat="luxury">
+        <div class="hotel-body"><h3>Khyber Himalayan Resort & Spa</h3><div class="hotel-loc">📍 Gulmarg Meadows</div><p>The crown jewel of Gulmarg — a luxury ski-in/ski-out resort with panoramic mountain views, world-class spa, heated indoor pool and five dining options including Kashmiri wazwan.</p><div class="hotel-feats"><span class="hf">🛁 Spa</span><span class="hf">🏊 Pool</span><span class="hf">🍽 5 Restaurants</span><span class="hf">❄️ Ski-in/out</span><span class="hf">🔥 Fireplace</span></div><div class="hotel-footer"><div class="hotel-price"><small>Per night from</small><strong>₹18,000</strong></div><a href="../contact/" class="btn btn-gold" style="padding:9px 16px;font-size:.72rem">Book</a></div></div>
+      </div>
+      <div class="hotel-card reveal" data-cat="luxury">
+        <div class="hotel-body"><h3>Heevan Resort Gulmarg</h3><div class="hotel-loc">📍 Central Gulmarg</div><p>Elegant 5-star property with stunning views of the Apharwat range. Known for exceptional Kashmiri cuisine, cozy rooms with fireplaces and personalized service.</p><div class="hotel-feats"><span class="hf">🔥 Fireplace Rooms</span><span class="hf">🍽 Fine Dining</span><span class="hf">🎿 Ski Desk</span><span class="hf">🚗 Airport Transfer</span></div><div class="hotel-footer"><div class="hotel-price"><small>Per night from</small><strong>₹12,000</strong></div><a href="../contact/" class="btn btn-gold" style="padding:9px 16px;font-size:.72rem">Book</a></div></div>
+      </div>
+      <div class="hotel-card reveal" data-cat="premium">
+        <div class="hotel-body"><h3>Highlands Park Hotel</h3><div class="hotel-loc">📍 Highlands Park Area</div><p>A classic Gulmarg hotel with colonial-era character. Large rooms, excellent restaurant and direct access to the Highlands Park ski slopes. Popular with returning guests year after year.</p><div class="hotel-feats"><span class="hf">🎿 Slope Access</span><span class="hf">🍽 Restaurant</span><span class="hf">📡 WiFi</span><span class="hf">🧳 Luggage Storage</span></div><div class="hotel-footer"><div class="hotel-price"><small>Per night from</small><strong>₹6,500</strong></div><a href="../contact/" class="btn btn-gold" style="padding:9px 16px;font-size:.72rem">Book</a></div></div>
+      </div>
+      <div class="hotel-card reveal" data-cat="premium">
+        <div class="hotel-body"><h3>Hotel Affarwat</h3><div class="hotel-loc">📍 Near Gondola Base</div><p>Conveniently located steps from the Gulmarg Gondola. Clean, comfortable rooms with mountain views, a well-stocked restaurant and knowledgeable in-house ski concierge service.</p><div class="hotel-feats"><span class="hf">🚡 Gondola Access</span><span class="hf">🍽 Restaurant</span><span class="hf">❄️ Ski Storage</span><span class="hf">📡 WiFi</span></div><div class="hotel-footer"><div class="hotel-price"><small>Per night from</small><strong>₹5,000</strong></div><a href="../contact/" class="btn btn-gold" style="padding:9px 16px;font-size:.72rem">Book</a></div></div>
+      </div>
+      <div class="hotel-card reveal" data-cat="midrange">
+        <div class="hotel-body"><h3>Hotel Pine Spring</h3><div class="hotel-loc">📍 Gulmarg Village</div><p>A comfortable mid-range property surrounded by pine trees. Good value for money with clean rooms, home-cooked Kashmiri meals and a warm, family-run atmosphere.</p><div class="hotel-feats"><span class="hf">🍽 Home Meals</span><span class="hf">🌲 Pine Views</span><span class="hf">🚗 Pickup</span></div><div class="hotel-footer"><div class="hotel-price"><small>Per night from</small><strong>₹2,800</strong></div><a href="../contact/" class="btn btn-gold" style="padding:9px 16px;font-size:.72rem">Book</a></div></div>
+      </div>
+      <div class="hotel-card reveal" data-cat="midrange">
+        <div class="hotel-body"><h3>JKTDC Hutments Gulmarg</h3><div class="hotel-loc">📍 Central Gulmarg</div><p>Govt-run tourist hutments offering a unique stay in individual wooden cottages in the heart of Gulmarg meadow. Authentic experience with good facilities at reasonable prices.</p><div class="hotel-feats"><span class="hf">🏠 Private Cottage</span><span class="hf">🍽 Cafeteria</span><span class="hf">🌿 Meadow Location</span></div><div class="hotel-footer"><div class="hotel-price"><small>Per night from</small><strong>₹2,200</strong></div><a href="../contact/" class="btn btn-gold" style="padding:9px 16px;font-size:.72rem">Book</a></div></div>
+      </div>
+      <div class="hotel-card reveal" data-cat="budget">
+        <div class="hotel-body"><h3>Gulmarg Guesthouse Network</h3><div class="hotel-loc">📍 Gulmarg Town</div><p>We have a curated list of clean, comfortable guesthouses and B&Bs in Gulmarg town. Great for budget travelers and backpackers who want an authentic local experience.</p><div class="hotel-feats"><span class="hf">🍽 Breakfast Included</span><span class="hf">🧳 Lockers</span><span class="hf">💰 Best Value</span></div><div class="hotel-footer"><div class="hotel-price"><small>Per night from</small><strong>₹800</strong></div><a href="../contact/" class="btn btn-gold" style="padding:9px 16px;font-size:.72rem">Enquire</a></div></div>
+      </div>
+    </div>
+    <!-- PHOTO GALLERY -->
+    <div class="reveal" style="margin-top:60px">
+      <div class="label">Visual Gallery</div>
+      <h2 class="title" style="margin-bottom:24px">Accommodation Gallery</h2>
+      <div class="gallery-strip">
+      </div>
+    </div>
+  </div>
+</section>
+<div id="site-footer"></div>
+<script src="../js/shared.js"></script>
+<script src="../js/shared.js"></script>
+<script>
+injectNav('../');injectFooter('../');
+function filterHotel(cat,btn){
+  document.querySelectorAll('.ctab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.hotel-card').forEach(c=>{
+    c.classList.toggle('hidden', cat!=='all' && c.dataset.cat!==cat);
+  });
+}
+</script>
+</body></html>

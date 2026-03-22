@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<title>Gulmarg Weather Guide — Gulmargonthego</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../css/shared.css"/>
+<style>
+.month-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:32px}
+.month-card{background:var(--white);border-radius:14px;padding:20px;box-shadow:var(--sh);border-top:4px solid var(--teal);text-align:center;transition:transform .25s}
+.month-card:hover{transform:translateY(-4px)}
+.month-card.ski-season{border-color:var(--teal)}
+.month-card.summer-season{border-color:var(--gold)}
+.month-card.shoulder{border-color:var(--muted)}
+.month-card h4{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:6px}
+.month-card .temp{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--teal);margin-bottom:5px}
+.month-card .cond{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.month-card p{font-size:.75rem;color:var(--muted);line-height:1.65}
+.what-to-wear{background:var(--navy);border-radius:16px;padding:28px;margin-top:28px}
+.what-to-wear h3{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:16px}
+.wear-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.wear-item{background:rgba(255,255,255,.06);border-radius:10px;padding:14px;text-align:center}
+.wear-item .ic{font-size:1.4rem;margin-bottom:7px}
+.wear-item h5{font-size:.8rem;font-weight:700;color:#fff;margin-bottom:4px}
+.wear-item p{font-size:.7rem;color:rgba(255,255,255,.45);line-height:1.55}
+@media(max-width:800px){.month-grid{grid-template-columns:repeat(2,1fr)}.wear-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.month-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div id="cursor-outer"></div>
+<div id="cursor-dot"></div>
+<div id="site-nav"></div>
+
+<div class="page-hero">
+  <img class="ph-img" src="../images/hero1.jpg" alt="Gulmarg Weather" onerror="this.style.background='linear-gradient(135deg,#0b1d35,#0e7c6e)';this.removeAttribute('onerror')"/>
+  <div class="ph-body">
+    <span class="ph-tag">Season & Climate Guide</span>
+    <h1>Gulmarg Weather</h1>
+    <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../getting-here/">Getting Here</a><span>/</span><span>Weather</span></div>
+  </div>
+</div>
+
+<section class="sec">
+  <div class="mxw">
+    <div class="rv"><span class="stag">Month by Month</span><h2 class="sh2">Gulmarg <em>Through the Year</em></h2><p style="color:var(--muted);font-size:.88rem;margin-top:7px">Gulmarg sits at 2,650m in the western Himalayas. It has two very distinct seasons — a cold, snowy winter ideal for skiing and a warm, wildflower-filled summer perfect for trekking and outdoor adventure.</p></div>
+    <div class="month-grid rv">
+      <div class="month-card ski-season"><h4>December</h4><div class="temp">−8°C to 2°C</div><div class="cond">❄️ Ski Season Opens</div><p>Season opens Dec 1. Snowpack building — 1–2m typical by mid-month. Good early-season powder. Cold, clear days common.</p></div>
+      <div class="month-card ski-season"><h4>January</h4><div class="temp">−12°C to −2°C</div><div class="cond">❄️ Peak Powder</div><p>Best powder month of the year. Snowpack at maximum. Coldest temperatures but lightest, driest snow. Excellent visibility.</p></div>
+      <div class="month-card ski-season"><h4>February</h4><div class="temp">−10°C to 0°C</div><div class="cond">❄️ Excellent Snow</div><p>Continues delivering outstanding conditions. Consolidated snowpack, slightly lower avalanche risk than January. Very popular month.</p></div>
+      <div class="month-card ski-season"><h4>March</h4><div class="temp">−5°C to 6°C</div><div class="cond">❄️ Spring Skiing</div><p>Snow softens through the day — firm in mornings, heavy by afternoon. Longer daylight and warmer temperatures. Quieter slopes.</p></div>
+      <div class="month-card ski-season"><h4>April</h4><div class="temp">2°C to 12°C</div><div class="cond">⛷ End of Season</div><p>Season typically closes April 10. Spring skiing — soft snow, warm sun and dramatic views. Phase 2 may close earlier.</p></div>
+      <div class="month-card shoulder"><h4>May</h4><div class="temp">8°C to 18°C</div><div class="cond">🌱 Shoulder Season</div><p>Snow melting at lower elevations. Wildflowers beginning to emerge. Gondola may still operate for sightseeing.</p></div>
+      <div class="month-card summer-season"><h4>June</h4><div class="temp">12°C to 22°C</div><div class="cond">☀️ Summer Begins</div><p>Meadows turning green. Wildflowers in bloom. Excellent trekking and outdoor conditions. Gondola Phase 2 may have snow patches.</p></div>
+      <div class="month-card summer-season"><h4>July</h4><div class="temp">14°C to 25°C</div><div class="cond">☀️ Peak Summer</div><p>Peak wildflower season. Warmest month. Perfect for trekking, camping, horse riding and photography. Occasional afternoon rain.</p></div>
+      <div class="month-card summer-season"><h4>August</h4><div class="temp">13°C to 24°C</div><div class="cond">☀️ High Summer</div><p>Continued excellent summer conditions. Alpine meadows at their finest. Good visibility and long daylight hours. Some monsoon influence.</p></div>
+      <div class="month-card summer-season"><h4>September</h4><div class="temp">9°C to 20°C</div><div class="cond">🍂 Early Autumn</div><p>Beautiful autumn colours developing. Cooler temperatures. Excellent trekking. Clear skies and outstanding mountain views.</p></div>
+      <div class="month-card shoulder"><h4>October</h4><div class="temp">2°C to 14°C</div><div class="cond">🍂 Late Autumn</div><p>Temperatures dropping. First snowfall possible at higher elevations. Resort preparations begin. Quiet and beautiful.</p></div>
+      <div class="month-card shoulder"><h4>November</h4><div class="temp">−4°C to 6°C</div><div class="cond">❄️ Pre-Season</div><p>Heavy snowfall begins. Resort preparing for opening. Not open for skiing yet but spectacular winter landscape emerging.</p></div>
+    </div>
+
+    <div class="what-to-wear rv" style="margin-top:40px">
+      <h3>What to Pack — Winter Ski Trip</h3>
+      <div class="wear-grid">
+        <div class="wear-item"><div class="ic">🧥</div><h5>Base Layer</h5><p>Merino wool or synthetic thermal long underwear — top and bottom. Two sets minimum.</p></div>
+        <div class="wear-item"><div class="ic">🎿</div><h5>Mid Layer</h5><p>Fleece or down mid-layer for insulation. Should fit under your ski jacket comfortably.</p></div>
+        <div class="wear-item"><div class="ic">🌨</div><h5>Outer Layer</h5><p>Waterproof, windproof ski jacket and trousers. Proper ski outerwear — not just a winter coat.</p></div>
+        <div class="wear-item"><div class="ic">🧤</div><h5>Gloves & Socks</h5><p>Waterproof ski gloves (not standard winter gloves) and wool ski socks. Bring two pairs of each.</p></div>
+        <div class="wear-item"><div class="ic">🪖</div><h5>Helmet & Goggles</h5><p>Mandatory for Phase 2 and off-piste. Available for hire but personal-fit equipment always performs better.</p></div>
+        <div class="wear-item"><div class="ic">☀️</div><h5>Sun Protection</h5><p>SPF 50+ sunscreen and UV-blocking lip balm. Mountain sun reflected off snow causes rapid burning even in winter.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="background:var(--off)">
+  <div class="mxw">
+    <div class="rv" style="text-align:center"><span class="stag">Plan Your Visit</span><h2 class="sh2">Best Time to <em>Come</em></h2></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:32px" class="rv">
+      <div style="background:var(--white);border-radius:14px;padding:28px;box-shadow:var(--sh);border-left:4px solid var(--teal)">
+        <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:12px">❄️ Best for Skiing: January & February</h3>
+        <p style="font-size:.84rem;color:var(--muted);line-height:1.82">January and February deliver the deepest, lightest powder of the season. Snowpack at maximum depth, cold temperatures preserving snow quality and the widest range of terrain open. Book early — these months fill fastest.</p>
+      </div>
+      <div style="background:var(--white);border-radius:14px;padding:28px;box-shadow:var(--sh);border-left:4px solid var(--gold)">
+        <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:12px">☀️ Best for Trekking: June to September</h3>
+        <p style="font-size:.84rem;color:var(--muted);line-height:1.82">Summer transforms Gulmarg into a wildflower paradise. July and August offer peak conditions for trekking, camping and outdoor exploration with warm days, long daylight and the valley at its most colourful.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="../js/shared.js"></script>
+<script>injectNav('../');injectFooter('../');</script>
+</body>
+</html>

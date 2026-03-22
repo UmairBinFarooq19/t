@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<title>Our Team — Gulmargonthego</title>
+<meta name="description" content="Meet Gulmargonthego's certified ski instructors — Waseem Bhat, Ishfaq Ahmad Bhat, Maqsood Bhat, Naseer Ahmad Bhat, Showket Ahmad Chopan, Abid Ahmad Chopan."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../css/shared.css"/>
+<style>
+/* ── FEATURED HERO ── */
+.feat{background:var(--navy);padding:88px 5vw;position:relative;overflow:hidden}
+.feat::before{content:'';position:absolute;top:-160px;right:-160px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(14,124,110,.13),transparent 70%)}
+.feat-grid{display:grid;grid-template-columns:400px 1fr;gap:68px;align-items:center;max-width:1280px;margin:0 auto}
+.feat-img{border-radius:20px;overflow:hidden;height:480px;position:relative;background:linear-gradient(135deg,#112540,#0e7c6e)}
+.feat-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.88)}
+.feat-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(11,29,53,.55),transparent 50%)}
+.feat-tag{position:absolute;bottom:18px;left:18px;background:var(--teal);padding:7px 16px;border-radius:100px;font-size:.64rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;z-index:2}
+.feat h1{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:800;color:#fff;line-height:1.08;letter-spacing:-.025em;margin-bottom:6px}
+.feat-role{font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal2);display:block;margin-bottom:18px}
+.feat-stats{display:flex;gap:24px;flex-wrap:wrap;padding:16px 0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:18px}
+.fst strong{display:block;font-family:'Syne',sans-serif;font-size:1.7rem;color:var(--gold2);line-height:1}
+.fst span{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:3px;display:block}
+.feat p{font-size:.88rem;color:rgba(255,255,255,.58);line-height:1.88;margin-bottom:10px}
+.feat-chips{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 22px}
+.fchip{padding:5px 12px;border-radius:100px;font-size:.65rem;font-weight:600;letter-spacing:.05em;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.6)}
+
+/* ── TEAM GRID ── */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+.tc{background:var(--white);border-radius:20px;overflow:hidden;box-shadow:var(--sh);transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+.tc:hover{transform:translateY(-6px);box-shadow:var(--sh2)}
+.tc-img{height:260px;overflow:hidden;position:relative;background:linear-gradient(135deg,var(--sky),rgba(14,124,110,.18))}
+.tc-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;filter:brightness(.85)}
+.tc:hover .tc-img img{transform:scale(1.05);filter:brightness(.75)}
+.tc-bdg{position:absolute;bottom:12px;left:12px;background:rgba(11,29,53,.82);backdrop-filter:blur(8px);border-radius:100px;padding:4px 12px;font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal2)}
+.tc-body{padding:20px;flex:1;display:flex;flex-direction:column}
+.tc-body h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:3px}
+.tc-role{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:9px}
+.tc-body p{font-size:.79rem;color:var(--muted);line-height:1.72;flex:1;margin-bottom:13px}
+.tc-skills{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:13px}
+.tsk{font-size:.6rem;background:var(--sky);color:var(--teal);font-weight:600;padding:3px 9px;border-radius:100px;border:1px solid rgba(14,124,110,.12)}
+.tc-footer{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid rgba(11,29,53,.06);margin-top:auto}
+.tc-exp{font-size:.7rem;font-weight:600;color:var(--muted)}
+.tc-lnk{padding:8px 16px;background:var(--teal);color:#fff;border-radius:100px;font-size:.68rem;font-weight:700;transition:all .25s;position:relative;overflow:hidden}
+.tc-lnk::before{content:'';position:absolute;inset:0;background:var(--navy);transform:scale(0);border-radius:50%;transition:transform .38s}
+.tc-lnk:hover::before{transform:scale(2.5)}
+.tc-lnk:hover{box-shadow:0 6px 18px rgba(14,124,110,.28)}
+.tc-lnk span{position:relative;z-index:1}
+
+/* ── VALUES ── */
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:44px;border:1px solid rgba(11,29,53,.08);border-radius:18px;overflow:hidden}
+.vi{padding:30px 26px;border-right:1px solid rgba(11,29,53,.07);border-bottom:1px solid rgba(11,29,53,.07);transition:background .22s}
+.vi:hover{background:var(--sky)}
+.vi:nth-child(3n){border-right:none}
+.vi-ic{width:42px;height:42px;background:rgba(14,124,110,.1);border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:13px;font-size:1.15rem}
+.vi h4{font-family:'Syne',sans-serif;font-size:.93rem;font-weight:700;color:var(--navy);margin-bottom:6px}
+.vi p{font-size:.78rem;color:var(--muted);line-height:1.74}
+
+/* RESPONSIVE */
+@media(max-width:960px){.feat-grid{grid-template-columns:1fr}.feat-img{height:320px}.tgrid{grid-template-columns:1fr 1fr}.vgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:580px){.tgrid{grid-template-columns:1fr}.vgrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="cursor-outer"></div>
+<div id="cursor-dot"></div>
+<div id="site-nav"></div>
+
+<div class="page-hero">
+  <img class="ph-img" src="../images/team-hero.jpg" alt="Our Guides" onerror="this.style.background='linear-gradient(135deg,#0b1d35,#0e7c6e)';this.removeAttribute('onerror')"/>
+  <div class="ph-body">
+    <span class="ph-tag">The People Behind Every Session</span>
+    <h1>Our Certified Guides</h1>
+    <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><span>Our Team</span></div>
+  </div>
+</div>
+
+<!-- WASEEM BHAT — FEATURED -->
+<section class="feat dark-bg">
+  <div class="feat-grid">
+    <div class="feat-img rvl">
+      <img src="../images/waseem.jpg" alt="Waseem Bhat" onerror="this.style.background='linear-gradient(135deg,#112540,#12a08e)';this.removeAttribute('onerror')"/>
+      <div class="feat-tag">⭐ International Skier & Head Coach</div>
+    </div>
+    <div class="rvr">
+      <span class="stag" style="color:rgba(255,255,255,.42)">Team Lead · National Champion</span>
+      <h1>Waseem Bhat</h1>
+      <span class="feat-role">International Skier · Head Ski Coach · Mul Bangil, Tangmarg</span>
+      <div class="feat-stats">
+        <div class="fst"><strong>4×</strong><span>National Team</span></div>
+        <div class="fst"><strong>20+</strong><span>Years Active</span></div>
+        <div class="fst"><strong>500+</strong><span>Students</span></div>
+        <div class="fst"><strong>Guide</strong><span>J&K Licensed</span></div>
+      </div>
+      <p>Popularly known as "The Tiger," Waseem Bhat from Mul Bangil, Tangmarg is among the most accomplished ski competitors to have come out of Gulmarg. He has worn the Indian jersey on four separate occasions, competing at national level and serving as a benchmark for what Kashmir's slopes can produce.</p>
+      <p>As a coach and instructor, Waseem channels the same discipline and competitive instinct into his teaching — whether he's working with a complete beginner finding their first turns or an advanced skier preparing for challenging off-piste terrain.</p>
+      <div class="feat-chips">
+        <span class="fchip">🏆 4× India National Ski Team</span>
+        <span class="fchip">⛷ All Levels & Racing</span>
+        <span class="fchip">📜 J&K Tourism Guide Licence</span>
+        <span class="fchip">🎿 Instructor Certified</span>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a href="waseem-bhat/" class="btn bt"><span>Full Profile</span><span class="arr">→</span></a>
+        <a href="../contact/" class="btn bw"><span>Book a Session</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REST OF TEAM -->
+<section class="sec" style="background:var(--off)">
+  <div class="mxw">
+    <div class="rv"><span class="stag">All Guides</span><h2 class="sh2">The Full <em>Instructor Team</em></h2><p style="color:var(--muted);font-size:.88rem;margin-top:6px">Every guide holds a J&K Himalayan Tourism Department licence and has spent their lifetime on Gulmarg's terrain.</p></div>
+    <div class="tgrid">
+
+      <!-- ISHFAQ AHMAD BHAT -->
+      <div class="tc rv">
+        <div class="tc-img"><img src="../images/ishfaq.jpg" alt="Ishfaq Ahmad Bhat" onerror="this.style.background='linear-gradient(135deg,#0b1d35,#12a08e)';this.removeAttribute('onerror')"/><div class="tc-bdg">Ski & Snowboard</div></div>
+        <div class="tc-body">
+          <h3>Ishfaq Ahmad Bhat</h3>
+          <span class="tc-role">Ski & Snowboard Instructor · Guide</span>
+          <p>A dual-certified instructor equally skilled on skis and a snowboard. Ishfaq has spent over a decade guiding guests across all zones and is particularly effective with younger riders and snowboard beginners.</p>
+          <div class="tc-skills"><span class="tsk">⛷ Skiing</span><span class="tsk">🏂 Snowboarding</span><span class="tsk">🧒 Youth Lessons</span><span class="tsk">📜 Guide Licensed</span></div>
+          <div class="tc-footer"><span class="tc-exp">10+ years · Gulmarg</span><a href="ishfaq-ahmad-bhat/" class="tc-lnk"><span>View Profile →</span></a></div>
+        </div>
+      </div>
+
+      <!-- MAQSOOD BHAT -->
+      <div class="tc rv">
+        <div class="tc-img"><img src="../images/maqsood.jpg" alt="Maqsood Bhat" onerror="this.style.background='linear-gradient(135deg,#112030,#1a5c52)';this.removeAttribute('onerror')"/><div class="tc-bdg">Ski Instructor</div></div>
+        <div class="tc-body">
+          <h3>Maqsood Bhat</h3>
+          <span class="tc-role">Ski Instructor · Mountain Guide</span>
+          <p>A seasoned Gulmarg native with a deep personal connection to the mountains he grew up on. Maqsood brings warmth, patience and technical precision to every session he leads.</p>
+          <div class="tc-skills"><span class="tsk">⛷ Skiing</span><span class="tsk">🏔 Mountain Guide</span><span class="tsk">📜 Guide Licensed</span><span class="tsk">❄️ Backcountry</span></div>
+          <div class="tc-footer"><span class="tc-exp">12+ years · Gulmarg native</span><a href="maqsood-bhat/" class="tc-lnk"><span>View Profile →</span></a></div>
+        </div>
+      </div>
+
+      <!-- NASEER AHMAD BHAT -->
+      <div class="tc rv">
+        <div class="tc-img"><img src="../images/naseer.jpg" alt="Naseer Ahmad Bhat" onerror="this.style.background='linear-gradient(135deg,#0a1e30,#0c5c4a)';this.removeAttribute('onerror')"/><div class="tc-bdg">Avalanche Certified</div></div>
+        <div class="tc-body">
+          <h3>Naseer Ahmad Bhat</h3>
+          <span class="tc-role">Ski Instructor · Backcountry Guide</span>
+          <p>Raised on Gulmarg's slopes since early childhood, Naseer is relaxed on groomed runs and equally confident in off-piste terrain. Holds dual avalanche safety certifications to international standards.</p>
+          <div class="tc-skills"><span class="tsk">⛷ All Levels</span><span class="tsk">🔴 AIARE Lvl 1</span><span class="tsk">🇳🇿 NZ Avalanche</span><span class="tsk">📜 Guide Licensed</span></div>
+          <div class="tc-footer"><span class="tc-exp">Skiing from age 8 · Gulmarg</span><a href="naseer-ahmad-bhat/" class="tc-lnk"><span>View Profile →</span></a></div>
+        </div>
+      </div>
+
+      <!-- SHOWKET AHMAD CHOPAN -->
+      <div class="tc rv">
+        <div class="tc-img"><img src="../images/showket.jpg" alt="Showket Ahmad Chopan" onerror="this.style.background='linear-gradient(135deg,#0d2a1a,#1a6b48)';this.removeAttribute('onerror')"/><div class="tc-bdg">10+ Years</div></div>
+        <div class="tc-body">
+          <h3>Showket Ahmad Chopan</h3>
+          <span class="tc-role">Ski Instructor · Avalanche Safety Specialist</span>
+          <p>Over a decade of Himalayan experience combined with avalanche training to both US and New Zealand professional standards. One of the most safety-focused instructors on our team.</p>
+          <div class="tc-skills"><span class="tsk">⛷ All Levels</span><span class="tsk">🔴 AIARE Lvl 1</span><span class="tsk">🇳🇿 NZ Certified</span><span class="tsk">📜 Guide Licensed</span></div>
+          <div class="tc-footer"><span class="tc-exp">10+ years · Pir Panjal range</span><a href="showket-ahmad-chopan/" class="tc-lnk"><span>View Profile →</span></a></div>
+        </div>
+      </div>
+
+      <!-- ABID AHMAD CHOPAN -->
+      <div class="tc rv">
+        <div class="tc-img"><img src="../images/abid.jpg" alt="Abid Ahmad Chopan" onerror="this.style.background='linear-gradient(135deg,#0e1f35,#12608a)';this.removeAttribute('onerror')"/><div class="tc-bdg">Ski Instructor</div></div>
+        <div class="tc-body">
+          <h3>Abid Ahmad Chopan</h3>
+          <span class="tc-role">Ski Instructor · Mountain Guide</span>
+          <p>A certified ski instructor with extensive local knowledge of Gulmarg's terrain from beginner poma slopes to advanced off-piste. Known for his methodical teaching approach and genuine care for every student's progress.</p>
+          <div class="tc-skills"><span class="tsk">⛷ All Levels</span><span class="tsk">🏔 Off-Piste</span><span class="tsk">📜 Guide Licensed</span><span class="tsk">🎿 Equipment Expert</span></div>
+          <div class="tc-footer"><span class="tc-exp">8+ years · Gulmarg</span><a href="abid-ahmad-chopan/" class="tc-lnk"><span>View Profile →</span></a></div>
+        </div>
+      </div>
+
+
+      <!-- SHAHID AHMAD KHAN -->
+      <div class="tc rv">
+        <div class="tc-img"><img src="../images/shahid.jpg" alt="Shahid Ahmad Khan" onerror="this.style.background='linear-gradient(135deg,#0e1f35,#0e5c8a)';this.removeAttribute('onerror')"/><div class="tc-bdg">Snowboard Pro</div></div>
+        <div class="tc-body">
+          <h3>Shahid Ahmad Khan</h3>
+          <span class="tc-role">Snowboard Instructor · Guide</span>
+          <p>Gulmarg's dedicated snowboard specialist — certified to teach all ability levels on the mountain's varied terrain from groomed runs to off-piste powder.</p>
+          <div class="tc-skills"><span class="tsk">🏂 Snowboarding</span><span class="tsk">⛷ Skiing</span><span class="tsk">📜 Guide Licensed</span><span class="tsk">🏔 Off-Piste</span></div>
+          <div class="tc-footer"><span class="tc-exp">Gulmarg native · Certified</span><a href="shahid-ahmad-khan/" class="tc-lnk"><span>View Profile →</span></a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="sec" style="background:var(--white)">
+  <div class="mxw">
+    <div class="rv" style="text-align:center"><span class="stag">Our Standards</span><h2 class="sh2">What Every Guide <em>Brings</em></h2></div>
+    <div class="vgrid rv">
+      <div class="vi"><div class="vi-ic">📜</div><h4>Licensed by J&K Tourism</h4><p>Every guide on our team holds an official licence from the Jammu & Kashmir Himalayan Tourism Department — the required professional credential for all mountain guiding activity in the region.</p></div>
+      <div class="vi"><div class="vi-ic">⚠️</div><h4>Avalanche Safety Trained</h4><p>Several team members hold AIARE Level 1 avalanche certifications to US standards and have completed international training with New Zealand mountain guides. Off-piste sessions are never taken without avalanche-equipped personnel.</p></div>
+      <div class="vi"><div class="vi-ic">🏠</div><h4>Born in Gulmarg</h4><p>Every instructor grew up in Gulmarg or the villages immediately surrounding it. Their knowledge of this mountain is not academic — it's lived and inherited across generations.</p></div>
+      <div class="vi"><div class="vi-ic">🎯</div><h4>Level-Matched Teaching</h4><p>No generic group approach. Each student is assessed at the start of their first session and matched to the appropriate programme, instructor and terrain for their ability level.</p></div>
+      <div class="vi"><div class="vi-ic">🤝</div><h4>Guest-First Always</h4><p>Safety, pacing and enjoyment are prioritised over checking off terrain or pushing students beyond their comfort zone. Confident, happy skiers are the only measure of a successful session.</p></div>
+      <div class="vi"><div class="vi-ic">🌿</div><h4>Mountain Respect</h4><p>Gulmarg is a protected biosphere reserve. Our team operates with full environmental awareness — no litter, no noise in sensitive zones and strict adherence to designated guiding areas.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:linear-gradient(135deg,var(--navy),var(--teal));padding:80px 5vw;text-align:center" class="dark-bg">
+  <div class="rv">
+    <span class="stag" style="color:rgba(255,255,255,.4)">Start Your Session</span>
+    <h2 style="font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:800;color:#fff;letter-spacing:-.025em;margin-bottom:12px">Ready to Ski with the Best in Gulmarg?</h2>
+    <p style="color:rgba(255,255,255,.58);font-size:.9rem;margin-bottom:28px;line-height:1.76">Choose your instructor and activity below, or contact us and we'll match you with the right guide.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="../slopes/#book-online" class="btn bg_"><span>Book Online Now</span><span class="arr">→</span></a>
+      <a href="../contact/" class="btn bw">Contact Our Team</a>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="../js/shared.js"></script>
+<script>injectNav('../');injectFooter('../');</script>
+</body>
+</html>

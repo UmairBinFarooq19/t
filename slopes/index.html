@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<title>Ski Terrain Guide & Book Online — Gulmargonthego</title>
+<meta name="description" content="Complete terrain guide for Gulmarg's 4 ski zones — from beginner slopes to expert backcountry bowls. Book your ski course online."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../css/shared.css"/>
+<style>
+/* ZONE NAV */
+.zone-nav{background:var(--white);border-bottom:1px solid rgba(11,29,53,.07);position:sticky;top:68px;z-index:50;padding:0 5vw}
+.zone-nav-in{display:flex;gap:0;max-width:1280px;margin:0 auto;overflow-x:auto;scrollbar-width:none}
+.zone-nav-in::-webkit-scrollbar{display:none}
+.znav{padding:14px 20px;font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-bottom:2.5px solid transparent;cursor:none;transition:all .22s;white-space:nowrap;flex-shrink:0}
+.znav.on,.znav:hover{color:var(--teal);border-color:var(--teal)}
+
+/* ZONE SECTIONS */
+.zone-sec{padding:80px 5vw}
+.zone-sec:nth-child(even){background:var(--off)}
+.zone-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;max-width:1280px;margin:0 auto}
+.zone-img{border-radius:18px;overflow:hidden;height:420px;background:linear-gradient(135deg,var(--sky),rgba(14,124,110,.2))}
+.zone-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.zone-img:hover img{transform:scale(1.04)}
+.level-pill{display:inline-flex;align-items:center;gap:7px;border-radius:100px;padding:6px 16px;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.pill-g{background:rgba(34,197,94,.12);color:#16a34a;border:1px solid rgba(34,197,94,.25)}
+.pill-b{background:rgba(59,130,246,.12);color:#2563eb;border:1px solid rgba(59,130,246,.25)}
+.pill-r{background:rgba(239,68,68,.12);color:#dc2626;border:1px solid rgba(239,68,68,.25)}
+.pill-k{background:rgba(88,28,135,.12);color:#7c3aed;border:1px solid rgba(88,28,135,.25)}
+.zone-h2{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;color:var(--navy);line-height:1.08;letter-spacing:-.025em;margin-bottom:10px}
+.zone-h2 em{font-style:italic;color:var(--teal);font-weight:700}
+.zone-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 22px}
+.zs{padding:14px;background:var(--white);border:1px solid rgba(11,29,53,.08);border-radius:12px;text-align:center;box-shadow:var(--sh)}
+.zs strong{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--navy);display:block;line-height:1}
+.zs span{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:3px;display:block}
+.zone-desc p{font-size:.88rem;color:var(--muted);line-height:1.88;margin-bottom:10px}
+.zone-runs{margin-top:18px}
+.zone-runs h4{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+.run-item{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(11,29,53,.06);font-size:.82rem}
+.run-item:last-child{border-bottom:none}
+.run-name{font-weight:600;color:var(--navy)}
+.run-detail{color:var(--muted);font-size:.76rem}
+
+/* BACKCOUNTRY SPECIAL */
+.bc-sec{background:var(--navy);padding:88px 5vw}
+.bc-in{max-width:1280px;margin:0 auto}
+.bc-top{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-bottom:56px}
+.bc-img{border-radius:18px;overflow:hidden;height:460px;background:linear-gradient(135deg,#112540,#0e7c6e)}
+.bc-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.8)}
+.bc-content .stag{color:rgba(255,255,255,.4)}
+.bc-h2{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:800;color:#fff;line-height:1.08;letter-spacing:-.025em;margin-bottom:14px}
+.bc-h2 em{font-style:italic;color:var(--teal2)}
+.bc-content p{font-size:.88rem;color:rgba(255,255,255,.58);line-height:1.88;margin-bottom:12px}
+.bc-warning{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:12px;padding:16px 18px;margin:18px 0;display:flex;gap:12px;align-items:flex-start}
+.bc-warning .ico{font-size:1.2rem;flex-shrink:0}
+.bc-warning p{font-size:.82rem;color:rgba(255,255,255,.7);margin:0;line-height:1.65}
+/* LINE CARDS */
+.bc-lines{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:0}
+.bc-line{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:22px;transition:border-color .25s,background .25s}
+.bc-line:hover{border-color:rgba(14,160,142,.35);background:rgba(14,160,142,.06)}
+.bc-line h4{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:7px}
+.bc-line .gradient{font-size:.65rem;font-weight:700;letter-spacing:.1em;color:var(--teal2);margin-bottom:8px;display:block}
+.bc-line p{font-size:.78rem;color:rgba(255,255,255,.48);line-height:1.7}
+.bc-line .vert{margin-top:10px;font-size:.72rem;color:rgba(255,255,255,.35);font-weight:600}
+/* SEASONS */
+.bc-seasons{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:36px}
+.bcs{padding:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;text-align:center}
+.bcs h5{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;color:#fff;margin-bottom:5px}
+.bcs p{font-size:.74rem;color:rgba(255,255,255,.42);line-height:1.6}
+.bcs .rating{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-top:7px;padding:3px 8px;border-radius:100px}
+.r-best{background:rgba(34,197,94,.15);color:#22c55e}
+.r-good{background:rgba(59,130,246,.15);color:#60a5fa}
+.r-soft{background:rgba(232,150,30,.15);color:var(--gold2)}
+
+/* BOOKING SECTION */
+.book-sec{background:var(--off);padding:88px 5vw}
+.book-in{max-width:1280px;margin:0 auto}
+.book-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:start;margin-top:44px}
+/* COURSE CARDS */
+.courses{display:flex;flex-direction:column;gap:12px}
+.course-card{background:var(--white);border-radius:16px;padding:20px 22px;border:2px solid rgba(11,29,53,.06);cursor:none;transition:all .25s;display:flex;align-items:center;gap:16px}
+.course-card.selected{border-color:var(--teal);background:rgba(14,124,110,.04)}
+.course-card:hover{border-color:var(--teal);transform:translateX(4px)}
+.cc-icon{width:46px;height:46px;border-radius:12px;background:rgba(14,124,110,.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;transition:background .22s}
+.course-card.selected .cc-icon{background:rgba(14,124,110,.2)}
+.cc-info{flex:1}
+.cc-info h4{font-family:'Syne',sans-serif;font-size:.96rem;font-weight:700;color:var(--navy);margin-bottom:3px}
+.cc-info p{font-size:.74rem;color:var(--muted);line-height:1.5}
+.cc-price{text-align:right;flex-shrink:0}
+.cc-price small{font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:block}
+.cc-price strong{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:var(--navy)}
+/* PAYMENT FORM */
+.pay-form{background:var(--white);border-radius:20px;padding:32px;box-shadow:var(--sh2);border:1px solid rgba(11,29,53,.07)}
+.pay-form h3{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--navy);margin-bottom:5px}
+.pay-form>p{font-size:.8rem;color:var(--muted);margin-bottom:22px}
+.selected-course-display{background:var(--sky);border-radius:10px;padding:13px 16px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center}
+.scd-name{font-weight:700;font-size:.86rem;color:var(--navy)}
+.scd-price{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:var(--teal)}
+.pay-note{background:rgba(232,150,30,.08);border:1px solid rgba(232,150,30,.2);border-radius:10px;padding:13px 16px;margin-bottom:18px;font-size:.78rem;color:var(--muted);line-height:1.65}
+.pay-note strong{color:var(--gold)}
+.pay-methods{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.pm{display:flex;align-items:center;gap:5px;padding:6px 12px;background:var(--white);border:1px solid rgba(11,29,53,.1);border-radius:8px;font-size:.68rem;font-weight:600;color:var(--muted)}
+.pay-btn{width:100%;padding:14px;font-family:'Syne',sans-serif;font-size:.86rem;font-weight:800;letter-spacing:.04em;background:var(--teal);color:#fff;border:none;border-radius:100px;cursor:none;transition:all .28s;position:relative;overflow:hidden;margin-top:4px}
+.pay-btn::before{content:'';position:absolute;inset:0;background:var(--navy);transform:scale(0);border-radius:50%;transition:transform .42s}
+.pay-btn:hover::before{transform:scale(2.5)}
+.pay-btn:hover{box-shadow:0 8px 26px rgba(14,124,110,.28)}
+.pay-btn span{position:relative;z-index:1}
+.pay-success{display:none;text-align:center;padding:24px}
+.pay-success .ok{font-size:2.4rem;margin-bottom:10px}
+.pay-success h4{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:var(--navy);margin-bottom:7px}
+.pay-success p{font-size:.84rem;color:var(--muted);line-height:1.7}
+.secure-badge{text-align:center;margin-top:12px;font-size:.68rem;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:5px}
+
+/* TABLE */
+.slopes-tbl{width:100%;border-collapse:collapse;margin-top:32px;border-radius:16px;overflow:hidden;box-shadow:var(--sh);max-width:1280px;margin-left:auto;margin-right:auto}
+.slopes-tbl thead th{background:var(--navy);color:#fff;padding:13px 18px;text-align:left;font-size:.67rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.slopes-tbl tbody tr{border-bottom:1px solid rgba(11,29,53,.06);transition:background .15s}
+.slopes-tbl tbody tr:hover{background:var(--sky)}
+.slopes-tbl td{padding:13px 18px;font-size:.84rem;color:var(--muted)}
+.slopes-tbl td:first-child{font-weight:600;color:var(--navy)}
+.lvl{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:600}
+.lvl::before{content:'';width:7px;height:7px;border-radius:50%}
+.lvl-g::before{background:#22c55e}.lvl-b::before{background:#3b82f6}.lvl-r::before{background:#ef4444}.lvl-k::before{background:#a855f7}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .zone-grid{grid-template-columns:1fr}
+  .bc-top{grid-template-columns:1fr}
+  .bc-lines{grid-template-columns:1fr 1fr}
+  .bc-seasons{grid-template-columns:1fr 1fr}
+  .book-grid{grid-template-columns:1fr}
+  .zone-stats{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:560px){
+  .bc-lines{grid-template-columns:1fr}
+  .bc-seasons{grid-template-columns:1fr 1fr}
+  .zone-nav .znav{padding:12px 14px;font-size:.68rem}
+}
+</style>
+</head>
+<body>
+<div id="cursor-outer"></div>
+<div id="cursor-dot"></div>
+<div id="site-nav"></div>
+
+<div class="page-hero">
+  <img class="ph-img" src="../images/slopes-hero.jpg" alt="Ski Slopes Gulmarg" onerror="this.style.background='linear-gradient(135deg,#0b1d35,#0e7c6e)';this.removeAttribute('onerror')"/>
+  <div class="ph-body">
+    <span class="ph-tag">Complete Terrain Guide</span>
+    <h1>Gulmarg Ski Slopes</h1>
+    <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><span>Ski Guide</span></div>
+  </div>
+</div>
+
+<!-- STICKY ZONE NAV -->
+<div class="zone-nav">
+  <div class="zone-nav-in">
+    <a class="znav on" href="#zone1">🟢 Zone 1 — Beginner</a>
+    <a class="znav" href="#zone2">🔵 Zone 2 — Intermediate</a>
+    <a class="znav" href="#zone3">🔴 Zone 3 — Advanced</a>
+    <a class="znav" href="#zone4">⚫ Backcountry</a>
+    <a class="znav" href="#book-online">💳 Book Online</a>
+  </div>
+</div>
+
+<!-- ZONE 1 -->
+<div class="zone-sec" id="zone1">
+  <div class="zone-grid">
+    <div class="zone-img rvl">
+      <img src="../images/zone1.jpg" alt="Zone 1 Beginner Slopes" onerror="this.style.background='linear-gradient(135deg,#eaf5f4,#b4e4dc)';this.removeAttribute('onerror')"/>
+    </div>
+    <div class="rv">
+      <span class="level-pill pill-g">🟢 Beginner Zone</span>
+      <h2 class="zone-h2">Zone 1 — <em>Poma Lifts</em></h2>
+      <div class="zone-stats">
+        <div class="zs"><strong>7</strong><span>Poma Lifts</span></div>
+        <div class="zs"><strong>8°–15°</strong><span>Gradient</span></div>
+        <div class="zs"><strong>200–400m</strong><span>Run Length</span></div>
+      </div>
+      <div class="zone-desc">
+        <p>The seven poma-lift slopes distributed around Gulmarg meadow are where every ski journey properly starts. The terrain is wide, consistently groomed and forgiving enough for complete beginners to find their footing without anxiety. Most runs return to the meadow level, so there is no long traverse required to reach the lift again.</p>
+        <p>Our certified instructors run structured beginner courses exclusively on Zone 1 terrain for the first two to three days, ensuring that foundational technique — balance, stopping, turning — is firmly established before any higher terrain is considered. Children take to these slopes particularly quickly.</p>
+      </div>
+      <div class="zone-runs">
+        <h4>Zone 1 Runs</h4>
+        <div class="run-item"><span class="run-name">Nursery Slope</span><span class="run-detail">10° · 200m · Flattest start</span></div>
+        <div class="run-item"><span class="run-name">85 Slope</span><span class="run-detail">15° · 170m · Good for parallel turns</span></div>
+        <div class="run-item"><span class="run-name">Highlands Park</span><span class="run-detail">12° · 350m · Longest beginner run</span></div>
+        <div class="run-item"><span class="run-name">Golf Club Slope</span><span class="run-detail">10° · 200m · Wide & gentle</span></div>
+        <div class="run-item"><span class="run-name">Cedar Trail</span><span class="run-detail">10° · 400m · Scenic forest edge</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ZONE 2 -->
+<div class="zone-sec" id="zone2">
+  <div class="zone-grid" style="direction:rtl">
+    <div class="zone-img rvr" style="direction:ltr">
+      <img src="../images/zone2.jpg" alt="Zone 2 Gondola Phase 1" onerror="this.style.background='linear-gradient(135deg,#c4dcf4,#7ab4e8)';this.removeAttribute('onerror')"/>
+    </div>
+    <div class="rv" style="direction:ltr">
+      <span class="level-pill pill-b">🔵 Intermediate Zone</span>
+      <h2 class="zone-h2">Zone 2 — <em>Gondola Phase 1</em></h2>
+      <div class="zone-stats">
+        <div class="zs"><strong>3,050m</strong><span>Altitude</span></div>
+        <div class="zs"><strong>400m</strong><span>Vertical Drop</span></div>
+        <div class="zs"><strong>4km</strong><span>Run Length</span></div>
+      </div>
+      <div class="zone-desc">
+        <p>Gondola Phase 1 carries guests from the meadow base at 2,690m up to Kongdori station at 3,050m — a gain of 360 metres. The bowl that opens at the top is a broad, naturally contoured space with enough variety to keep intermediate skiers engaged across a full day of laps.</p>
+        <p>After two or three days of solid Zone 1 instruction, most students are ready to take their first runs here. The descent back to the meadow base is approximately 4km and involves a satisfying mix of pitch changes and open terrain. Zone 2 is where technical skiing truly begins to click for most people.</p>
+      </div>
+      <div class="zone-runs">
+        <h4>Zone 2 Runs</h4>
+        <div class="run-item"><span class="run-name">Kongdori Bowl</span><span class="run-detail">10°–18° · 4km · Main gondola descent</span></div>
+        <div class="run-item"><span class="run-name">Mary's Shoulder</span><span class="run-detail">15°–25° · 2km · Upper access run</span></div>
+        <div class="run-item"><span class="run-name">Forest Return</span><span class="run-detail">12° · 3km · Tree-lined lower section</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ZONE 3 -->
+<div class="zone-sec" id="zone3">
+  <div class="zone-grid">
+    <div class="zone-img rvl">
+      <img src="../images/zone3.jpg" alt="Zone 3 Advanced" onerror="this.style.background='linear-gradient(135deg,#b4c4d4,#6890b0)';this.removeAttribute('onerror')"/>
+    </div>
+    <div class="rv">
+      <span class="level-pill pill-r">🔴 Advanced Zone</span>
+      <h2 class="zone-h2">Zone 3 — <em>Gondola Phase 2 & Chair Lift</em></h2>
+      <div class="zone-stats">
+        <div class="zs"><strong>3,980m</strong><span>Peak Altitude</span></div>
+        <div class="zs"><strong>500–900m</strong><span>Vertical Gain</span></div>
+        <div class="zs"><strong>7km</strong><span>Max Run</span></div>
+      </div>
+      <div class="zone-desc">
+        <p>Gondola Phase 2 ascends from Kongdori to the Apharwat ridge at 3,980m — one of the highest accessible ski points in India. A separate chair lift offers an intermediate ascent to the mid-mountain zone. The terrain at this level is significantly steeper, with gradients between 20° and 45° depending on the line selected.</p>
+        <p>This is where Gulmarg's reputation for legendary powder skiing was built. Lines on this face hold snow exceptionally well after storms, and the sustained vertical makes for long, memorable descents. A helmet and prior experience on Zone 2 terrain are necessary before committing to Phase 2. Our guides accompany all guests on this zone.</p>
+      </div>
+      <div class="zone-runs">
+        <h4>Zone 3 Runs</h4>
+        <div class="run-item"><span class="run-name">Apharwat Face</span><span class="run-detail">20°–45° · 7km · Main Phase 2 descent</span></div>
+        <div class="run-item"><span class="run-name">Chair Lift Line</span><span class="run-detail">15°–30° · 3.5km · Mid-mountain option</span></div>
+        <div class="run-item"><span class="run-name">Powder Traverse</span><span class="run-detail">Variable · Off-piste · Guide required</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ZONE 4 BACKCOUNTRY — DETAILED -->
+<div class="bc-sec dark-bg" id="zone4">
+  <div class="bc-in">
+    <div class="bc-top">
+      <div class="bc-img rvl">
+        <img src="../images/backcountry.jpg" alt="Backcountry Gulmarg" onerror="this.style.background='linear-gradient(135deg,#0b1d35,#1a4a3a)';this.removeAttribute('onerror')"/>
+      </div>
+      <div class="bc-content rvr">
+        <span class="stag" style="color:rgba(255,255,255,.42)">Expert & Guided Only</span>
+        <h2 class="bc-h2">Zone 4 — <em>Gulmarg Backcountry</em></h2>
+        <p>Mount Apharwat's backcountry terrain at 4,200m is the centrepiece of Gulmarg's global ski reputation. Vast bowls stream down the north and south flanks of the main ridge, with lines that drop between 900 and 1,500 vertical metres through untouched Himalayan powder.</p>
+        <p>Gulmarg sits in the western Himalayas within the Pir Panjal range and receives snowfall patterns that produce some of Asia's most consistent deep powder. Between December and February, base depths of four to five metres are common, and the north-facing bowls hold cold, light snow for days after a storm.</p>
+        <p>The terrain beyond the gondola stations is classified as backcountry and is not patrolled or avalanche-controlled by resort operations. Any guest venturing into Zone 4 must be accompanied by a certified guide with current avalanche safety credentials.</p>
+        <div class="bc-warning">
+          <span class="ico">⚠️</span>
+          <p>Backcountry terrain in Gulmarg is unpatrolled and avalanche risk is real. This zone is strictly for experienced skiers travelling with a certified guide. Our team holds AIARE Level 1 and NZ Avalanche Safety certifications. We will not take unprepared guests beyond the lift system.</p>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="../contact/" class="btn bt"><span>Book Backcountry Guide</span><span class="arr">→</span></a>
+          <a href="#book-online" class="btn bw"><span>Book Online</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BACKCOUNTRY LINES -->
+    <div class="rv">
+      <h3 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:6px">Main Backcountry Lines</h3>
+      <p style="color:rgba(255,255,255,.45);font-size:.84rem;margin-bottom:22px">All lines require prior booking, certified guide escort and full avalanche safety equipment. Conditions are assessed on the morning of each trip.</p>
+    </div>
+    <div class="bc-lines rv">
+      <div class="bc-line">
+        <span class="gradient">30°–45° · North Face</span>
+        <h4>North Bowl</h4>
+        <p>The most popular backcountry zone — broad, north-facing bowls that hold deep powder for extended periods after snowfall. Accessible from the Apharwat ridgeline.</p>
+        <div class="vert">Vertical: 900–1,200m · Return: Gondola</div>
+      </div>
+      <div class="bc-line">
+        <span class="gradient">35°–55° · South Spur</span>
+        <h4>Drung Valley Lines</h4>
+        <p>Narrower spurs and chutes that channel east towards the Drung Valley. Technically demanding with serious avalanche terrain requiring thorough assessment before entry.</p>
+        <div class="vert">Vertical: 1,200–1,500m · Return: Vehicle pickup</div>
+      </div>
+      <div class="bc-line">
+        <span class="gradient">25°–40° · Mixed</span>
+        <h4>Sharkfin Approach</h4>
+        <p>A touring route along the main Apharwat ridge that gives access to several subsidiary bowls rarely tracked even in busy season. Outstanding panoramic views throughout.</p>
+        <div class="vert">Vertical: 800–1,100m · Return: Gondola</div>
+      </div>
+      <div class="bc-line">
+        <span class="gradient">20°–35° · Moderate</span>
+        <h4>Kongdori Extension</h4>
+        <p>A natural extension off the Phase 1 bowl into ungroomed terrain below the main ridge — a good introduction to off-piste conditions for confident intermediate skiers.</p>
+        <div class="vert">Vertical: 400–600m · Return: Gondola Phase 1</div>
+      </div>
+      <div class="bc-line">
+        <span class="gradient">40°–50° · Expert</span>
+        <h4>North Border Lines</h4>
+        <p>The most remote and demanding terrain on the mountain. Lines approaching the northern boundary of the resort area. Rarely tracked and exceptionally rewarding for experienced mountaineers.</p>
+        <div class="vert">Vertical: 1,400–1,500m · Guide mandatory</div>
+      </div>
+      <div class="bc-line">
+        <span class="gradient">Touring · All Gradients</span>
+        <h4>Ski Touring Circuit</h4>
+        <p>A full-day skinning route along the Apharwat ridge with multiple descent options depending on conditions. The preferred choice for touring guests who want elevation gain as part of the experience.</p>
+        <div class="vert">Vertical: Varies · Duration: Full day</div>
+      </div>
+    </div>
+
+    <!-- SEASONS -->
+    <div class="rv" style="margin-top:48px">
+      <h3 style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:20px">Backcountry Season Guide</h3>
+    </div>
+    <div class="bc-seasons rv">
+      <div class="bcs"><h5>December</h5><p>Early season — snowpack building. Some lines open, variable conditions. Excellent for early-season powder hunting.</p><span class="rating r-good">🔵 Good</span></div>
+      <div class="bcs"><h5>January</h5><p>Peak powder month. Deepest snowpack, coldest temperatures, lightest snow. Best overall backcountry conditions of the year.</p><span class="rating r-best">🟢 Best</span></div>
+      <div class="bcs"><h5>February</h5><p>Continues to deliver outstanding conditions. Snowpack fully consolidated and stable, reducing avalanche risk versus January.</p><span class="rating r-best">🟢 Excellent</span></div>
+      <div class="bcs"><h5>March–April</h5><p>Snow softens through the day. Morning sessions on firm-tracked powder, afternoons can be heavy. Longer daylight for touring.</p><span class="rating r-soft">🟡 Softer Snow</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- FULL SLOPE TABLE -->
+<section class="sec" style="background:var(--white)">
+  <div class="mxw">
+    <div class="rv"><span class="stag">Complete Reference</span><h2 class="sh2">All Slopes <em>at a Glance</em></h2></div>
+    <table style="word-break:normal" class="slopes-tbl rv">
+      <thead><tr><th>Slope Name</th><th>Zone</th><th>Gradient</th><th>Length</th><th>Level</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Nursery Slope</td><td>Zone 1 — Poma</td><td>10°</td><td>200m</td><td><span class="lvl lvl-g">Beginner</span></td><td>Flattest start point</td></tr>
+        <tr><td>85 Slope</td><td>Zone 1 — Poma</td><td>15°</td><td>170m</td><td><span class="lvl lvl-g">Beginner</span></td><td>Good for parallel turns</td></tr>
+        <tr><td>Highlands Park</td><td>Zone 1 — Poma</td><td>12°</td><td>350m</td><td><span class="lvl lvl-g">Beginner</span></td><td>Longest beginner run</td></tr>
+        <tr><td>Golf Club Slope</td><td>Zone 1 — Poma</td><td>10°</td><td>200m</td><td><span class="lvl lvl-g">Beginner</span></td><td>Wide & gentle</td></tr>
+        <tr><td>Cedar Trail</td><td>Zone 1 — Poma</td><td>10°</td><td>400m</td><td><span class="lvl lvl-g">Beginner</span></td><td>Scenic tree line</td></tr>
+        <tr><td>Kongdori Bowl</td><td>Zone 2 — Gondola P1</td><td>10°–18°</td><td>4km</td><td><span class="lvl lvl-b">Intermediate</span></td><td>Main Phase 1 descent</td></tr>
+        <tr><td>Mary's Shoulder</td><td>Zone 2–3</td><td>15°–25°</td><td>2km</td><td><span class="lvl lvl-b">Intermediate+</span></td><td>Upper access</td></tr>
+        <tr><td>Apharwat Face</td><td>Zone 3 — Gondola P2</td><td>20°–45°</td><td>7km</td><td><span class="lvl lvl-r">Advanced</span></td><td>Guide recommended</td></tr>
+        <tr><td>Chair Lift Line</td><td>Zone 3 — Chair</td><td>15°–30°</td><td>3.5km</td><td><span class="lvl lvl-r">Advanced</span></td><td>Mid-mountain access</td></tr>
+        <tr><td>North Bowl</td><td>Zone 4 — Backcountry</td><td>30°–45°</td><td>900–1,200m vert</td><td><span class="lvl lvl-k">Expert Only</span></td><td>Guide mandatory</td></tr>
+        <tr><td>Drung Valley Lines</td><td>Zone 4 — Backcountry</td><td>35°–55°</td><td>1,500m vert</td><td><span class="lvl lvl-k">Expert Only</span></td><td>Vehicle return</td></tr>
+        <tr><td>North Border Lines</td><td>Zone 4 — Backcountry</td><td>40°–50°</td><td>1,400–1,500m vert</td><td><span class="lvl lvl-k">Expert Only</span></td><td>Rarely tracked</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ONLINE BOOKING + PAYMENT -->
+<section class="book-sec" id="book-online">
+  <div class="book-in">
+    <div class="rv">
+      <span class="stag">Reserve Your Slot</span>
+      <h2 class="sh2">Book & Pay <em>Online</em></h2>
+      <p style="color:var(--muted);font-size:.9rem;margin-top:7px;max-width:560px">Select your course below, complete your details and pay securely via UPI, card or net banking. We confirm your booking within 2 hours.</p>
+    </div>
+    <div class="book-grid">
+      <!-- COURSE SELECTION -->
+      <div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:16px">1. Choose Your Course</h3>
+        <div class="courses" id="courseList">
+          <div class="course-card selected" data-price="4500" data-name="1-Day Ski Lesson" onclick="selectCourse(this)">
+            <div class="cc-icon">⛷</div>
+            <div class="cc-info"><h4>1-Day Ski Lesson</h4><p>Single full-day session with certified instructor · All levels</p></div>
+            <div class="cc-price"><small>Per person</small><strong>₹4,500</strong></div>
+          </div>
+          <div class="course-card" data-price="11999" data-name="3-Day Ski Course" onclick="selectCourse(this)">
+            <div class="cc-icon">🎿</div>
+            <div class="cc-info"><h4>3-Day Ski Course</h4><p>Structured beginner to intermediate progression · Equipment included</p></div>
+            <div class="cc-price"><small>Per person</small><strong>₹11,999</strong></div>
+          </div>
+          <div class="course-card" data-price="23999" data-name="7-Day Ski Course" onclick="selectCourse(this)">
+            <div class="cc-icon">🏔</div>
+            <div class="cc-info"><h4>7-Day Ski Course</h4><p>Full week · All zones covered · Most popular course</p></div>
+            <div class="cc-price"><small>Per person</small><strong>₹23,999</strong></div>
+          </div>
+          <div class="course-card" data-price="33999" data-name="10-Day Advanced Course" onclick="selectCourse(this)">
+            <div class="cc-icon">🏅</div>
+            <div class="cc-info"><h4>10-Day Advanced Course</h4><p>Complete programme · Off-piste & backcountry access included</p></div>
+            <div class="cc-price"><small>Per person</small><strong>₹33,999</strong></div>
+          </div>
+          <div class="course-card" data-price="19999" data-name="7-Day Snowboard Course" onclick="selectCourse(this)">
+            <div class="cc-icon">🏂</div>
+            <div class="cc-info"><h4>7-Day Snowboard Course</h4><p>Complete snowboard programme · Beginner to intermediate</p></div>
+            <div class="cc-price"><small>Per person</small><strong>₹19,999</strong></div>
+          </div>
+          <div class="course-card" data-price="8999" data-name="Private Ski Lesson (3 days)" onclick="selectCourse(this)">
+            <div class="cc-icon">👤</div>
+            <div class="cc-info"><h4>Private Lessons — 3 Days</h4><p>One-to-one instruction · Fastest progression guaranteed</p></div>
+            <div class="cc-price"><small>Per person</small><strong>₹8,999</strong></div>
+          </div>
+          <div class="course-card" data-price="6999" data-name="Family Ski Lesson (3 days)" onclick="selectCourse(this)">
+            <div class="cc-icon">👨‍👩‍👦</div>
+            <div class="cc-info"><h4>Family Lesson — 3 Days</h4><p>Group lesson for families · All ages · Up to 5 people</p></div>
+            <div class="cc-price"><small>Per family</small><strong>₹6,999</strong></div>
+          </div>
+          <div class="course-card" data-price="45000" data-name="Backcountry Guided Day" onclick="selectCourse(this)">
+            <div class="cc-icon">🚩</div>
+            <div class="cc-info"><h4>Backcountry Guided Day</h4><p>Expert + certified guide · Avalanche safety gear included</p></div>
+            <div class="cc-price"><small>Per person</small><strong>₹45,000</strong></div>
+          </div>
+        </div>
+      </div>
+      <!-- PAYMENT FORM -->
+      <div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:16px">2. Your Details & Payment</h3>
+        <div class="pay-form">
+          <h3>Secure Booking</h3>
+          <p>Complete below to reserve your slot. A 30% deposit is required to confirm — balance is due on arrival.</p>
+          <div class="selected-course-display">
+            <span class="scd-name" id="selectedCourseName">1-Day Ski Lesson</span>
+            <span class="scd-price" id="selectedCoursePrice">₹4,500</span>
+          </div>
+          <div id="payFormContent">
+            <div class="f-row"><div class="fg"><label>Full Name *</label><input type="text" id="pName" placeholder="Your name" required/></div><div class="fg"><label>Email *</label><input type="email" id="pEmail" placeholder="email@example.com" required/></div></div>
+            <div class="f-row"><div class="fg"><label>Phone / WhatsApp *</label><input type="tel" id="pPhone" placeholder="+91 XXXXXXXXXX" required/></div><div class="fg"><label>Preferred Start Date</label><input type="date" id="pDate"/></div></div>
+            <div class="f-row"><div class="fg"><label>Number of People</label><select id="pPax"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select></div><div class="fg"><label>Ski Level</label><select id="pLevel"><option>Complete Beginner</option><option>Beginner (1–3 days)</option><option>Intermediate</option><option>Advanced</option><option>Expert</option></select></div></div>
+            <div class="fg"><label>Special Requests</label><input type="text" id="pNote" placeholder="Equipment needs, dietary info, accessibility..."/></div>
+            <div class="pay-note">
+              <strong>💳 Secure Payment:</strong> Pay a 30% deposit online now to confirm your slot instantly. Balance is settled on arrival. Powered by Razorpay — accepts UPI, GPay, PhonePe, Paytm, Debit/Credit cards and Net Banking.
+            </div>
+            <div class="pay-methods">
+              <div class="pm">🏧 UPI / GPay</div>
+              <div class="pm">💳 Visa / Mastercard</div>
+              <div class="pm">🏦 Net Banking</div>
+              <div class="pm">📱 PhonePe / Paytm</div>
+              <div class="pm">💰 Cash on Arrival</div>
+            </div>
+            <button class="pay-btn" id="payNowBtn" onclick="initiatePayment()"><span>🔒 Pay 30% Deposit &amp; Confirm Booking →</span></button>
+            <div class="secure-badge">🔒 Powered by Razorpay · 256-bit SSL Encrypted · PCI DSS Compliant</div>
+          </div>
+          <div class="pay-success" id="paySuccess">
+            <div class="ok">🎉</div>
+            <h4>Booking Sent!</h4>
+            <p>Your reservation details have been sent to our team via WhatsApp. We'll confirm your slot and send a secure payment link within 30 minutes.<br><br>Questions? Call <a href="tel:+917006303822" style="color:var(--teal)">+91 7006303822</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script>
+let selectedPrice=4500;
+let selectedName='1-Day Ski Lesson';
+
+function selectCourse(el){
+  document.querySelectorAll('.course-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedPrice=parseInt(el.dataset.price);
+  selectedName=el.dataset.name;
+  document.getElementById('selectedCourseName').textContent=selectedName;
+  document.getElementById('selectedCoursePrice').textContent='₹'+selectedPrice.toLocaleString('en-IN');
+}
+
+/* ── RAZORPAY PAYMENT GATEWAY ── */
+function validateForm(){
+  const name=document.getElementById('pName').value.trim();
+  const email=document.getElementById('pEmail').value.trim();
+  const phone=document.getElementById('pPhone').value.trim();
+  if(!name){alert('Please enter your full name.');document.getElementById('pName').focus();return false;}
+  if(!email||!email.includes('@')){alert('Please enter a valid email address.');document.getElementById('pEmail').focus();return false;}
+  if(!phone||phone.length<8){alert('Please enter your phone number.');document.getElementById('pPhone').focus();return false;}
+  return true;
+}
+
+function initiatePayment(){
+  if(!validateForm())return;
+  const name=document.getElementById('pName').value.trim();
+  const email=document.getElementById('pEmail').value.trim();
+  const phone=document.getElementById('pPhone').value.trim();
+  const date=document.getElementById('pDate').value;
+  const pax=document.getElementById('pPax').value;
+  const level=document.getElementById('pLevel').value;
+  const note=document.getElementById('pNote').value.trim();
+  const deposit=Math.round(selectedPrice*0.3);
+  const depositPaise=deposit*100; // Razorpay uses paise
+
+  const btn=document.getElementById('payNowBtn');
+  btn.disabled=true;
+  btn.querySelector('span').textContent='Loading payment...';
+
+  // Load Razorpay script dynamically
+  const script=document.createElement('script');
+  script.src='https://checkout.razorpay.com/v1/checkout.js';
+  script.onload=function(){
+    const options={
+      // ⚠️ IMPORTANT: Replace 'rzp_live_XXXXXXXXXXXXXXXX' with your actual Razorpay Key ID
+      // Get your key from: https://dashboard.razorpay.com/app/keys
+      key:'rzp_live_XXXXXXXXXXXXXXXX',
+      amount:depositPaise,
+      currency:'INR',
+      name:'Gulmargonthego',
+      description:`30% deposit — ${selectedName}`,
+      image:'../images/logo.png',
+      prefill:{
+        name:name,
+        email:email,
+        contact:phone
+      },
+      notes:{
+        course:selectedName,
+        full_price:'₹'+selectedPrice.toLocaleString('en-IN'),
+        start_date:date||'Flexible',
+        group_size:pax,
+        skill_level:level,
+        special_notes:note||'None'
+      },
+      theme:{
+        color:'#0e7c6e'
+      },
+      handler:function(response){
+        // Payment successful
+        onPaymentSuccess(response, name, email, phone, deposit, selectedName, selectedPrice);
+      },
+      modal:{
+        ondismiss:function(){
+          btn.disabled=false;
+          btn.querySelector('span').textContent='🔒 Pay 30% Deposit & Confirm Booking →';
+        }
+      }
+    };
+    try{
+      const rzp=new Razorpay(options);
+      rzp.on('payment.failed',function(response){
+        onPaymentFailed(response.error);
+        btn.disabled=false;
+        btn.querySelector('span').textContent='🔒 Pay 30% Deposit & Confirm Booking →';
+      });
+      rzp.open();
+    }catch(e){
+      // Razorpay key not yet configured — fallback to WhatsApp
+      fallbackToWhatsApp(name,email,phone,date,pax,level,note,deposit,selectedName,selectedPrice);
+    }
+  };
+  script.onerror=function(){
+    // Script failed to load — fallback to WhatsApp
+    fallbackToWhatsApp(name,email,phone,date,pax,level,note,deposit,selectedName,selectedPrice);
+  };
+  document.head.appendChild(script);
+}
+
+function onPaymentSuccess(response, name, email, phone, deposit, courseName, coursePrice){
+  // Send confirmation via WhatsApp too
+  const msg=`✅ PAYMENT CONFIRMED%0A%0ACourse: ${courseName}%0ADeposit Paid: ₹${deposit.toLocaleString('en-IN')}%0APayment ID: ${response.razorpay_payment_id}%0AName: ${name}%0AEmail: ${email}%0APhone: ${phone}%0A%0AFull course price: ₹${coursePrice.toLocaleString('en-IN')} (balance due on arrival)`;
+  // Show success
+  document.getElementById('payFormContent').style.display='none';
+  const ok=document.getElementById('paySuccess');
+  ok.style.display='block';
+  ok.innerHTML=`<div class="ok">🎉</div><h4>Booking Confirmed!</h4><p>Your deposit of ₹${deposit.toLocaleString('en-IN')} has been received.<br>Payment ID: <strong>${response.razorpay_payment_id}</strong><br><br>You will receive a confirmation email at <strong>${email}</strong> shortly.<br>Our team will also reach out via WhatsApp to confirm your session dates.<br><br>Questions? Call <a href="tel:+917006303822" style="color:var(--teal)">+91 7006303822</a></p>`;
+  // Notify team via WhatsApp
+  setTimeout(()=>window.open(`https://wa.me/917006303822?text=${msg}`,'_blank'),1500);
+}
+
+function onPaymentFailed(error){
+  alert(`Payment failed: ${error.description||'Please try again or contact us directly.'}`);
+}
+
+function fallbackToWhatsApp(name,email,phone,date,pax,level,note,deposit,courseName,coursePrice){
+  // If Razorpay not configured yet, use WhatsApp booking
+  const msg=`Hi Gulmargonthego! I want to book:%0A%0ACourse: ${courseName}%0ATotal Price: ₹${coursePrice.toLocaleString('en-IN')}%0ADeposit (30%): ₹${deposit.toLocaleString('en-IN')}%0AName: ${name}%0AEmail: ${email}%0APhone: ${phone}%0ADate: ${date||'Flexible'}%0AGroup Size: ${pax}%0ALevel: ${level}%0ANotes: ${note||'None'}%0A%0APlease send payment link.`;
+  window.open(`https://wa.me/917006303822?text=${msg}`,'_blank');
+  document.getElementById('payFormContent').style.display='none';
+  document.getElementById('paySuccess').style.display='block';
+}
+
+// Zone nav active state
+const sections=['zone1','zone2','zone3','zone4','book-online'];
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY+200;
+  sections.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    const next=sections[i+1]?document.getElementById(sections[i+1]):null;
+    const top=el.offsetTop;
+    const bot=next?next.offsetTop:document.body.scrollHeight;
+    if(y>=top&&y<bot){
+      document.querySelectorAll('.znav').forEach(z=>z.classList.remove('on'));
+      const znav=document.querySelectorAll('.znav')[i];
+      if(znav)znav.classList.add('on');
+    }
+  });
+},{passive:true});
+</script>
+<script src="../js/shared.js"></script>
+<script>injectNav('../');injectFooter('../');</script>
+</body>
+</html>

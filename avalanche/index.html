@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<title>Gulmarg Avalanche Forecast — Gulmargonthego</title>
+<meta name="description" content="Daily avalanche forecast for Gulmarg backcountry and off-piste terrain. Check before you go."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../css/shared.css"/>
+<style>
+.avy-hero{background:linear-gradient(135deg,#7f1d1d,#991b1b);padding:72px 5vw 56px;position:relative;overflow:hidden}
+.avy-hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(0,0,0,.03) 0px,rgba(0,0,0,.03) 1px,transparent 1px,transparent 9px)}
+.ah-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;max-width:1280px;margin:0 auto}
+.ah-left h1{font-family:'Syne',sans-serif;font-size:clamp(2rem,4.5vw,3.5rem);font-weight:800;color:#fff;line-height:1.05;letter-spacing:-.025em;margin-bottom:12px}
+.ah-left p{font-size:.9rem;color:rgba(255,255,255,.65);line-height:1.82;margin-bottom:18px}
+.danger-scale{display:flex;flex-direction:column;gap:7px}
+.ds-row{display:flex;align-items:center;gap:12px;padding:9px 14px;border-radius:10px;background:rgba(255,255,255,.06)}
+.ds-num{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;width:28px;text-align:center;flex-shrink:0}
+.ds-bar{flex:1;height:8px;border-radius:100px}
+.ds1{background:#5cb85c}.ds2{background:#f0ad4e}.ds3{background:#e67e22}.ds4{background:#d9534f}.ds5{background:#7b1fa2}
+.ds-label{font-size:.72rem;font-weight:700;color:rgba(255,255,255,.8);width:100px;flex-shrink:0}
+.ds-desc{font-size:.65rem;color:rgba(255,255,255,.45);flex:1}
+
+/* LIVE WIDGET */
+.live-sec{background:var(--off);padding:72px 5vw}
+.live-grid{display:grid;grid-template-columns:2fr 1fr;gap:36px;max-width:1280px;margin:0 auto}
+.live-embed{background:var(--white);border-radius:18px;overflow:hidden;border:1px solid rgba(11,29,53,.08);box-shadow:var(--sh2)}
+.live-embed-header{background:linear-gradient(135deg,#7f1d1d,#991b1b);padding:16px 22px;display:flex;align-items:center;justify-content:space-between}
+.live-embed-header h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff}
+.live-dot{display:flex;align-items:center;gap:6px;font-size:.68rem;font-weight:600;color:rgba(255,255,255,.8)}
+.live-dot::before{content:'';width:7px;height:7px;border-radius:50%;background:#4ade80;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.live-iframe-wrap{position:relative;height:600px}
+.live-iframe-wrap iframe{width:100%;height:100%;border:none}
+.live-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:32px;text-align:center}
+.live-fallback .icon{font-size:2.5rem;margin-bottom:14px}
+.live-fallback h4{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:8px}
+.live-fallback p{font-size:.84rem;color:var(--muted);line-height:1.75;margin-bottom:18px}
+
+/* DANGER RATINGS SIDEBAR */
+.avy-sidebar{display:flex;flex-direction:column;gap:14px}
+.avy-side-card{background:var(--white);border-radius:14px;padding:22px;border:1px solid rgba(11,29,53,.07);box-shadow:var(--sh)}
+.avy-side-card h4{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:14px}
+.danger-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(11,29,53,.06)}
+.danger-row:last-child{border-bottom:none}
+.d-num{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:.8rem;font-weight:800;color:#fff;flex-shrink:0}
+.d1{background:#5cb85c}.d2{background:#f0ad4e}.d3{background:#e67e22}.d4{background:#d9534f}.d5{background:#7b1fa2}
+.d-info h5{font-size:.78rem;font-weight:700;color:var(--navy);margin-bottom:2px}
+.d-info p{font-size:.7rem;color:var(--muted);line-height:1.5}
+.quick-links{display:flex;flex-direction:column;gap:8px}
+.ql{display:flex;align-items:center;gap:9px;padding:11px 14px;background:var(--off);border-radius:10px;font-size:.8rem;font-weight:600;color:var(--navy);transition:all .22s;border:1px solid rgba(11,29,53,.06)}
+.ql:hover{background:var(--sky);border-color:var(--teal);color:var(--teal)}
+.ql .ico{font-size:1rem;flex-shrink:0}
+
+/* RULES */
+.rules-sec{background:var(--white);padding:72px 5vw}
+.rules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;max-width:1280px;margin-left:auto;margin-right:auto}
+.rule-card{padding:24px;border-radius:14px;border:1px solid rgba(11,29,53,.08);background:var(--off);transition:all .25s}
+.rule-card:hover{background:var(--sky);border-color:var(--teal)}
+.rule-card .rc-ic{font-size:1.4rem;margin-bottom:10px}
+.rule-card h4{font-family:'Syne',sans-serif;font-size:.93rem;font-weight:700;color:var(--navy);margin-bottom:7px}
+.rule-card p{font-size:.79rem;color:var(--muted);line-height:1.74}
+
+@media(max-width:860px){.ah-grid{grid-template-columns:1fr}.live-grid{grid-template-columns:1fr}.rules-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.rules-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="cursor-outer"></div>
+<div id="cursor-dot"></div>
+<div id="site-nav"></div>
+
+<!-- HERO -->
+<section class="avy-hero">
+  <div class="ah-grid">
+    <div class="ah-left rv">
+      <span class="stag" style="color:rgba(255,255,255,.5)">Daily Advisory</span>
+      <h1>⚠️ Avalanche Forecast</h1>
+      <p>The Gulmarg Avalanche Center issues a daily advisory covering the alpine (3,000m+), transitional and sub-alpine zones. Read this every morning before any off-piste or backcountry session. No exceptions.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a href="https://gulmargac.in/advisory" target="_blank" class="btn bt"><span>Open Live Forecast</span><span class="arr">→</span></a>
+        <a href="https://gulmargac.in/text-advisory" target="_blank" class="btn bw"><span>Text Advisory</span></a>
+      </div>
+    </div>
+    <div class="rv">
+      <h3 style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:rgba(255,255,255,.8);margin-bottom:16px">The 5-Level Danger Scale</h3>
+      <div class="danger-scale">
+        <div class="ds-row"><div class="ds-num">1</div><div class="ds-bar ds1"></div><span class="ds-label">Low</span><span class="ds-desc">Generally safe. Watch isolated terrain.</span></div>
+        <div class="ds-row"><div class="ds-num">2</div><div class="ds-bar ds2"></div><span class="ds-label">Moderate</span><span class="ds-desc">Heightened caution on steep terrain.</span></div>
+        <div class="ds-row"><div class="ds-num">3</div><div class="ds-bar ds3"></div><span class="ds-label">Considerable</span><span class="ds-desc">Careful evaluation essential. Most deaths at level 3.</span></div>
+        <div class="ds-row"><div class="ds-num">4</div><div class="ds-bar ds4"></div><span class="ds-label">High</span><span class="ds-desc">Very dangerous. Avoid steep slopes.</span></div>
+        <div class="ds-row"><div class="ds-num">5</div><div class="ds-bar ds5"></div><span class="ds-label">Extreme</span><span class="ds-desc">Extraordinary conditions. Stay in-bounds only.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE FORECAST EMBED -->
+<section class="live-sec">
+  <div class="live-grid">
+    <div>
+      <div class="rv" style="margin-bottom:22px"><span class="stag">Updated Daily at 8:00 AM</span><h2 class="sh2">Today's <em>Live Forecast</em></h2></div>
+      <div class="live-embed rv">
+        <div class="live-embed-header">
+          <h3>Gulmarg Avalanche Center — gulmargac.in</h3>
+          <div class="live-dot">Live</div>
+        </div>
+        <div class="live-iframe-wrap" style="min-height:420px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;background:var(--off);gap:16px">
+          <div style="font-size:2.5rem">🏔</div>
+          <h4 style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:var(--navy)">Daily Avalanche Advisory</h4>
+          <p style="font-size:.86rem;color:var(--muted);line-height:1.75;max-width:420px">The Gulmarg Avalanche Center updates the forecast every morning at 8:00 AM. The advisory cannot be embedded due to browser security restrictions — click below to open the live forecast directly.</p>
+          <div style="background:var(--white);border-radius:16px;padding:20px 28px;border:1px solid var(--border);box-shadow:var(--sh);width:100%;max-width:380px">
+            <div style="font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Today's Advisory</div>
+            <div id="avyDate" style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:14px">Loading...</div>
+            <a href="https://gulmargac.in/advisory" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center"><span>Open Live Forecast →</span></a>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+            <a href="https://gulmargac.in/text-advisory" target="_blank" class="btn btn-outline" style="font-size:.74rem">Text Advisory</a>
+            <a href="https://gulmargac.in/archive" target="_blank" class="btn btn-outline" style="font-size:.74rem">Archive</a>
+          </div>
+        </div>
+        <script>
+          // Show today's date
+          const d=new Date();
+          const opts={weekday:'long',year:'numeric',month:'long',day:'numeric'};
+          document.getElementById('avyDate').textContent='Advisory for '+d.toLocaleDateString('en-IN',opts);
+        </script>
+      </div>
+    </div>
+    <div class="avy-sidebar rv">
+      <div class="avy-side-card">
+        <h4>Danger Rating Guide</h4>
+        <div class="danger-row"><div class="d-num d1">1</div><div class="d-info"><h5>Low</h5><p>Safe avalanche conditions on most terrain.</p></div></div>
+        <div class="danger-row"><div class="d-num d2">2</div><div class="d-info"><h5>Moderate</h5><p>Heightened caution on specific slopes.</p></div></div>
+        <div class="danger-row"><div class="d-num d3">3</div><div class="d-info"><h5>Considerable</h5><p>Dangerous conditions — most fatalities occur at level 3.</p></div></div>
+        <div class="danger-row"><div class="d-num d4">4</div><div class="d-info"><h5>High</h5><p>Very dangerous — avoid all steep terrain.</p></div></div>
+        <div class="danger-row"><div class="d-num d5">5</div><div class="d-info"><h5>Extreme</h5><p>Extraordinary — stay in-bounds only.</p></div></div>
+      </div>
+      <div class="avy-side-card">
+        <h4>Quick Links</h4>
+        <div class="quick-links">
+          <a href="https://gulmargac.in/advisory" target="_blank" class="ql"><span class="ico">📋</span>Today's Advisory</a>
+          <a href="https://gulmargac.in/text-advisory" target="_blank" class="ql"><span class="ico">📝</span>Text Advisory</a>
+          <a href="https://gulmargac.in/archive" target="_blank" class="ql"><span class="ico">📂</span>Advisory Archive</a>
+          <a href="https://gulmargac.in/observations" target="_blank" class="ql"><span class="ico">👁</span>Field Observations</a>
+          <a href="https://gulmargac.in/gulmarg-rescue-grid-map-north" target="_blank" class="ql"><span class="ico">🗺</span>Rescue Map — North</a>
+          <a href="https://gulmargac.in/gulmarg-rescue-grid-map-south" target="_blank" class="ql"><span class="ico">🗺</span>Rescue Map — South</a>
+          <a href="https://gulmargac.in/how-to-read-avalanche-advisory" target="_blank" class="ql"><span class="ico">📖</span>How to Read the Advisory</a>
+          <a href="https://gulmargac.in/avalanche-education-gulmarg" target="_blank" class="ql"><span class="ico">🎓</span>Avalanche Education</a>
+        </div>
+      </div>
+      <div style="background:var(--navy);border-radius:14px;padding:20px">
+        <h4 style="font-family:'Syne',sans-serif;font-size:.93rem;font-weight:700;color:#fff;margin-bottom:8px">Book a Guided Session</h4>
+        <p style="font-size:.78rem;color:rgba(255,255,255,.5);margin-bottom:14px;line-height:1.6">Our certified guides assess conditions every morning and make terrain decisions based on the live forecast.</p>
+        <a href="../contact/" class="btn bt" style="width:100%;justify-content:center;font-size:.74rem"><span>Book a Guide</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BACKCOUNTRY RULES -->
+<section class="rules-sec">
+  <div class="mxw">
+    <div class="rv" style="text-align:center"><span class="stag">Non-Negotiable</span><h2 class="sh2">Before You Go <em>Off-Piste</em></h2></div>
+    <div class="rules-grid rv">
+      <div class="rule-card"><div class="rc-ic">📋</div><h4>Read the Daily Forecast</h4><p>The Gulmarg Avalanche Center advisory is updated every morning at 8:00 AM. Check it before every single off-piste session — conditions change significantly overnight.</p></div>
+      <div class="rule-card"><div class="rc-ic">👤</div><h4>Hire a Certified Guide</h4><p>Our guides hold AIARE Level 1 and New Zealand avalanche certifications. They carry full safety equipment and conduct terrain assessments before committing to any line.</p></div>
+      <div class="rule-card"><div class="rc-ic">📡</div><h4>Carry a Transceiver</h4><p>Avalanche transceiver, probe and shovel are mandatory for all off-piste travel. Available for hire from our ski shop. Know how to use them before you need them.</p></div>
+      <div class="rule-card"><div class="rc-ic">👫</div><h4>Never Ski Alone</h4><p>Off-piste skiing at Gulmarg must always be done in a group of at least two people with compatible transceivers. Solo off-piste travel is not permitted with our guides.</p></div>
+      <div class="rule-card"><div class="rc-ic">🗣</div><h4>Tell Someone Your Plan</h4><p>Before heading off-piste, tell a contact at the gondola base your intended line and expected return time. Share the rescue grid map reference for your area.</p></div>
+      <div class="rule-card"><div class="rc-ic">🎓</div><h4>Take an Avalanche Course</h4><p>The Gulmarg Avalanche Center offers free weekly awareness sessions and formal courses during the ski season. If you haven't taken one, we strongly encourage it.</p><a href="https://gulmargac.in/avalanche-education-gulmarg" target="_blank" style="color:var(--teal);font-size:.74rem;font-weight:700;display:inline-flex;align-items:center;gap:4px;margin-top:10px">Find a Course →</a></div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="../js/shared.js"></script>
+<script>injectNav('../');injectFooter('../');</script>
+</body>
+</html>

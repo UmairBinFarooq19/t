@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<title>Destinations in Kashmir — GulmargOnTheGo</title>
+<meta name="description" content="Explore the best destinations in Kashmir — Gulmarg, Srinagar, Pahalgam, Sonamarg, Yusmarg and Doodhpathri."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../css/shared.css"/>
+<style>
+.dest-hero{position:relative;height:72vh;min-height:480px;display:flex;align-items:center;overflow:hidden}
+.dh-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0d1f3c,#0b7b6e)}
+.dh-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dest-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(13,31,60,.88) 0%,rgba(13,31,60,.55) 55%,rgba(13,31,60,.2) 100%)}
+.dh-content{position:relative;z-index:2;padding:0 5vw;max-width:660px}
+.dh-pill{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);border-radius:100px;padding:6px 16px;margin-bottom:20px;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff}
+.dh-dot{width:6px;height:6px;border-radius:50%;background:var(--gold2);animation:dp 2s infinite}
+@keyframes dp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.7)}}
+.dh-content h1{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,6vw,4rem);font-weight:800;color:#fff;line-height:1.04;letter-spacing:-.03em;margin-bottom:14px}
+.dh-content h1 em{color:var(--gold2);font-style:italic}
+.dh-content p{font-size:.95rem;color:rgba(255,255,255,.7);line-height:1.78;margin-bottom:26px}
+.dh-stats{display:flex;gap:0;margin-top:16px;background:rgba(255,255,255,.08);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14);border-radius:14px;overflow:hidden;width:fit-content}
+.dhs{padding:14px 22px;text-align:center;border-right:1px solid rgba(255,255,255,.1)}
+.dhs:last-child{border-right:none}
+.dhs strong{display:block;font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:#fff;line-height:1}
+.dhs span{font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:3px;display:block}
+
+/* FILTER */
+.fbar{background:var(--white);border-bottom:1px solid var(--border);padding:14px 5vw;position:sticky;top:68px;z-index:50}
+.fbar-in{display:flex;gap:8px;max-width:1280px;margin:0 auto;overflow-x:auto;scrollbar-width:none;align-items:center}
+.fbar-in::-webkit-scrollbar{display:none}
+.flbl{font-size:.66rem;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;margin-right:4px;flex-shrink:0}
+.fb{padding:8px 18px;border-radius:100px;font-size:.76rem;font-weight:600;border:1.5px solid var(--border);color:var(--muted);cursor:none;transition:all .22s;background:var(--white);flex-shrink:0;white-space:nowrap}
+.fb.on{background:var(--teal);border-color:var(--teal);color:#fff;box-shadow:0 4px 12px rgba(11,123,110,.2)}
+.fb:hover:not(.on){background:var(--teal-light);border-color:var(--teal);color:var(--teal)}
+
+/* DEST SECTION */
+.dsec{padding:64px 5vw;background:var(--off)}
+
+/* FEATURED GULMARG */
+.feat{display:grid;grid-template-columns:1.15fr 1fr;border-radius:24px;overflow:hidden;box-shadow:var(--sh3);border:1px solid var(--border);margin-bottom:52px}
+.feat-img{position:relative;min-height:400px;background:linear-gradient(135deg,var(--teal),var(--navy))}
+.feat-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.78)}
+.feat-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(13,31,60,.55),transparent 55%)}
+.feat-pill{position:absolute;top:20px;left:20px;z-index:2;background:var(--gold);color:#fff;padding:5px 14px;border-radius:100px;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.feat-body{padding:44px;background:var(--white);display:flex;flex-direction:column;justify-content:center}
+.feat-body h2{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;color:var(--navy);margin-bottom:10px;letter-spacing:-.02em}
+.feat-body>p{font-size:.87rem;color:var(--muted);line-height:1.82;margin-bottom:16px}
+.hl-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px}
+.hl-list li{display:flex;align-items:flex-start;gap:8px;font-size:.82rem;color:var(--body)}
+.hl-list li::before{content:'✓';width:18px;height:18px;min-width:18px;background:var(--teal-light);color:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:700;line-height:18px;text-align:center;margin-top:1px}
+
+/* CARDS */
+.dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.dcard{background:var(--white);border-radius:20px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--sh);transition:transform .3s,box-shadow .3s,border-color .3s;display:flex;flex-direction:column}
+.dcard:hover{transform:translateY(-8px);box-shadow:var(--sh3);border-color:transparent}
+.dcard.hidden{display:none!important}
+.dcard-img{height:210px;overflow:hidden;position:relative;background:linear-gradient(135deg,var(--teal),var(--navy))}
+.dcard-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.dcard:hover .dcard-img img{transform:scale(1.08)}
+.dcard-bdg{position:absolute;top:12px;left:12px;border-radius:100px;padding:4px 12px;font-size:.6rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;backdrop-filter:blur(8px)}
+.bdg-w{background:rgba(13,31,60,.75);color:#fff}
+.bdg-s{background:rgba(245,158,11,.9);color:#fff}
+.bdg-a{background:rgba(11,123,110,.85);color:#fff}
+.dcard-dist{position:absolute;bottom:10px;right:10px;background:rgba(255,255,255,.92);border-radius:8px;padding:3px 10px;font-size:.62rem;font-weight:600;color:var(--navy)}
+.dcard-body{padding:20px;flex:1;display:flex;flex-direction:column}
+.dcard-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.dtag{font-size:.59rem;background:var(--teal-light);color:var(--teal);font-weight:600;padding:3px 9px;border-radius:100px}
+.dcard-body h3{font-family:'Syne',sans-serif;font-size:1.12rem;font-weight:800;color:var(--navy);margin-bottom:6px}
+.dcard-body p{font-size:.8rem;color:var(--muted);line-height:1.7;flex:1;margin-bottom:12px}
+.dcard-meta{font-size:.71rem;color:var(--muted);padding:10px 0;border-top:1px solid var(--border);margin-bottom:12px;display:flex;align-items:center;gap:5px}
+.dcard-meta strong{color:var(--navy);font-weight:600}
+.dcard-foot{display:flex;align-items:center;justify-content:space-between}
+.dcard-km{font-size:.7rem;color:var(--muted)}
+
+/* CTA */
+.dcta{background:linear-gradient(135deg,var(--navy),var(--teal));padding:96px 5vw;text-align:center;position:relative;overflow:hidden}
+.dcta::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.02) 0,rgba(255,255,255,.02) 1px,transparent 1px,transparent 10px)}
+.dcta h2{font-family:'Syne',sans-serif;font-size:clamp(1.9rem,5vw,3.4rem);font-weight:800;color:#fff;letter-spacing:-.025em;margin-bottom:13px}
+.dcta p{color:rgba(255,255,255,.62);font-size:.93rem;margin-bottom:28px;line-height:1.76;max-width:480px;margin-left:auto;margin-right:auto}
+
+@media(max-width:960px){.feat{grid-template-columns:1fr}.dgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:580px){.dgrid{grid-template-columns:1fr}.dh-content h1{font-size:2rem}.feat-body{padding:26px}}
+</style>
+</head>
+<body>
+<div id="cursor-outer"></div><div id="cursor-dot"></div>
+<div id="site-nav"></div>
+
+<!-- HERO -->
+<section class="dest-hero">
+  <div class="dh-bg"><img src="../images/hero1.jpg" alt="Kashmir" onerror="this.style.display='none'"/></div>
+  <div class="dh-content rv">
+    <div class="dh-pill"><div class="dh-dot"></div>6 Stunning Destinations</div>
+    <h1>Explore <em>Kashmir</em><br>Like Never Before</h1>
+    <p>From ski slopes to wildflower meadows, from houseboats to hidden valleys — let GulmargOnTheGo take you to the heart of India's most breathtaking region.</p>
+    <div style="display:flex;gap:11px;flex-wrap:wrap">
+      <a href="../contact/" class="btn btn-gold"><span>Plan Your Trip</span><span class="arr">→</span></a>
+      <a href="#destinations" class="btn btn-ghost"><span>Explore All</span></a>
+    </div>
+    <div class="dh-stats">
+      <div class="dhs"><strong><span class="count-up" data-target="6">0</span></strong><span>Destinations</span></div>
+      <div class="dhs"><strong><span class="count-up" data-target="400" data-suffix="+">0+</span></strong><span>Happy Guests</span></div>
+      <div class="dhs"><strong><span class="count-up" data-target="20" data-suffix="+">0+</span></strong><span>Years Local</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER -->
+<div class="fbar" id="destinations">
+  <div class="fbar-in">
+    <span class="flbl">Filter:</span>
+    <button class="fb on" onclick="fd('all',this)">All</button>
+    <button class="fb" onclick="fd('winter',this)">❄️ Winter</button>
+    <button class="fb" onclick="fd('summer',this)">☀️ Summer</button>
+    <button class="fb" onclick="fd('trekking',this)">🥾 Trekking</button>
+    <button class="fb" onclick="fd('family',this)">👨‍👩‍👦 Family</button>
+    <button class="fb" onclick="fd('honeymoon',this)">💑 Honeymoon</button>
+  </div>
+</div>
+
+<section class="dsec">
+  <div class="mxw">
+    <!-- FEATURED GULMARG -->
+    <div class="rv" style="margin-bottom:28px"><span class="stag">Our Home · Featured Destination</span><h2 class="sh2">Gulmarg — <em>Where It All Begins</em></h2></div>
+    <div class="feat rv" id="gulmarg">
+      <div class="feat-img">
+        <img src="../images/gulmarg.jpg" alt="Gulmarg" onerror="this.style.display='none'"/>
+        <div class="feat-pill">⭐ Asia's 5th Best Ski Destination</div>
+      </div>
+      <div class="feat-body">
+        <span class="stag">Ski Valley · 2,650m Altitude · Year-Round</span>
+        <h2>Gulmarg</h2>
+        <p>The "Meadow of Flowers" and Asia's premier ski destination. Home to the world's highest gondola at 3,980m, legendary deep powder slopes and breathtaking alpine scenery in every season.</p>
+        <ul class="hl-list">
+          <li>Gulmarg Gondola — Asia's highest cable car reaching 3,980m</li>
+          <li>World-class skiing Dec–Apr across 4 terrain zones</li>
+          <li>Wildflower meadows, trekking and camping in summer</li>
+          <li>Asia's highest golf course + historic St. Mary's Church (1895)</li>
+          <li>Beginner poma slopes to expert backcountry for all levels</li>
+        </ul>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="../contact/" class="btn btn-primary"><span>Plan Gulmarg Trip</span><span class="arr">→</span></a>
+          <a href="../slopes/" class="btn btn-outline">Ski Guide</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALL DESTINATIONS GRID -->
+    <div class="rv" style="margin-bottom:28px"><span class="stag">All Destinations</span><h2 class="sh2">Where We <em>Take You</em></h2></div>
+    <div class="dgrid" id="destGrid">
+
+      <div class="dcard rv" data-cats="all summer family honeymoon" id="srinagar">
+        <div class="dcard-img" style="background:linear-gradient(135deg,#1e3a5f,#0b7b6e)"><img src="../images/srinagar.jpg" alt="Srinagar" onerror="this.style.display='none'"/><div class="dcard-bdg bdg-a">🌸 All Year</div><div class="dcard-dist">56 km from Gulmarg</div></div>
+        <div class="dcard-body">
+          <div class="dcard-tags"><span class="dtag">👨‍👩‍👦 Family</span><span class="dtag">💑 Honeymoon</span><span class="dtag">☀️ Summer</span></div>
+          <h3>Srinagar</h3>
+          <p>The summer capital of J&K — Dal Lake houseboats, Mughal gardens and vibrant old city bazaars. Your first stop and the gateway to every Kashmir adventure.</p>
+          <div class="dcard-meta">🗓 Best time: <strong>April – October</strong></div>
+          <div class="dcard-foot"><span class="dcard-km">📍 56 km</span><a href="../contact/?dest=srinagar" class="btn btn-primary" style="padding:9px 18px;font-size:.74rem"><span>Plan Trip →</span></a></div>
+        </div>
+      </div>
+
+      <div class="dcard rv" data-cats="all summer trekking family honeymoon" id="pahalgam">
+        <div class="dcard-img" style="background:linear-gradient(135deg,#1a3a2f,#2d6a4f)"><img src="../images/pahalgam.jpg" alt="Pahalgam" onerror="this.style.display='none'"/><div class="dcard-bdg bdg-s">☀️ Summer</div><div class="dcard-dist">146 km away</div></div>
+        <div class="dcard-body">
+          <div class="dcard-tags"><span class="dtag">🥾 Trekking</span><span class="dtag">💑 Honeymoon</span><span class="dtag">🌊 River</span></div>
+          <h3>Pahalgam</h3>
+          <p>The "Valley of Shepherds" — Betaab Valley, Aru Valley and the Amarnath Yatra gateway. Pine forests, the Lidder River and stunning alpine scenery make this a summer favourite.</p>
+          <div class="dcard-meta">🗓 Best time: <strong>April – October</strong></div>
+          <div class="dcard-foot"><span class="dcard-km">📍 146 km</span><a href="../contact/?dest=pahalgam" class="btn btn-primary" style="padding:9px 18px;font-size:.74rem"><span>Plan Trip →</span></a></div>
+        </div>
+      </div>
+
+      <div class="dcard rv" data-cats="all summer trekking family" id="sonamarg">
+        <div class="dcard-img" style="background:linear-gradient(135deg,#1a2d4a,#0b7b6e)"><img src="../images/sonamarg.jpg" alt="Sonamarg" onerror="this.style.display='none'"/><div class="dcard-bdg bdg-s">🏔 Summer</div><div class="dcard-dist">116 km away</div></div>
+        <div class="dcard-body">
+          <div class="dcard-tags"><span class="dtag">🥾 Trekking</span><span class="dtag">❄️ Glacier</span><span class="dtag">👨‍👩‍👦 Family</span></div>
+          <h3>Sonamarg</h3>
+          <p>"Meadow of Gold" — Thajiwas Glacier, Krishnasar & Vishansar Lakes and the gateway to Ladakh via Zoji La pass. True wilderness camping on the Sindh River.</p>
+          <div class="dcard-meta">🗓 Best time: <strong>June – October</strong></div>
+          <div class="dcard-foot"><span class="dcard-km">📍 116 km</span><a href="../contact/?dest=sonamarg" class="btn btn-primary" style="padding:9px 18px;font-size:.74rem"><span>Plan Trip →</span></a></div>
+        </div>
+      </div>
+
+      <div class="dcard rv" data-cats="all summer trekking honeymoon family" id="yusmarg">
+        <div class="dcard-img" style="background:linear-gradient(135deg,#1a3d20,#2d6a38)"><img src="../images/yusmarg.jpg" alt="Yusmarg" onerror="this.style.display='none'"/><div class="dcard-bdg bdg-s">🌸 Hidden Gem</div><div class="dcard-dist">47 km from Srinagar</div></div>
+        <div class="dcard-body">
+          <div class="dcard-tags"><span class="dtag">💑 Honeymoon</span><span class="dtag">🥾 Trekking</span><span class="dtag">🌿 Off-beaten</span></div>
+          <h3>Yusmarg</h3>
+          <p>Kashmir's best-kept secret — Nilnag Lake, Doodh Ganga river and Sangerwani meadow. Almost no crowds, pristine nature and genuine off-the-beaten-track Kashmir.</p>
+          <div class="dcard-meta">🗓 Best time: <strong>May – September</strong></div>
+          <div class="dcard-foot"><span class="dcard-km">📍 47 km from SXR</span><a href="../contact/?dest=yusmarg" class="btn btn-primary" style="padding:9px 18px;font-size:.74rem"><span>Plan Trip →</span></a></div>
+        </div>
+      </div>
+
+      <div class="dcard rv" data-cats="all summer trekking family honeymoon" id="doodhpathri">
+        <div class="dcard-img" style="background:linear-gradient(135deg,#2d3a1a,#4a6a28)"><img src="../images/doodhpathri.jpg" alt="Doodhpathri" onerror="this.style.display='none'"/><div class="dcard-bdg bdg-s">🌾 Meadow</div><div class="dcard-dist">42 km from Srinagar</div></div>
+        <div class="dcard-body">
+          <div class="dcard-tags"><span class="dtag">🌾 Meadow</span><span class="dtag">💑 Honeymoon</span><span class="dtag">👨‍👩‍👦 Family</span></div>
+          <h3>Doodhpathri</h3>
+          <p>"Valley of Milk" — pristine alpine meadow with milky-white glacier streams. Emerald grasslands and wildflowers. Undiscovered, unspoiled and absolutely spectacular in summer.</p>
+          <div class="dcard-meta">🗓 Best time: <strong>May – September</strong></div>
+          <div class="dcard-foot"><span class="dcard-km">📍 42 km from SXR</span><a href="../contact/?dest=doodhpathri" class="btn btn-primary" style="padding:9px 18px;font-size:.74rem"><span>Plan Trip →</span></a></div>
+        </div>
+      </div>
+
+      <div class="dcard rv" data-cats="all winter trekking honeymoon family" id="gulmarg-winter">
+        <div class="dcard-img" style="background:linear-gradient(135deg,#0d1f3c,#0b7b6e)"><img src="../images/skiing.jpg" alt="Gulmarg Winter" onerror="this.style.display='none'"/><div class="dcard-bdg bdg-w">❄️ Winter</div><div class="dcard-dist">Our Base</div></div>
+        <div class="dcard-body">
+          <div class="dcard-tags"><span class="dtag">❄️ Skiing</span><span class="dtag">🚁 Heliski</span><span class="dtag">💑 Honeymoon</span></div>
+          <h3>Gulmarg — Winter</h3>
+          <p>Dec–Apr, Gulmarg transforms into Asia's finest powder paradise. Beginner poma slopes to expert backcountry bowls at 4,200m — this is where skiing memories are made.</p>
+          <div class="dcard-meta">🗓 Season: <strong>Dec 1 – Apr 10</strong></div>
+          <div class="dcard-foot"><span class="dcard-km">📍 Our home base</span><a href="../packages/" class="btn btn-primary" style="padding:9px 18px;font-size:.74rem"><span>Ski Packages →</span></a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="dcta rv">
+  <h2>Plan Your Kashmir Trip<br>With Local Experts</h2>
+  <p>Tell us your dream destination — we'll design the complete itinerary, arrange accommodation and handle every detail from airport to adventure.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <a href="../contact/" class="btn btn-gold"><span>Book Now</span><span class="arr">→</span></a>
+    <a href="https://wa.me/917006303822" target="_blank" class="btn btn-ghost">💬 WhatsApp Us</a>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script>
+function fd(cat,btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
+  document.querySelectorAll('.dcard').forEach(c=>{c.classList.toggle('hidden',cat!=='all'&&!c.dataset.cats.includes(cat));});
+}
+</script>
+<script src="../js/shared.js"></script>
+<script>injectNav('../');injectFooter('../');</script>
+</body>
+</html>

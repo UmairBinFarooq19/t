@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<title>Activities in Gulmarg — Ski, Snowboard, Trek, Camp · GulmargOnTheGo</title>
+<meta name="description" content="Skiing, snowboarding, heliski, trekking, camping and more. All activities in Gulmarg and Kashmir guided by certified local experts."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../css/shared.css"/>
+<style>
+.act-hero{position:relative;height:68vh;min-height:480px;display:flex;align-items:center;overflow:hidden}
+.act-hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0d1f3c,#0b4a42)}
+.act-hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.act-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(13,31,60,.88) 0%,rgba(13,31,60,.5) 55%,rgba(13,31,60,.1) 100%)}
+.ah-in{position:relative;z-index:2;padding:0 5vw;max-width:1280px;margin:0 auto;width:100%}
+.ah-sup{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);border-radius:100px;padding:6px 16px;margin-bottom:20px;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#fff}
+.ah-in h1{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,6vw,4.2rem);font-weight:800;color:#fff;line-height:1.04;letter-spacing:-.03em;margin-bottom:14px}
+.ah-in h1 em{color:var(--gold2);font-style:italic}
+.ah-in p{font-size:.95rem;color:rgba(255,255,255,.68);line-height:1.76;margin-bottom:26px;max-width:500px}
+/* SEASON TABS */
+.stabs-wrap{background:var(--white);border-bottom:1px solid var(--border);padding:14px 5vw;position:sticky;top:68px;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.stabs{display:flex;gap:8px;max-width:1280px;margin:0 auto;flex-wrap:wrap}
+.stab{padding:9px 22px;border-radius:100px;font-size:.77rem;font-weight:600;border:1.5px solid var(--border);color:var(--muted);cursor:none;transition:all .22s;background:var(--white)}
+.stab.on{background:var(--teal);border-color:var(--teal);color:#fff;box-shadow:0 4px 12px rgba(11,123,110,.2)}
+.stab:hover:not(.on){background:var(--teal-light);border-color:var(--teal);color:var(--teal)}
+/* ACTIVITIES */
+.act-sec{padding:72px 5vw;background:var(--off)}
+.act-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}
+.acard{background:var(--white);border-radius:22px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--sh);transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+.acard:hover{transform:translateY(-8px);box-shadow:var(--sh3);border-color:transparent}
+.acard.hidden{display:none!important}
+.acard-img{height:220px;overflow:hidden;position:relative;background:linear-gradient(135deg,var(--teal),var(--navy))}
+.acard-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.acard:hover .acard-img img{transform:scale(1.07)}
+.acard-level{position:absolute;top:12px;left:12px;border-radius:100px;padding:4px 12px;font-size:.6rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;backdrop-filter:blur(8px)}
+.al-all{background:rgba(11,123,110,.85);color:#fff}
+.al-beg{background:rgba(34,197,94,.85);color:#fff}
+.al-adv{background:rgba(239,68,68,.85);color:#fff}
+.al-exp{background:rgba(124,58,237,.85);color:#fff}
+.acard-season{position:absolute;bottom:12px;right:12px;background:rgba(255,255,255,.92);border-radius:8px;padding:3px 10px;font-size:.62rem;font-weight:600;color:var(--navy)}
+.acard-body{padding:22px;flex:1;display:flex;flex-direction:column}
+.acard-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.atag{font-size:.6rem;background:var(--teal-light);color:var(--teal);font-weight:600;padding:3px 9px;border-radius:100px}
+.acard-body h3{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:6px}
+.acard-body p{font-size:.82rem;color:var(--muted);line-height:1.72;flex:1;margin-bottom:12px}
+.acard-meta{display:flex;gap:12px;flex-wrap:wrap;padding-top:10px;border-top:1px solid var(--border);margin-bottom:14px}
+.acard-meta span{font-size:.7rem;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:4px}
+.acard-foot{display:flex;align-items:center;justify-content:space-between}
+.acard-price{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:var(--navy)}
+.acard-price small{font-size:.6rem;font-weight:500;color:var(--muted);display:block;margin-bottom:1px}
+
+/* FEATURED ACTIVITY */
+.feat-act{display:grid;grid-template-columns:1.2fr 1fr;border-radius:24px;overflow:hidden;box-shadow:var(--sh3);border:1px solid var(--border);margin-bottom:48px}
+.fa-img{position:relative;min-height:400px;background:linear-gradient(135deg,var(--navy),var(--teal))}
+.fa-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.78)}
+.fa-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(13,31,60,.6),transparent 50%)}
+.fa-over{position:absolute;bottom:22px;left:22px;z-index:2}
+.fa-body{padding:44px;background:var(--white);display:flex;flex-direction:column;justify-content:center}
+.fa-price{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:var(--navy);line-height:1;margin-bottom:3px}
+.fa-per{font-size:.74rem;color:var(--muted);margin-bottom:20px}
+.fa-hl{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px}
+.fa-hl li{display:flex;align-items:flex-start;gap:8px;font-size:.83rem;color:var(--body)}
+.fa-hl li::before{content:'✓';width:17px;height:17px;min-width:17px;background:var(--teal-light);color:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:800;line-height:17px;text-align:center;margin-top:1px}
+
+/* CTA */
+.act-cta{background:linear-gradient(135deg,var(--navy),var(--teal));padding:92px 5vw;text-align:center}
+.act-cta h2{font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:800;color:#fff;letter-spacing:-.025em;margin-bottom:13px}
+.act-cta p{color:rgba(255,255,255,.62);font-size:.93rem;margin-bottom:28px;line-height:1.76;max-width:480px;margin-left:auto;margin-right:auto}
+
+@media(max-width:960px){.act-grid{grid-template-columns:1fr 1fr}.feat-act{grid-template-columns:1fr}}
+@media(max-width:580px){.act-grid{grid-template-columns:1fr}.fa-body{padding:26px}}
+</style>
+</head>
+<body>
+<div id="cursor-outer"></div><div id="cursor-dot"></div>
+<div id="site-nav"></div>
+
+<section class="act-hero">
+  <div class="act-hero-bg"><img src="../images/skiing.jpg" alt="Gulmarg Activities" onerror="this.style.display='none'"/></div>
+  <div class="ah-in rv">
+    <div class="ah-sup">⛷ Winter · ☀️ Summer · Year-Round</div>
+    <h1>Choose Your<br><em>Adventure</em></h1>
+    <p>From beginner ski lessons to expert heliski runs, summer treks to meadow camping under stars — GulmargOnTheGo operates year-round with certified local guides.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="../contact/" class="btn btn-gold"><span>Book an Activity</span><span class="arr">→</span></a>
+      <a href="../slopes/" class="btn btn-ghost"><span>Ski Guide</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- SEASON TABS -->
+<div class="stabs-wrap">
+  <div class="stabs">
+    <button class="stab on" onclick="sa('all',this)">All Activities</button>
+    <button class="stab" onclick="sa('winter',this)">❄️ Winter</button>
+    <button class="stab" onclick="sa('summer',this)">☀️ Summer</button>
+    <button class="stab" onclick="sa('always',this)">🏔 All Season</button>
+  </div>
+</div>
+
+<section class="act-sec" id="skiing">
+  <div class="mxw">
+    <!-- FEATURED -->
+    <div class="rv" style="margin-bottom:28px"><span class="stag">Most Popular</span><h2 class="sh2">Skiing — <em>What We're Known For</em></h2></div>
+    <div class="feat-act rv">
+      <div class="fa-img">
+        <img src="../images/skiing.jpg" alt="Skiing Gulmarg" onerror="this.style.display='none'"/>
+        <div class="fa-over"><div class="acard-level al-all">⛷ All Levels · All Zones</div></div>
+      </div>
+      <div class="fa-body">
+        <span class="stag">Zone 1 to Zone 4 · Dec – Apr</span>
+        <h2 style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--navy);margin-bottom:10px">Gulmarg Skiing</h2>
+        <p style="font-size:.87rem;color:var(--muted);line-height:1.82;margin-bottom:16px">World-class skiing across four zones from 2,650m to 3,980m. Certified instructors for beginners, expert off-piste guides for advanced skiers. One of Asia's finest ski destinations.</p>
+        <ul class="fa-hl">
+          <li>7 poma lifts in Zone 1 for beginners</li>
+          <li>Gondola Phase 1 (Kongdori, 3,050m) for intermediates</li>
+          <li>Gondola Phase 2 (Apharwat, 3,980m) for advanced</li>
+          <li>Off-piste and backcountry with AIARE-certified guides</li>
+        </ul>
+        <div class="fa-price">₹4,500<small>1-day lesson · from</small></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="../slopes/" class="btn btn-primary"><span>View Ski Guide</span><span class="arr">→</span></a>
+          <a href="../contact/" class="btn btn-outline">Book a Lesson</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALL ACTIVITIES GRID -->
+    <div class="rv" style="margin-bottom:28px"><span class="stag">All Activities</span><h2 class="sh2">What We <em>Offer</em></h2></div>
+    <div class="act-grid" id="actGrid">
+
+      <div class="acard rv" data-season="all winter" id="snowboarding">
+        <div class="acard-img" style="background:linear-gradient(135deg,#0e1f35,#0e5c8a)"><img src="../images/snowboard.jpg" alt="Snowboarding" onerror="this.style.display='none'"/><div class="acard-level al-all">All Levels</div><div class="acard-season">❄️ Winter</div></div>
+        <div class="acard-body">
+          <div class="acard-tags"><span class="atag">🏂 Snowboard</span><span class="atag">❄️ Winter</span><span class="atag">All Ages</span></div>
+          <h3>Snowboarding</h3>
+          <p>Learn to ride on Gulmarg's gentle beginner slopes or progress to the legendary powder of Phase 2 with our certified dual-ski and snowboard instructors.</p>
+          <div class="acard-meta"><span>🏂 All levels</span><span>🎿 Rental available</span></div>
+          <div class="acard-foot"><div class="acard-price"><small>From</small>₹4,500/day</div><a href="../contact/" class="btn btn-primary" style="padding:9px 18px;font-size:.74rem"><span>Book →</span></a></div>
+        </div>
+      </div>
+
+      <div class="acard rv" data-season="all winter" id="heliski">
+        <div class="acard-img" style="background:linear-gradient(135deg,#1a0d30,#0b5e52)"><img src="../images/heliski.jpg" alt="Heli Skiing" onerror="this.style.display='none'"/><div class="acard-level al-exp">Expert</div><div class="acard-season">🚁 Premium</div></div>
+        <div class="acard-body">
+          <div class="acard-tags"><span class="atag">🚁 Heliski</span><span class="atag">⭐ Premium</span><span class="atag">❄️ Winter</span></div>
+          <h3>Heli Skiing</h3>
+          <p>Access Apharwat summits above 4,500m by helicopter and ski down virgin Himalayan powder lines that no gondola can reach. The most exclusive ski experience in India.</p>
+          <div class="acard-meta"><span>🏔 4,500m+</span><span>📜 Certified guide</span></div>
+          <div class="acard-foot"><div class="acard-price"><small>From</small>₹75,000</div><a href="../contact/" class="btn btn-primary" style="padding:9px 18px;font-size:.74rem"><span>Book →</span></a></div>
+        </div>
+      </div>
+
+      <div class="acard rv" data-season="all winter" id="ski-touring">
+        <div class="acard-img" style="background:linear-gradient(135deg,#0a1835,#0b4a42)"><img src="../images/touring.jpg" alt="Ski Touring" onerror="this.style.display='none'"/><div class="acard-level al-adv">Advanced</div><div class="acard-season">❄️ Winter</div></div>
+        <div class="acard-body">
+          <div class="acard-tags"><span class="atag">⛷ Touring</span><span class="atag">🏔 Backcountry</span><span class="atag">❄️ Expert</span></div>
+          <h3>Ski Touring</h3>
+          <p>Climb the Apharwat range on touring skis and earn your descents through untouched Himalayan powder. Full day expeditions with avalanche-certified guides.</p>
+          <div class="acard-meta"><span>📜 AIARE guide</span><span>⚠️ Safety gear inc.</span></div>
+          <div class="acard-foot"><div class="acard-price"><small>From</small>₹8,000</div><a href="../contact/" class="btn btn-primary" style="padding:9px 18px;font-size:.74rem"><span>Book →</span></a></div>
+        </div>
+      </div>
+
+      <div class="acard rv" data-season="all summer" id="trekking">
+        <div class="acard-img" style="background:linear-gradient(135deg,#1a3520,#2d5a38)"><img src="../images/trekking.jpg" alt="Trekking" onerror="this.style.display='none'"/><div class="acard-level al-all">All Levels</div><div class="acard-season">☀️ Summer</div></div>
+        <div class="acard-body">
+          <div class="acard-tags"><span class="atag">🥾 Trekking</span><span class="atag">☀️ Summer</span><span class="atag">👨‍👩‍👦 Family</span></div>
+          <h3>Mountain Trekking</h3>
+          <p>Guided treks through Gulmarg's wildflower meadows, alpine lakes and cedar forests. Easy half-day walks to challenging multi-day expeditions — all led by licensed mountain guides.</p>
+          <div class="acard-meta"><span>📜 Licensed guide</span><span>🌿 All difficulty</span></div>
+          <div class="acard-foot"><div class="acard-price"><small>From</small>₹2,500/day</div><a href="../contact/" class="btn btn-primary" style="padding:9px 18px;font-size:.74rem"><span>Book →</span></a></div>
+        </div>
+      </div>
+
+      <div class="acard rv" data-season="all summer" id="camping">
+        <div class="acard-img" style="background:linear-gradient(135deg,#1a2d10,#3d5a28)"><img src="../images/camping.jpg" alt="Camping" onerror="this.style.display='none'"/><div class="acard-level al-all">All Ages</div><div class="acard-season">☀️ Summer</div></div>
+        <div class="acard-body">
+          <div class="acard-tags"><span class="atag">⛺ Camping</span><span class="atag">☀️ Summer</span><span class="atag">💑 Romantic</span></div>
+          <h3>Meadow Camping</h3>
+          <p>Sleep under Himalayan stars in Gulmarg's wildflower meadows. Luxury tented camps with bonfires, local cuisine and unforgettable mountain sunsets.</p>
+          <div class="acard-meta"><span>⛺ Tented camp</span><span>🔥 Campfire inc.</span></div>
+          <div class="acard-foot"><div class="acard-price"><small>From</small>₹6,500</div><a href="../contact/" class="btn btn-primary" style="padding:9px 18px;font-size:.74rem"><span>Book →</span></a></div>
+        </div>
+      </div>
+
+      <div class="acard rv" data-season="all always">
+        <div class="acard-img" style="background:linear-gradient(135deg,#1a1040,#2d4070)"><img src="../images/gondola.jpg" alt="Gondola" onerror="this.style.display='none'"/><div class="acard-level al-all">All Ages</div><div class="acard-season">🚡 Year-Round</div></div>
+        <div class="acard-body">
+          <div class="acard-tags"><span class="atag">🚡 Gondola</span><span class="atag">🏔 Sightseeing</span><span class="atag">📸 Views</span></div>
+          <h3>Gondola Sightseeing</h3>
+          <p>Ride Asia's highest gondola to 3,980m for panoramic views of the Pir Panjal range. Spectacular in winter with snow, equally dramatic in summer with clear Himalayan vistas.</p>
+          <div class="acard-meta"><span>🚡 3,980m summit</span><span>📸 Views</span></div>
+          <div class="acard-foot"><div class="acard-price"><small>Tickets from</small>₹800</div><a href="../mountain/#lift-tickets" class="btn btn-primary" style="padding:9px 18px;font-size:.74rem"><span>Details →</span></a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="act-cta rv">
+  <h2>Ready to Book<br>Your Activity?</h2>
+  <p>Contact us with your dates, group size and activity preference. We'll confirm availability and send full details within 2 hours.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <a href="../contact/" class="btn btn-gold"><span>Book Now</span><span class="arr">→</span></a>
+    <a href="https://wa.me/917006303822" target="_blank" class="btn btn-ghost">💬 WhatsApp Us</a>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script>
+function sa(season,btn){
+  document.querySelectorAll('.stab').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
+  document.querySelectorAll('.acard').forEach(c=>{c.classList.toggle('hidden',season!=='all'&&!c.dataset.season.includes(season));});
+}
+</script>
+<script src="../js/shared.js"></script>
+<script>injectNav('../');injectFooter('../');</script>
+</body>
+</html>

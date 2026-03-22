@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<title>The Mountain — Trail Maps, Stats & Ski Guide · GulmargOnTheGo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../css/shared.css"/>
+<style>
+/* STICKY SECTION NAV */
+.snav{background:var(--white);border-bottom:1px solid var(--border);padding:0 5vw;position:sticky;top:68px;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.snav-in{display:flex;max-width:1280px;margin:0 auto;overflow-x:auto;scrollbar-width:none}
+.snav-in::-webkit-scrollbar{display:none}
+.sna{padding:13px 16px;font-size:.73rem;font-weight:600;letter-spacing:.06em;color:var(--muted);border-bottom:2.5px solid transparent;cursor:none;transition:all .2s;white-space:nowrap;flex-shrink:0}
+.sna.on,.sna:hover{color:var(--teal);border-color:var(--teal)}
+
+/* STATS */
+.stats-hero{background:var(--navy);padding:80px 5vw;position:relative;overflow:hidden}
+.stats-hero::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(11,123,110,.12),transparent 70%)}
+.stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;max-width:1280px;margin:32px auto 0;border:1px solid rgba(255,255,255,.07);border-radius:18px;overflow:hidden}
+.sb{padding:28px 20px;text-align:center;border-right:1px solid rgba(255,255,255,.07);transition:background .25s}
+.sb:hover{background:rgba(255,255,255,.04)}
+.sb:last-child{border-right:none}
+.sb .n{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--gold2);display:block;line-height:1;margin-bottom:4px}
+.sb .l{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.sb .s{font-size:.6rem;color:rgba(255,255,255,.2);margin-top:2px;display:block}
+
+/* TRAIL MAP - INTERACTIVE */
+.map-sec{background:var(--off);padding:80px 5vw}
+.map-viewer{border-radius:22px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--sh3);background:var(--white);position:relative}
+.map-header{background:var(--navy);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.map-header h3{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:#fff}
+.map-tabs{display:flex;gap:6px}
+.mtab{padding:6px 14px;border-radius:8px;font-size:.7rem;font-weight:600;cursor:none;transition:all .2s;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6)}
+.mtab.on{background:var(--teal);border-color:var(--teal);color:#fff}
+.map-zoom-wrap{position:relative;overflow:hidden;cursor:grab;background:var(--off);min-height:500px;display:flex;align-items:center;justify-content:center}
+.map-zoom-wrap.grabbing{cursor:grabbing}
+.map-img-container{transition:transform .3s cubic-bezier(.4,0,.2,1);transform-origin:center center;user-select:none}
+.map-img-container img{width:100%;max-width:1100px;display:block;pointer-events:none}
+.map-controls{position:absolute;bottom:16px;right:16px;display:flex;flex-direction:column;gap:6px}
+.mc-btn{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.95);border:1px solid var(--border);box-shadow:var(--sh);display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;cursor:none;transition:all .2s;color:var(--navy)}
+.mc-btn:hover{background:var(--teal);color:#fff;border-color:var(--teal)}
+.map-hint{position:absolute;top:16px;left:16px;background:rgba(13,31,60,.75);backdrop-filter:blur(8px);border-radius:10px;padding:6px 12px;font-size:.68rem;color:rgba(255,255,255,.7);pointer-events:none}
+.map-panels{display:none}
+.map-panel.on{display:block}
+/* Map hotspots */
+.hotspot{position:absolute;width:28px;height:28px;border-radius:50%;border:2.5px solid #fff;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:800;color:#fff;cursor:none;transform:translate(-50%,-50%);transition:transform .2s,box-shadow .2s;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+.hotspot:hover{transform:translate(-50%,-50%) scale(1.25);box-shadow:0 4px 16px rgba(0,0,0,.5)}
+.hs-g{background:#22c55e}
+.hs-b{background:#3b82f6}
+.hs-r{background:#ef4444}
+.hs-k{background:#7c3aed}
+.hotspot-tip{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(100%+8px);background:var(--navy);color:#fff;font-size:.68rem;font-weight:600;white-space:nowrap;padding:5px 10px;border-radius:8px;pointer-events:none;opacity:0;transition:opacity .2s}
+.hotspot:hover .hotspot-tip{opacity:1}
+
+/* RUNS TABLE */
+.runs-sec{background:var(--white);padding:80px 5vw}
+.run-tabs{display:flex;gap:8px;margin:24px 0 28px;flex-wrap:wrap}
+.rtab{padding:9px 20px;border-radius:100px;font-size:.77rem;font-weight:600;border:1.5px solid var(--border);color:var(--muted);cursor:none;transition:all .22s;background:var(--white)}
+.rtab.on{background:var(--teal);border-color:var(--teal);color:#fff}
+.rp{display:none}.rp.on{display:block}
+.runs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.run-card{border-radius:14px;padding:20px 22px;border-left:4px solid var(--teal);background:var(--off);border:1px solid var(--border);border-left-width:4px;transition:transform .25s,box-shadow .25s}
+.run-card:hover{transform:translateX(4px);box-shadow:var(--sh)}
+.run-card.r{border-left-color:#ef4444}
+.run-card.k{border-left-color:#7c3aed}
+.run-card.g{border-left-color:#22c55e}
+.run-card.b{border-left-color:#3b82f6}
+.run-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+.run-h h4{font-family:'Syne',sans-serif;font-size:.97rem;font-weight:700;color:var(--navy)}
+.rpill{font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:100px}
+.pg{background:rgba(34,197,94,.1);color:#16a34a}
+.pb{background:rgba(59,130,246,.1);color:#1d4ed8}
+.pr{background:rgba(239,68,68,.1);color:#b91c1c}
+.pk{background:rgba(124,58,237,.1);color:#6d28d9}
+.run-card p{font-size:.79rem;color:var(--muted);line-height:1.65;margin-bottom:9px}
+.run-meta{display:flex;gap:12px;flex-wrap:wrap}
+.run-meta span{font-size:.7rem;font-weight:500;color:var(--muted);display:flex;align-items:center;gap:3px}
+.avy-warn{background:linear-gradient(135deg,#7f1d1d,#991b1b);border-radius:12px;padding:14px 18px;font-size:.83rem;color:rgba(255,255,255,.85);margin-bottom:20px;display:flex;gap:10px;align-items:flex-start}
+
+/* LIFT TICKETS */
+.lt-sec{background:var(--off);padding:80px 5vw}
+.lt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
+.lt-card{background:var(--white);border-radius:16px;padding:24px;border:1px solid var(--border);box-shadow:var(--sh);text-align:center;transition:all .25s}
+.lt-card:hover{border-color:var(--teal);box-shadow:var(--sh2);transform:translateY(-3px)}
+.lt-card h4{font-family:'Syne',sans-serif;font-size:.96rem;font-weight:700;color:var(--navy);margin-bottom:4px}
+.lt-card .lt-type{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;display:block}
+.lt-card .lt-price{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;color:var(--navy);display:block;line-height:1;margin-bottom:3px}
+.lt-card .lt-per{font-size:.68rem;color:var(--muted);margin-bottom:14px;display:block}
+.lt-card ul{list-style:none;text-align:left;display:flex;flex-direction:column;gap:6px}
+.lt-card ul li{font-size:.75rem;color:var(--muted);display:flex;align-items:flex-start;gap:6px}
+.lt-card ul li::before{content:'✓';color:var(--teal);font-weight:700;flex-shrink:0;font-size:.65rem;margin-top:1px}
+
+/* HOURS */
+.hours-sec{background:var(--white);padding:80px 5vw}
+.hours-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:800px;margin:28px auto 0}
+.hc{background:var(--off);border-radius:16px;padding:28px;border:1px solid var(--border)}
+.hc h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.hrow{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);font-size:.83rem}
+.hrow:last-of-type{border-bottom:none}
+.hrow .day{color:var(--muted)}.hrow .time{font-weight:600;color:var(--navy)}
+
+@media(max-width:960px){.stats-grid{grid-template-columns:repeat(3,1fr)}.lt-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:580px){.stats-grid{grid-template-columns:repeat(2,1fr)}.lt-grid{grid-template-columns:1fr 1fr}.runs-grid{grid-template-columns:1fr}.hours-cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="cursor-outer"></div><div id="cursor-dot"></div>
+<div id="site-nav"></div>
+
+<div class="page-hero">
+  <img class="ph-img" src="../images/slopes-hero.jpg" alt="Gulmarg Mountain" onerror="this.style.background='linear-gradient(135deg,#0d1f3c,#0b7b6e)';this.removeAttribute('onerror')"/>
+  <div class="ph-body">
+    <span class="ph-tag">Asia's Premier Ski Destination</span>
+    <h1>The Mountain</h1>
+    <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><span>The Mountain</span></div>
+  </div>
+</div>
+
+<!-- SECTION NAV -->
+<div class="snav">
+  <div class="snav-in">
+    <a class="sna on" href="#stats">📊 Stats</a>
+    <a class="sna" href="#trail-map">🗺 Trail Map</a>
+    <a class="sna" href="#inbounds">⛷ Runs</a>
+    <a class="sna" href="#lift-tickets">🎫 Lift Tickets</a>
+    <a class="sna" href="#hours">🕐 Hours</a>
+    <a class="sna" href="../avalanche/" style="color:#ef4444">⚠️ Avalanche</a>
+  </div>
+</div>
+
+<!-- STATS -->
+<section class="stats-hero dark-bg" id="stats">
+  <div class="mxw">
+    <div class="rv" style="text-align:center"><span class="stag" style="color:rgba(255,255,255,.4)">By The Numbers</span><h2 class="sh2 light">Gulmarg <em>Mountain Stats</em></h2></div>
+    <div class="stats-grid rv">
+      <div class="sb"><span class="n"><span class="count-up" data-target="3980" data-suffix="m">0m</span></span><span class="l">Summit</span><span class="s">Phase 2 Gondola</span></div>
+      <div class="sb"><span class="n"><span class="count-up" data-target="2650" data-suffix="m">0m</span></span><span class="l">Base</span><span class="s">Gulmarg Meadow</span></div>
+      <div class="sb"><span class="n"><span class="count-up" data-target="1330" data-suffix="m">0m</span></span><span class="l">Vertical Drop</span><span class="s">Inbound terrain</span></div>
+      <div class="sb"><span class="n"><span class="count-up" data-target="800" data-suffix="+">0+</span></span><span class="l">Hectares</span><span class="s">Inc. backcountry</span></div>
+      <div class="sb"><span class="n"><span class="count-up" data-target="13">0</span></span><span class="l">Named Runs</span><span class="s">Inbound + OOB</span></div>
+      <div class="sb"><span class="n">5m+</span><span class="l">Peak Snowpack</span><span class="s">Jan–Feb average</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERACTIVE TRAIL MAP -->
+<section class="map-sec" id="trail-map">
+  <div class="mxw">
+    <div class="rv" style="margin-bottom:28px"><span class="stag">Official Maps · Hover to Zoom</span><h2 class="sh2">Gulmarg <em>Trail Maps</em></h2><p class="sec-desc" style="margin-top:8px">Zoom and pan the maps below. Gulmarg is unlike any western resort — a large portion is unpatrolled backcountry where you ski at your own risk.</p></div>
+
+    <div class="map-viewer rv">
+      <div class="map-header">
+        <h3>🗺 Gulmarg Ski Resort Trail Map</h3>
+        <div class="map-tabs">
+          <button class="mtab on" onclick="switchMap('pano',this)">Panoramic</button>
+          <button class="mtab" onclick="switchMap('inbound',this)">Inbound</button>
+          <button class="mtab" onclick="switchMap('freeride',this)">Freeride</button>
+        </div>
+      </div>
+      <div class="map-zoom-wrap" id="mapWrap">
+        <div class="map-hint">🖱 Scroll to zoom · Drag to pan</div>
+        <div class="map-img-container" id="mapContainer">
+          <!-- PANORAMIC -->
+          <div class="map-panel on" id="map-pano" style="position:relative">
+            <img src="https://skigulmarg.com/user/themes/skigulmarg/images/gulmarg-ski-trail-maps/ski-gulmarg-pano-l.jpg" alt="Gulmarg Panoramic Trail Map" id="mapImg" style="max-width:1100px;display:block" onerror="this.src='';this.parentElement.innerHTML='<div style=\'padding:60px;text-align:center\'><div style=\'font-size:3rem;margin-bottom:16px\'>🗺</div><p style=\'color:#64748b\'>Trail map loads here. <a href=\'https://skigulmarg.com/the-mountain/gulmarg-trail-map\' target=\'_blank\' style=\'color:#0b7b6e;font-weight:600\'>View on skigulmarg.com →</a></p></div>'"/>
+            <!-- Hotspots -->
+            <div class="hotspot hs-g" style="left:28%;top:82%" title="Nursery Slope"><div class="hotspot-tip">🟢 Nursery Slope</div>B</div>
+            <div class="hotspot hs-b" style="left:45%;top:60%"><div class="hotspot-tip">🔵 Kongdori · Phase 1</div>P1</div>
+            <div class="hotspot hs-r" style="left:52%;top:38%"><div class="hotspot-tip">🔴 Apharwat · Phase 2</div>P2</div>
+            <div class="hotspot hs-k" style="left:38%;top:28%"><div class="hotspot-tip">⚫ North Bowl</div>NB</div>
+            <div class="hotspot hs-k" style="left:60%;top:30%"><div class="hotspot-tip">⚫ The Back</div>TB</div>
+          </div>
+          <!-- INBOUND -->
+          <div class="map-panel" id="map-inbound">
+            <img src="https://skigulmarg.com/user/themes/skigulmarg/images/gulmarg-ski-trail-maps/ski-gulmarg-trail-map-inbound-l.jpg" alt="Gulmarg Inbound Trail Map" style="max-width:1100px;display:block" onerror="this.src='';this.parentElement.innerHTML='<div style=\'padding:60px;text-align:center\'><p style=\'color:#64748b\'><a href=\'https://skigulmarg.com/the-mountain/gulmarg-trail-map\' target=\'_blank\' style=\'color:#0b7b6e\'>View inbound map →</a></p></div>'"/>
+          </div>
+          <!-- FREERIDE -->
+          <div class="map-panel" id="map-freeride">
+            <img src="https://skigulmarg.com/user/themes/skigulmarg/images/gulmarg-ski-trail-maps/ski-gulmarg-trail-map-l.jpg" alt="Gulmarg Freeride Trail Map" style="max-width:1100px;display:block" onerror="this.src='';this.parentElement.innerHTML='<div style=\'padding:60px;text-align:center\'><p style=\'color:#64748b\'><a href=\'https://skigulmarg.com/the-mountain/gulmarg-trail-map\' target=\'_blank\' style=\'color:#0b7b6e\'>View freeride map →</a></p></div>'"/>
+          </div>
+        </div>
+        <!-- ZOOM CONTROLS -->
+        <div class="map-controls">
+          <button class="mc-btn" onclick="zoomMap(1.3)" title="Zoom In">+</button>
+          <button class="mc-btn" onclick="zoomMap(1/1.3)" title="Zoom Out">−</button>
+          <button class="mc-btn" onclick="resetMap()" title="Reset" style="font-size:.7rem">↺</button>
+          <a href="https://skigulmarg.com/the-mountain/gulmarg-trail-map" target="_blank" class="mc-btn" title="Full Screen" style="font-size:.7rem">⛶</a>
+        </div>
+      </div>
+      <!-- LEGEND -->
+      <div style="padding:16px 20px;border-top:1px solid var(--border);display:flex;gap:16px;flex-wrap:wrap;align-items:center;background:var(--off)">
+        <span style="font-size:.68rem;font-weight:600;color:var(--muted)">Map Key:</span>
+        <span style="display:flex;align-items:center;gap:5px;font-size:.7rem;color:var(--body)"><span style="width:12px;height:12px;border-radius:50%;background:#22c55e;display:inline-block"></span>Beginner</span>
+        <span style="display:flex;align-items:center;gap:5px;font-size:.7rem;color:var(--body)"><span style="width:12px;height:12px;border-radius:50%;background:#3b82f6;display:inline-block"></span>Intermediate</span>
+        <span style="display:flex;align-items:center;gap:5px;font-size:.7rem;color:var(--body)"><span style="width:12px;height:12px;border-radius:50%;background:#ef4444;display:inline-block"></span>Advanced</span>
+        <span style="display:flex;align-items:center;gap:5px;font-size:.7rem;color:var(--body)"><span style="width:12px;height:12px;border-radius:50%;background:#7c3aed;display:inline-block"></span>Expert/Backcountry</span>
+        <div style="margin-left:auto;display:flex;gap:8px">
+          <a href="https://gulmargac.in/gulmarg-rescue-grid-map-north" target="_blank" class="btn btn-outline" style="font-size:.7rem;padding:7px 14px">Rescue Map N</a>
+          <a href="https://gulmargac.in/gulmarg-rescue-grid-map-south" target="_blank" class="btn btn-outline" style="font-size:.7rem;padding:7px 14px">Rescue Map S</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RUNS -->
+<section class="runs-sec" id="inbounds">
+  <div class="mxw">
+    <div class="rv"><span class="stag">All Terrain</span><h2 class="sh2">Ski Runs & <em>Lines</em></h2></div>
+    <div class="run-tabs rv">
+      <button class="rtab on" data-rp="ri">⛷ Inbound Runs</button>
+      <button class="rtab" data-rp="ro">🏔 Out-of-Bounds</button>
+      <button class="rtab" data-rp="rb">❄️ Backcountry</button>
+    </div>
+    <div class="rp on" id="ri">
+      <div class="runs-grid">
+        <div class="run-card g"><div class="run-h"><h4>Nursery Slope</h4><span class="rpill pg">🟢 Beginner</span></div><p>Primary first-day slope — flat gradient, wide and groomed. Poma-lift accessed from the meadow base.</p><div class="run-meta"><span>8°–12°</span><span>200m</span><span>Poma lift</span></div></div>
+        <div class="run-card g"><div class="run-h"><h4>Highlands Park</h4><span class="rpill pg">🟢 Beginner</span></div><p>Longest beginner poma run — a great confidence builder after the nursery slope.</p><div class="run-meta"><span>12°</span><span>350m</span><span>Poma lift</span></div></div>
+        <div class="run-card b"><div class="run-h"><h4>Gondola Bowl (Kongdori)</h4><span class="rpill pb">🔵 Intermediate</span></div><p>Main Phase 1 descent from 3,050m. Broad bowl with a satisfying 4km run back to base.</p><div class="run-meta"><span>10°–18°</span><span>4km</span><span>Gondola P1</span></div></div>
+        <div class="run-card b"><div class="run-h"><h4>Mary's Shoulder</h4><span class="rpill pb">🔵 Intermediate+</span></div><p>Chair lift accessed — more challenging pitch into the upper Kongdori area.</p><div class="run-meta"><span>15°–25°</span><span>2km</span><span>Chair lift</span></div></div>
+        <div class="run-card r"><div class="run-h"><h4>Apharwat Face</h4><span class="rpill pr">🔴 Advanced</span></div><p>Phase 2 headline run — 3,980m summit, sustained steep descent. Guide recommended.</p><div class="run-meta"><span>20°–45°</span><span>7km</span><span>Gondola P2</span></div></div>
+      </div>
+    </div>
+    <div class="rp" id="ro">
+      <div class="avy-warn">⚠️ Out-of-bounds terrain is unpatrolled. A certified guide and full avalanche safety kit are mandatory. Check <a href="../avalanche/" style="color:#fca5a5;font-weight:700">today's avalanche forecast</a> before going off-piste.</div>
+      <div class="runs-grid">
+        <div class="run-card r"><div class="run-h"><h4>Locker's Left</h4><span class="rpill pr">🔴 Advanced</span></div><p>One of Gulmarg's most popular out-of-bounds lines. Drops left off the Phase 2 ridge into a sustained powder bowl.</p><div class="run-meta"><span>25°–38°</span><span>Guide advised</span></div></div>
+        <div class="run-card r"><div class="run-h"><h4>Locker's Right</h4><span class="rpill pr">🔴 Advanced</span></div><p>Slightly more technical than Left with a narrower entry before opening into a wider bowl below.</p><div class="run-meta"><span>28°–42°</span><span>Guide advised</span></div></div>
+        <div class="run-card k"><div class="run-h"><h4>The Back</h4><span class="rpill pk">⚫ Expert</span></div><p>North side of Apharwat ridge. Serious avalanche exposure — guide and full safety gear mandatory.</p><div class="run-meta"><span>35°–50°</span><span>Guide mandatory</span></div></div>
+        <div class="run-card k"><div class="run-h"><h4>Far Far Side</h4><span class="rpill pk">⚫ Expert</span></div><p>Most remote line at Gulmarg. Rarely tracked even in peak season. Vehicle return required.</p><div class="run-meta"><span>30°–48°</span><span>Vehicle return</span></div></div>
+        <div class="run-card r"><div class="run-h"><h4>Monkey Hill</h4><span class="rpill pr">🔴 Advanced</span></div><p>Fan favourite for advanced skiers — excellent pitch, reliable powder, gondola return.</p><div class="run-meta"><span>22°–35°</span><span>Gondola return</span></div></div>
+        <div class="run-card k"><div class="run-h"><h4>To Tangmarg</h4><span class="rpill pk">⚫ Expert</span></div><p>Full resort-to-town descent — 15km+ from Apharwat all the way to Tangmarg village.</p><div class="run-meta"><span>Mixed</span><span>15km+</span><span>Taxi return</span></div></div>
+      </div>
+    </div>
+    <div class="rp" id="rb">
+      <div class="avy-warn">⚠️ All backcountry terrain is avalanche uncontrolled. Guide, transceiver, probe and shovel are mandatory. <a href="../avalanche/" style="color:#fca5a5;font-weight:700">Check today's forecast →</a></div>
+      <div class="runs-grid">
+        <div class="run-card k"><div class="run-h"><h4>North Bowl</h4><span class="rpill pk">⚫ Expert</span></div><p>Best consistent backcountry line — broad, north-facing, holds powder for days after a storm.</p><div class="run-meta"><span>30°–45°</span><span>900–1,200m vert</span></div></div>
+        <div class="run-card k"><div class="run-h"><h4>Drung Valley Lines</h4><span class="rpill pk">⚫ Expert</span></div><p>Narrower spurs east toward Drung — technically demanding with serious avalanche terrain.</p><div class="run-meta"><span>35°–55°</span><span>1,200–1,500m vert</span></div></div>
+        <div class="run-card k"><div class="run-h"><h4>Sharkfin Touring Route</h4><span class="rpill pk">⚫ Expert</span></div><p>Ridge touring line giving access to multiple subsidiary bowls rarely tracked even in busy season.</p><div class="run-meta"><span>20°–40°</span><span>Full day</span></div></div>
+        <div class="run-card k"><div class="run-h"><h4>North Border Lines</h4><span class="rpill pk">⚫ Expert</span></div><p>Most remote terrain — rarely tracked, demanding navigation and exceptional powder.</p><div class="run-meta"><span>40°–50°</span><span>1,500m vert</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIFT TICKETS -->
+<section class="lt-sec" id="lift-tickets">
+  <div class="mxw">
+    <div class="rv" style="text-align:center;margin-bottom:0"><span class="stag">Gondola Passes</span><h2 class="sh2">Lift <em>Ticket Prices</em></h2><p class="sec-desc" style="margin:8px auto 0;text-align:center">Purchased at the gondola base. Prices approximate — confirm current rates on arrival. Passes subject to weather availability.</p></div>
+    <div class="lt-grid rv">
+      <div class="lt-card"><h4>Phase 1 — Single</h4><span class="lt-type">Kongdori · 3,050m</span><span class="lt-price">₹800</span><span class="lt-per">per ride</span><ul><li>Kongdori station</li><li>400m vertical</li><li>Intermediate terrain</li></ul></div>
+      <div class="lt-card"><h4>Phase 1 — Day Pass</h4><span class="lt-type">Unlimited rides</span><span class="lt-price">₹3,500</span><span class="lt-per">per day</span><ul><li>Unlimited Phase 1 rides</li><li>Full day access</li><li>Best for lesson days</li></ul></div>
+      <div class="lt-card"><h4>Phase 2 — Single</h4><span class="lt-type">Apharwat · 3,980m</span><span class="lt-price">₹1,500</span><span class="lt-per">per ride</span><ul><li>Summit access</li><li>1,330m vertical</li><li>Advanced terrain</li></ul></div>
+      <div class="lt-card" style="border-color:var(--teal);background:var(--teal-light)"><h4>P1 + P2 Day Pass</h4><span class="lt-type" style="color:var(--teal)">Full Mountain</span><span class="lt-price">₹5,500</span><span class="lt-per">per day</span><ul><li>Unlimited both phases</li><li>Full mountain access</li><li>Best value for advanced</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS -->
+<section class="hours-sec" id="hours">
+  <div class="mxw">
+    <div class="rv" style="text-align:center;margin-bottom:0"><span class="stag">Operations</span><h2 class="sh2">Opening <em>Hours</em></h2></div>
+    <div class="hours-cards rv">
+      <div class="hc"><h3>🚡 Gondola Hours</h3>
+        <div class="hrow"><span class="day">Daily operation</span><span class="time">10:00 AM – 4:00 PM</span></div>
+        <div class="hrow"><span class="day">Last gondola up</span><span class="time">3:00 PM</span></div>
+        <div class="hrow"><span class="day">Season opens</span><span class="time" style="color:var(--teal)">December 1</span></div>
+        <div class="hrow"><span class="day">Season closes</span><span class="time">April 10</span></div>
+        <p style="font-size:.74rem;color:var(--muted);margin-top:12px;line-height:1.7">Subject to weather. May close early or not operate in high winds or poor visibility.</p>
+      </div>
+      <div class="hc"><h3>🎿 Poma Lifts</h3>
+        <div class="hrow"><span class="day">Daily operation</span><span class="time">9:00 AM – 5:00 PM</span></div>
+        <div class="hrow"><span class="day">Best for beginners</span><span class="time">9:00 – 11:30 AM</span></div>
+        <div class="hrow"><span class="day">Ski school sessions</span><span class="time">9:30 AM – 4:30 PM</span></div>
+        <div class="hrow"><span class="day">Equipment rental</span><span class="time">Opens 8:30 AM</span></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px" class="rv">
+      <a href="../avalanche/" class="btn btn-primary" style="background:linear-gradient(135deg,#7f1d1d,#991b1b);box-shadow:0 4px 14px rgba(127,29,29,.3)"><span>⚠️ Check Today's Avalanche Forecast</span><span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script>
+// ── INTERACTIVE MAP ZOOM/PAN ──
+let scale=1,px=0,py=0,dragging=false,sx=0,sy=0;
+const wrap=document.getElementById('mapWrap');
+const container=document.getElementById('mapContainer');
+
+function applyTransform(){
+  container.style.transform=`translate(${px}px,${py}px) scale(${scale})`;
+}
+
+function zoomMap(f){
+  scale=Math.min(4,Math.max(1,scale*f));
+  if(scale===1){px=0;py=0;}
+  applyTransform();
+}
+
+function resetMap(){scale=1;px=0;py=0;applyTransform();}
+
+wrap.addEventListener('wheel',e=>{
+  e.preventDefault();
+  zoomMap(e.deltaY<0?1.18:1/1.18);
+},{passive:false});
+
+wrap.addEventListener('mousedown',e=>{
+  if(scale<=1)return;
+  dragging=true;sx=e.clientX-px;sy=e.clientY-py;
+  wrap.classList.add('grabbing');
+});
+window.addEventListener('mousemove',e=>{
+  if(!dragging)return;
+  px=e.clientX-sx;py=e.clientY-sy;applyTransform();
+});
+window.addEventListener('mouseup',()=>{dragging=false;wrap.classList.remove('grabbing');});
+
+// Touch
+let lastDist=0;
+wrap.addEventListener('touchstart',e=>{
+  if(e.touches.length===1){dragging=true;sx=e.touches[0].clientX-px;sy=e.touches[0].clientY-py;}
+  if(e.touches.length===2){lastDist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);}
+},{passive:true});
+wrap.addEventListener('touchmove',e=>{
+  if(e.touches.length===1&&dragging&&scale>1){px=e.touches[0].clientX-sx;py=e.touches[0].clientY-sy;applyTransform();}
+  if(e.touches.length===2){const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);scale=Math.min(4,Math.max(1,scale*(d/lastDist)));lastDist=d;applyTransform();}
+},{passive:true});
+wrap.addEventListener('touchend',()=>{dragging=false;});
+
+// Map tabs
+function switchMap(id,btn){
+  document.querySelectorAll('.mtab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.map-panel').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('map-'+id).classList.add('on');
+  resetMap();
+}
+
+// Run tabs
+document.querySelectorAll('.rtab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.rtab').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.rp').forEach(p=>p.classList.remove('on'));
+    t.classList.add('on');
+    const p=document.getElementById(t.dataset.rp);if(p)p.classList.add('on');
+  });
+});
+
+// Section nav
+const sects=['stats','trail-map','inbounds','lift-tickets','hours'];
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY+200;
+  sects.forEach((id,i)=>{
+    const el=document.getElementById(id);if(!el)return;
+    const next=sects[i+1]?document.getElementById(sects[i+1]):null;
+    if(y>=el.offsetTop&&(!next||y<next.offsetTop)){
+      document.querySelectorAll('.sna').forEach(s=>s.classList.remove('on'));
+      const s=document.querySelectorAll('.sna')[i];if(s)s.classList.add('on');
+    }
+  });
+},{passive:true});
+</script>
+<script src="../js/shared.js"></script>
+<script>injectNav('../');injectFooter('../');</script>
+</body>
+</html>
